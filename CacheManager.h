@@ -3,6 +3,7 @@
 //
 
 #ifndef MILSTONE2__CACHEMANAGER_H_
+#include "Solution.h"
 #define MILSTONE2__CACHEMANAGER_H_
 
 class CacheManager {
