@@ -3,4 +3,4 @@ project(Milstone2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Milstone2 main.cpp)
+add_executable(Milstone2 main.cpp ClientHandler.h)
