@@ -4,4 +4,4 @@ project(Milstone2)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 
-add_executable(Milstone2 main.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h)
+add_executable(Milstone2 main.cpp ClientHandler.h MyTestClientHandler.cpp MyTestClientHandler.h CacheManager.h)
