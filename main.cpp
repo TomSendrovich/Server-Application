@@ -16,8 +16,12 @@ int main() {
         std::cout << "false" << endl;
     }
 
-    //fileCacheManager.saveSolution(solution);
-
+    fileCacheManager.saveSolution("1","tom sendrovich");
+    fileCacheManager.saveSolution("2","guy shoham");
+    fileCacheManager.saveSolution("3","ofir cohen");
+    fileCacheManager.saveSolution("4","hila bartov");
+    fileCacheManager.saveSolution("5","tzivka the king");
+    fileCacheManager.saveSolution("6","i dont mind");
 
     return 1;
 }
