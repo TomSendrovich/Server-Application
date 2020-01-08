@@ -14,4 +14,5 @@ add_executable(Milstone2
         Solution.cpp
         Solution.h
         Problem.cpp
-        Problem.h)
+        Problem.h
+        Server.h)
