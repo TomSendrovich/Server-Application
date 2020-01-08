@@ -5,6 +5,8 @@
 #ifndef MILSTONE2__MYTESTCLIENTHANDLER_H_
 #include <ostream>
 #include "ClientHandler.h"
+#include "CacheManager.h"
+#include "Solver.h"
 #define MILSTONE2__MYTESTCLIENTHANDLER_H_
 
 class MyTestClientHandler : public ClientHandler {
@@ -14,8 +16,8 @@ class MyTestClientHandler : public ClientHandler {
 
  public:
   MyTestClientHandler(Solver* solver, CacheManager* cm);
-  void handle(istream in, ostream out);
-  void handleClient(istream in, ostream out) override;
+  void handle(istream& in, ostream& out);
+  void handleClient(istream& in, ostream& out) override;
   ~MyTestClientHandler() override;
 
 };
