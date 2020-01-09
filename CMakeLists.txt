@@ -16,5 +16,6 @@ add_executable(Milstone2
         Problem.cpp
         Problem.h
         Server.h
+        FileCacheManager.cpp
         MySerialServer.cpp
         MySerialServer.h)
