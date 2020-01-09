@@ -13,19 +13,19 @@ using namespace std;
 #include <list>
 
 class CacheManager {
-protected:
-    unordered_map<const char *, const char *> cacheMap;
-    list<pair<const char*,const char*>> cacheList;
-    int size;
+ protected:
+  unordered_map<const char*, const char*> cacheMap;
+  list<pair<const char*, const char*>> cacheList;
+  int size;
 
-public:
-    virtual bool isSolutionExist(const char* solution) = 0;
-    //should be: virtual Solution getSolution()
-    virtual string getSolution(const char* problem) = 0;
+ public:
+  virtual bool isSolutionExist(const char* solution) = 0;
+  //should be: virtual Solution getSolution()
+  virtual string getSolution(const char* problem) = 0;
 
-    virtual void saveSolution(const char* problem, const char* solution) = 0;
+  virtual void saveSolution(const char* problem, const char* solution) = 0;
 
-    virtual ~CacheManager() = default;
+  virtual ~CacheManager() = default;
 };
 
 #endif //MILSTONE2__CACHEMANAGER_H_
