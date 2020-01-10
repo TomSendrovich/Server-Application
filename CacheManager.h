@@ -18,10 +18,10 @@ class CacheManager {
   list<pair<const char*, const char*>> cacheList;
   int size;
 
- public:
-  virtual bool isSolutionExist(const char* solution) = 0;
-  //should be: virtual Solution getSolution()
-  virtual string getSolution(const char* problem) = 0;
+public:
+    virtual bool isSolutionExist(const char* problem) = 0;
+    //should be: virtual Solution getSolution()
+    virtual string getSolution(const char* problem) = 0;
 
   virtual void saveSolution(const char* problem, const char* solution) = 0;
 

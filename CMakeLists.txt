@@ -16,8 +16,10 @@ add_executable(Milstone2
         Problem.cpp
         Problem.h
         Server.h
+        FileCacheManager.h
         FileCacheManager.cpp
         MySerialServer.cpp
         MySerialServer.h
         StringReverser.cpp
-        StringReverser.h)
+        StringReverser.h
+       )      

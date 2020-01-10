@@ -1,6 +1,6 @@
 #include <iostream>
 #include "CacheManager.h"
-#include "FileCacheManager.cpp"
+#include "FileCacheManager.h"
 
 int main() {
   int size = 5;
