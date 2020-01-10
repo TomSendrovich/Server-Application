@@ -19,7 +19,7 @@ protected:
     int size;
 
 public:
-    virtual bool isSolutionExist(const char* solution) = 0;
+    virtual bool isSolutionExist(const char* problem) = 0;
     //should be: virtual Solution getSolution()
     virtual string getSolution(const char* problem) = 0;
 
