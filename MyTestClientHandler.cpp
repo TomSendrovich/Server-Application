@@ -4,17 +4,10 @@
 
 #include "MyTestClientHandler.h"
 
-MyTestClientHandler::MyTestClientHandler(Solver* solver, CacheManager* cm) : solver(solver), cm(cm) {
-}
-
+MyTestClientHandler::MyTestClientHandler(Solver* solver, CacheManager* cm) : solver(solver), cm(cm) {}
 //todo: implement method
-void MyTestClientHandler::handle(istream& in, ostream& out) {
-
-}
-
-void MyTestClientHandler::handleClient(istream& in, ostream& out) {
-  handle(in, out);
-}
+void MyTestClientHandler::handle(istream& in, ostream& out) {}
+void MyTestClientHandler::handleClient(istream& in, ostream& out) { handle(in, out); }
 MyTestClientHandler::~MyTestClientHandler() {
   delete solver;
   delete cm;

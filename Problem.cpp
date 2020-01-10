@@ -3,3 +3,7 @@
 //
 
 #include "Problem.h"
+
+Problem::Problem(const string& problem) : _problem(problem) {}
+Problem::~Problem() {}
+const string& Problem::getProblem() const { return _problem; }

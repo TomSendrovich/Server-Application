@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <thread>
 #include "MySerialServer.h"
-void MySerialServer::open(int port, ClientHandler clientHandler) {
+void MySerialServer::open(int port, ClientHandler& clientHandler) {
 
 }
 void MySerialServer::stop() {

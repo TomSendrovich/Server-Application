@@ -8,7 +8,7 @@ using namespace server_side;
 #define MILSTONE2__MYSERIALSERVER_H_
 
 class MySerialServer : public Server {
-  void open(int port, ClientHandler clientHandler) override;
+  void open(int port, ClientHandler& clientHandler) override;
   void stop() override;
 };
 

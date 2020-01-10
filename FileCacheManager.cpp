@@ -6,19 +6,15 @@
 #include "CacheManager.h"
 #include "string"
 
+//todo: where is FileCacheManager.h?
 class FileCacheManager : public CacheManager {
-
   ifstream inStream;
   ofstream outStream;
   bool isOutStreamOpen = false;
  public:
-  FileCacheManager(int sizeNum) {
-    this->size = sizeNum;
-
-  }
+  FileCacheManager(int sizeNum) { this->size = sizeNum; }
 
   bool isSolutionExistInDisk(string line, const char* problem, string delimeter) {
-
     string tokenProblem;
     size_t pos;
     pos = line.find(delimeter) != std::string::npos;
@@ -28,7 +24,6 @@ class FileCacheManager : public CacheManager {
   }
 
   bool isSolutionExist(const char* problem) override {
-
     //solution is at the cache memory
     if (cacheMap[problem] != nullptr) {
       return true;
@@ -70,7 +65,6 @@ class FileCacheManager : public CacheManager {
         }
       }
     }
-
   }
 
   void saveSolution(const char* problem, const char* solution) override {
