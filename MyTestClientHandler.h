@@ -16,8 +16,8 @@ class MyTestClientHandler : public ClientHandler {
 
  public:
   MyTestClientHandler(Solver* solver, CacheManager* cm);
-  void handle(istream& in, ostream& out);
-  void handleClient(istream& in, ostream& out) override;
+  void handle(int in, int out);
+  void handleClient(int in, int out) override;
   ~MyTestClientHandler() override;
 
 };
