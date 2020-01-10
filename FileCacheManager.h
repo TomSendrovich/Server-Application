@@ -4,23 +4,27 @@
 
 #ifndef MILSTONE2_FILECACHEMANAGER_H
 #include "CacheManager.h"
+#include <fstream>
+#include "string"
 #define MILSTONE2_FILECACHEMANAGER_H
 
-class FileCacheManager: public CacheManager{
-    ifstream inStream;
-    ofstream outStream;
-    bool isOutStreamOpen = false;
-public:
-    FileCacheManager(int sizeNum);
+class FileCacheManager : public CacheManager {
 
-    bool isSolutionExist(const char *problem) override;
+  ifstream inStream;
+  ofstream outStream;
+  bool isOutStreamOpen = false;
 
-    string getSolution(const char *problem) override;
+ public:
+  FileCacheManager(int sizeNum);
 
-    void saveSolution(const char *problem, const char *solution) override;
+  bool isSolutionExist(const char* problem) override;
 
-    // ~FileCacheManager() override = default;
+  string getSolution(const char* problem) override;
 
-    bool isSolutionExistInDisk(string line, const char* problem, string delimeter);
+  void saveSolution(const char* problem, const char* solution) override;
+
+  ~FileCacheManager() override = default;
+
+  bool isSolutionExistInDisk(string line, const char* problem, string delimiter);
 };
 #endif //MILSTONE2_FILECACHEMANAGER_H

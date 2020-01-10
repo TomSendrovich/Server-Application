@@ -15,4 +15,7 @@ add_executable(Milstone2
         Solution.h
         Problem.cpp
         Problem.h
-        Server.h FileCacheManager.cpp FileCacheManager.h)
+        Server.h
+        FileCacheManager.h
+        FileCacheManager.cpp
+       )
