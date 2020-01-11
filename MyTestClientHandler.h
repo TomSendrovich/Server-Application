@@ -18,6 +18,7 @@ class MyTestClientHandler : public ClientHandler {
   MyTestClientHandler(Solver* solver, CacheManager* cm);
   void handle(int in, int out);
   void handleClient(int in, int out) override;
+  bool sendMsg (int out, const char* msg);
   ~MyTestClientHandler() override;
 
 };
