@@ -7,6 +7,7 @@
 
 #include "Solver.h"
 #include "Solution.h"
+
 class StringReverser : public Solver {
 
  public:
