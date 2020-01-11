@@ -9,6 +9,7 @@
 
 namespace server_side {
 class Server {
+ public:
   //open the server and listening. wait for clients.
   virtual void open(int port, ClientHandler& clientHandler) = 0;
 

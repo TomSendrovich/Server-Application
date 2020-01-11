@@ -14,12 +14,12 @@ class MyTestClientHandler : public ClientHandler {
   Solver* solver;
   CacheManager* cm;
 
+  bool sendMsg (int out, const char* msg);
+
  public:
   MyTestClientHandler(Solver* solver, CacheManager* cm);
-  void handle(int in, int out);
-  void handleClient(int in, int out) override;
-  bool sendMsg (int out, const char* msg);
   ~MyTestClientHandler() override;
+  void handleClient(int in, int out) override;
 
 };
 
