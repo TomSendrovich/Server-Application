@@ -22,4 +22,4 @@ add_executable(Milstone2
         MySerialServer.h
         StringReverser.cpp
         StringReverser.h
-       )      
+        Solver.cpp)

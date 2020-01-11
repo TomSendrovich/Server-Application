@@ -7,10 +7,16 @@
 #include "Solution.h"
 #define MILSTONE2_SOLVER_H
 
+template <typename Solution,typename Problem>
+
 class Solver {
- public:
-  virtual Solution* solve(Problem& problem) = 0;
-  virtual ~Solver() = default;
+    Solution solution;
+    Problem problem;
+public:
+    Solver(Solution solution, Problem problem);
+
+    virtual Solution* solve(Problem& problem) = 0;
+    virtual ~Solver() = default;
 };
 
 #endif //MILSTONE2_SOLVER_H
