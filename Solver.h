@@ -3,20 +3,21 @@
 //
 
 #ifndef MILSTONE2_SOLVER_H
-#include "Problem.h"
-#include "Solution.h"
 #define MILSTONE2_SOLVER_H
 
-template <typename Solution,typename Problem>
+template<class P, class S>
 
 class Solver {
-    Solution solution;
-    Problem problem;
-public:
-    Solver(Solution solution, Problem problem);
+  P _problem;
+  S _solution;
+ public:
+  Solver<P, S>(P problem, S solution) {
+    _problem = problem;
+    _solution = solution;
+  }
 
-    virtual Solution* solve(Problem& problem) = 0;
-    virtual ~Solver() = default;
+  virtual S* solve(P& problem) = 0;
+  virtual ~Solver() = default;
 };
 
 #endif //MILSTONE2_SOLVER_H

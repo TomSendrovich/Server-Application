@@ -8,23 +8,90 @@
 #include "string"
 #define MILSTONE2_FILECACHEMANAGER_H
 
-class FileCacheManager : public CacheManager {
+template<class P, class S>
+class FileCacheManager : public CacheManager<P, S> {
 
   ifstream inStream;
   ofstream outStream;
   bool isOutStreamOpen = false;
 
  public:
-  FileCacheManager(int sizeNum);
+  FileCacheManager<P, S>(int sizeNum) {
+    CacheManager<P, S>::size = sizeNum;
+  }
 
-  bool isSolutionExist(const char* problem) override;
+  bool isSolutionExist(P& problem) override {
+    //solution is at the cache memory
+    if (CacheManager<P, S>::cacheMap[problem] != nullptr) {
+      return true;
+    } else {
+      //soultion is at the disk (in a file at that case)
+      string line;
+      inStream.open("disk.txt", ios::in);
+      if (!inStream.is_open()) {
+        throw "Unable to open file";
+      }
+      while (getline(inStream, line)) {
+        string delimeter = ",";
+        if (isSolutionExistInDisk(line, problem, delimeter)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
-  string getSolution(const char* problem) override;
+  S& getSolution(P& problem) override {
+    //solution is at the cache memory
+    if (CacheManager<P, S>::cacheMap[problem] != nullptr) {
+      return CacheManager<P, S>::cacheMap[problem];
+    } else {
+      //soultion is at the disk (in a file at that case)
+      string line;
+      inStream.close();
+      inStream.open("disk.txt", ios::in);
+      if (!inStream.is_open()) {
+        throw "Unable to open file";
+      }
+      while (getline(inStream, line)) {
+        string delimeter = ",";
+        if (isSolutionExistInDisk(line, problem, delimeter)) {
+          size_t pos = line.find(delimeter) != std::string::npos;
+          line.erase(0, pos + delimeter.length());
+          return line;
+        }
+      }
 
-  void saveSolution(const char* problem, const char* solution) override;
+    }
+  }
+
+  void saveSolution(P& problem, S& solution) override {
+    if (!isOutStreamOpen) {
+      isOutStreamOpen = true;
+      outStream.open("disk.txt", ios::out | ios::app);
+      if (!outStream.is_open()) {
+        throw "Unable to open file";
+      }
+    }
+    outStream << problem << ", " << solution << endl;
+    if (CacheManager<P, S>::cacheList.size() >= CacheManager<P, S>::size) {
+      pair<const char*, const char*> lastElement = CacheManager<P, S>::cacheList.back();
+      CacheManager<P, S>::cacheList.pop_back();
+      CacheManager<P, S>::cacheMap.erase(lastElement.first);
+    }
+    CacheManager<P, S>::cacheList.push_front(make_pair(problem, solution));
+    CacheManager<P, S>::cacheMap[problem] = solution;
+  }
 
   ~FileCacheManager() override = default;
 
-  bool isSolutionExistInDisk(string line, const char* problem, string delimiter);
+  bool isSolutionExistInDisk(string line, P& problem, string delimiter) {
+    string tokenProblem;
+    size_t pos;
+    pos = line.find(delimiter) != std::string::npos;
+    tokenProblem = line.substr(0, pos);
+
+    return tokenProblem == problem;
+  }
 };
 #endif //MILSTONE2_FILECACHEMANAGER_H

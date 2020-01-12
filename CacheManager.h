@@ -3,27 +3,25 @@
 //
 
 #ifndef MILSTONE2__CACHEMANAGER_H_
+#include <list>
+#include <unordered_map>
 using namespace std;
-
-#include "Solution.h"
-
 #define MILSTONE2__CACHEMANAGER_H_
 
-#include <unordered_map>
-#include <list>
+template<class P, class S>
 
 class CacheManager {
  protected:
-  unordered_map<const char*, const char*> cacheMap;
-  list<pair<const char*, const char*>> cacheList;
+  unordered_map<P, S> cacheMap;
+  list<pair<P, S>> cacheList;
   int size;
 
-public:
-    virtual bool isSolutionExist(const char* problem) = 0;
-    //should be: virtual Solution getSolution()
-    virtual string getSolution(const char* problem) = 0;
+ public:
+  virtual bool isSolutionExist(P& problem) = 0;
+  //should be: virtual Solution getSolution()
+  virtual S& getSolution(P& problem) = 0;
 
-  virtual void saveSolution(const char* problem, const char* solution) = 0;
+  virtual void saveSolution(P& problem, S& solution) = 0;
 
   virtual ~CacheManager() = default;
 };
