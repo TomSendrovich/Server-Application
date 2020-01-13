@@ -34,7 +34,7 @@ class MyTestClientHandler : public ClientHandler {
     delete _solver;
     delete _cm;
   }
-  void handleClient(int in, int out) override {
+  void handleClient(int in) override {
     while (true) {
       char buffer[1024] = {0};
       int valRead = read(in, buffer, 1024);
@@ -46,14 +46,14 @@ class MyTestClientHandler : public ClientHandler {
           if (_cm->isSolutionExist(problem)) {
             //solutionExist exist in cm, we return in to the client
             string solutionExist = _cm->getSolution(problem);
-            if (!sendMsg(out, solutionExist)) {
+            if (!sendMsg(in, solutionExist)) {
               cout << "Error sending message: " << solutionExist << endl;
             }
           } else {
             //solutionNotExist dont exist in cm, we solve the problem and save it at cm
             string solutionNotExist = _solver->solve(problem);
             _cm->saveSolution(problem, solutionNotExist);
-            if (!sendMsg(out, solutionNotExist)) {
+            if (!sendMsg(in, solutionNotExist)) {
               cout << "Error sending message: " << solutionNotExist << endl;
             }
           }

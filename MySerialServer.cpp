@@ -47,18 +47,15 @@ void MySerialServer::listenToClients(int port, ClientHandler& clientHandler) {
     int inSocket = accept(socketfd, (struct sockaddr*) &address, &size);
     if (inSocket == -1) { throw "ERROR: cannot accept client"; }
 
-    int outSocket = connect(inSocket, (struct sockaddr*) &address, size);
-    if (outSocket == -1) { throw "Could not connect to host server"; }
-    else {
-      cout << "Client is now connected to server" << endl;
-      //reading from client
-      thread handleClientThread(handleClient, inSocket, outSocket, ref(clientHandler));
-      handleClientThread.join();
-    }
+    cout << "Client is now connected to server" << endl;
+    //reading from client
+    thread handleClientThread(handleClient, inSocket, ref(clientHandler));
+    handleClientThread.join();
+
     close(socketfd); //closing the listening socket
   }//end of while loop
 }
-void MySerialServer::handleClient(int inSocket, int outSocket, ClientHandler& clientHandler) {
-  clientHandler.handleClient(inSocket, outSocket);
+void MySerialServer::handleClient(int inSocket, ClientHandler& clientHandler) {
+  clientHandler.handleClient(inSocket);
 }
 void MySerialServer::stop() { isStop = true; }

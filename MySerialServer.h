@@ -10,7 +10,7 @@ using namespace server_side;
 class MySerialServer : public Server {
 
   static void listenToClients(int port, ClientHandler& clientHandler);
-  static void handleClient(int inSocket, int outSocket, ClientHandler& clientHandler);
+  static void handleClient(int inSocket, ClientHandler& clientHandler);
 
  public:
   void open(int port, ClientHandler& clientHandler) override;
