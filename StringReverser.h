@@ -23,17 +23,10 @@ class StringReverser : public Solver<P, S> {
   };
 
  public:
-  StringReverser() {}
+  StringReverser() = default;
+
   S& solve(P& problem) override {
-    /*string problemStr = problemToString(problem);
-    int length = problemStr.length();
-
-    // Swap character starting from two corners
-    for (int i = 0; i < length / 2; i++)
-      swap(problemStr[i], problemStr[length - i - 1]);
-
-    S* solution = solvedStringToSolution(problemStr);
-    return solution;*/
+    return problem;
   };
 };
 
