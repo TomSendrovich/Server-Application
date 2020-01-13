@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <thread>
 #include "MySerialServer.h"
-#define TIMEOUT 30;
+#define TIMEOUT 120;
 
 //todo: consider move this 'isStop' field to header file as data member
 bool isStop;
@@ -15,7 +15,7 @@ bool isStop;
 void MySerialServer::open(int port, ClientHandler& clientHandler) {
   isStop = false;
   thread listenThread(listenToClients, port, ref(clientHandler));
-  listenThread.detach();
+  listenThread.join();
 }
 void MySerialServer::listenToClients(int port, ClientHandler& clientHandler) {
   while (!isStop) {
