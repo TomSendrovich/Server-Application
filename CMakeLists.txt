@@ -12,7 +12,10 @@ add_executable(Milstone2
         MySerialServer.cpp
         MySerialServer.h
         MyTestClientHandler.h
+        Searchable.h
+        Searcher.h
         Server.h
         Solver.h
+        State.h
         StringReverser.h
         )
