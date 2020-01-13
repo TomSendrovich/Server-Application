@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <cstring>
 #include <sys/socket.h>
+#include <sstream>
 #include "ClientHandler.h"
 #include "CacheManager.h"
 #include "Solver.h"
@@ -18,9 +19,10 @@ class MyTestClientHandler : public ClientHandler {
   Solver<P, S>* _solver;
   CacheManager<P, S>* _cm;
 
-  bool sendMsg(int out, const char* msg) {
-    int is_sent = send(out, msg, strlen(msg), 0);
-    return is_sent != -1;
+  bool sendMsg(int out, string msg) {
+   /* int is_sent = send(out, msg, strlen(msg), 0);
+    return is_sent != -1;*/
+   return 2;
   }
 
  public:
@@ -36,25 +38,27 @@ class MyTestClientHandler : public ClientHandler {
     while (true) {
       char buffer[1024] = {0};
       int valRead = read(in, buffer, 1024);
+
       if (valRead != 0 && valRead != -1) {
-        auto* problem = new P(buffer);
         if (strcmp(buffer, "end") != 0) {
-          if (_cm->isSolutionExist(buffer)) {
+          string problem = buffer;
+
+          if (_cm->isSolutionExist(problem)) {
             //solutionExist exist in cm, we return in to the client
-            auto* solutionExist = new S(_cm->getSolution(problem->getProblem().c_str()));
-            if (!sendMsg(out, solutionExist->getSolution().c_str())) {
-              cout << "Error sending message: " << solutionExist->getSolution() << endl;
+            string solutionExist = _cm->getSolution(problem);
+            if (!sendMsg(out, solutionExist)) {
+              cout << "Error sending message: " << solutionExist << endl;
             }
           } else {
             //solutionNotExist dont exist in cm, we solve the problem and save it at cm
-            S* solutionNotExist = _solver->solve(*problem);
-            _cm->saveSolution(buffer, solutionNotExist->getSolution().c_str());
-            if (!sendMsg(out, solutionNotExist->getSolution().c_str())) {
-              cout << "Error sending message: " << solutionNotExist->getSolution() << endl;
+            string solutionNotExist = _solver->solve(problem);
+            _cm->saveSolution(problem, solutionNotExist);
+            if (!sendMsg(out, solutionNotExist)) {
+              cout << "Error sending message: " << solutionNotExist << endl;
             }
           }
         } else {
-          //client want to end communication
+          //client wants to end communication
           break;
         }
       } else {

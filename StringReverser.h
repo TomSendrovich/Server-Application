@@ -4,25 +4,36 @@
 
 #ifndef MILSTONE2__STRINGREVERSER_H_
 #include <algorithm>
+#include <sstream>
 #include "Solver.h"
 #define MILSTONE2__STRINGREVERSER_H_
 
 template<class P, class S>
 class StringReverser : public Solver<P, S> {
 
+  string problemToString(P& problem) {
+    return to_string(problem);
+  };
+
+  S& solvedStringToSolution(string solution) {
+    istringstream ss(solution);
+    S* retVal = nullptr;
+    ss >> retVal;
+    return retVal;
+  };
+
  public:
-  //todo: implement solve
+  StringReverser() {}
   S& solve(P& problem) override {
-    /*string str = problem.getProblem();
-    int length = str.length();
+    /*string problemStr = problemToString(problem);
+    int length = problemStr.length();
 
     // Swap character starting from two corners
     for (int i = 0; i < length / 2; i++)
-      swap(str[i], str[length - i - 1]);
+      swap(problemStr[i], problemStr[length - i - 1]);
 
-    S* solution = new S(str);
-    return solution;
-  }*/
+    S* solution = solvedStringToSolution(problemStr);
+    return solution;*/
   };
 };
 

@@ -16,48 +16,39 @@ class FileCacheManager : public CacheManager<P, S> {
   bool isOutStreamOpen = false;
 
  public:
-  FileCacheManager<P, S>(int sizeNum) {
-    CacheManager<P, S>::size = sizeNum;
-  }
+  FileCacheManager<P, S>(int sizeNum) { CacheManager<P, S>::size = sizeNum; }
 
   bool isSolutionExist(P& problem) override {
-    //solution is at the cache memory
-    if (CacheManager<P, S>::cacheMap[problem] != nullptr) {
-      return true;
-    } else {
-      //soultion is at the disk (in a file at that case)
+    /*//solution is at the cache memory
+    if (CacheManager<P, S>::cacheMap.find(problem) != CacheManager<P, S>::cacheMap.end()) { return true; }
+    else {
+      //solution is at the disk (in a file at that case)
       string line;
       inStream.open("disk.txt", ios::in);
-      if (!inStream.is_open()) {
-        throw "Unable to open file";
-      }
+      if (!inStream.is_open()) { throw "Unable to open file"; }
       while (getline(inStream, line)) {
-        string delimeter = ",";
-        if (isSolutionExistInDisk(line, problem, delimeter)) {
-          return true;
-        }
+        string delimiter = ",";
+        if (isSolutionExistInDisk(line, problem, delimiter)) { return true; }
       }
-    }
+    }*/
     return false;
   }
 
   S& getSolution(P& problem) override {
     //solution is at the cache memory
-    if (CacheManager<P, S>::cacheMap[problem] != nullptr) {
+    if (CacheManager<P, S>::cacheMap.find(problem) != CacheManager<P, S>::cacheMap.end()) {
       return CacheManager<P, S>::cacheMap[problem];
     } else {
-      //soultion is at the disk (in a file at that case)
+      //solution is at the disk (in a file at that case)
       string line;
       inStream.close();
       inStream.open("disk.txt", ios::in);
-      if (!inStream.is_open()) {
-        throw "Unable to open file";
-      }
+      if (!inStream.is_open()) { throw "Unable to open file"; }
       while (getline(inStream, line)) {
-        string delimeter = ",";
-        if (isSolutionExistInDisk(line, problem, delimeter)) {
-          size_t pos = line.find(delimeter) != std::string::npos;
-          line.erase(0, pos + delimeter.length());
+        string delimiter = ",";
+        if (isSolutionExistInDisk(line, problem, delimiter)) {
+          size_t pos = line.find(delimiter) != std::string::npos;
+          line.erase(0, pos + delimiter.length());
           return line;
         }
       }
@@ -66,7 +57,7 @@ class FileCacheManager : public CacheManager<P, S> {
   }
 
   void saveSolution(P& problem, S& solution) override {
-    if (!isOutStreamOpen) {
+   /* if (!isOutStreamOpen) {
       isOutStreamOpen = true;
       outStream.open("disk.txt", ios::out | ios::app);
       if (!outStream.is_open()) {
@@ -80,7 +71,7 @@ class FileCacheManager : public CacheManager<P, S> {
       CacheManager<P, S>::cacheMap.erase(lastElement.first);
     }
     CacheManager<P, S>::cacheList.push_front(make_pair(problem, solution));
-    CacheManager<P, S>::cacheMap[problem] = solution;
+    CacheManager<P, S>::cacheMap[problem] = solution;*/
   }
 
   ~FileCacheManager() override = default;

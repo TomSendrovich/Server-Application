@@ -8,15 +8,8 @@
 template<class P, class S>
 
 class Solver {
-  P _problem;
-  S _solution;
  public:
-  Solver<P, S>(P problem, S solution) {
-    _problem = problem;
-    _solution = solution;
-  }
-
-  virtual S* solve(P& problem) = 0;
+  virtual S& solve(P& problem) = 0;
   virtual ~Solver() = default;
 };
 

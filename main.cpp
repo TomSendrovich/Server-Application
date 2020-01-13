@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Server.h"
 #include "MySerialServer.h"
 #include "CacheManager.h"
@@ -22,24 +21,6 @@ class Main {
     Server* mySerialServer = new MySerialServer();
     mySerialServer->open(port, *myTestClientHandler);
 
-/*    fileCacheManager->saveSolution("1", "tom sendrovich");
-    fileCacheManager->saveSolution("2", "guy shoham");
-    fileCacheManager->saveSolution("3", "ofir cohen");
-    fileCacheManager->saveSolution("4", "hila bartov");
-    fileCacheManager->saveSolution("5", "tzivka the king");
-    fileCacheManager->saveSolution("6", "i dont mind");
-
-    const char* problem = "3";
-    string solution;
-    bool isExist = fileCacheManager->isSolutionExist(problem);
-    if (isExist) {
-      cout << "true" << endl;
-      solution = fileCacheManager->getSolution(problem);
-      cout << solution << endl;
-    } else {
-      cout << "false" << endl;
-    }*/
-
     return 1;
   }
 };
@@ -48,6 +29,6 @@ class Main {
 using namespace boot;
 
 int main(int argc, char* argv[]) {
-//  Main<string, string>* main = new Main<string, string>();
-//  return main->main(argc, argv);
+  boot::Main<string, string> main;
+  return main.main(argc, argv);
 }
