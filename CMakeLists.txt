@@ -5,21 +5,14 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(Milstone2
-        main.cpp
-        ClientHandler.h
-        MyTestClientHandler.cpp
-        MyTestClientHandler.h
-        Solver.h
         CacheManager.h
-        Solution.cpp
-        Solution.h
-        Problem.cpp
-        Problem.h
-        Server.h
+        ClientHandler.h
         FileCacheManager.h
-        FileCacheManager.cpp
+        main.cpp
         MySerialServer.cpp
         MySerialServer.h
-        StringReverser.cpp
+        MyTestClientHandler.h
+        Server.h
+        Solver.h
         StringReverser.h
-       )      
+        )

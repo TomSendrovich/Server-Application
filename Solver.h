@@ -3,13 +3,13 @@
 //
 
 #ifndef MILSTONE2_SOLVER_H
-#include "Problem.h"
-#include "Solution.h"
 #define MILSTONE2_SOLVER_H
+
+template<class P, class S>
 
 class Solver {
  public:
-  virtual Solution* solve(Problem& problem) = 0;
+  virtual S& solve(P& problem) = 0;
   virtual ~Solver() = default;
 };
 
