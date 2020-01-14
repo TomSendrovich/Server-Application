@@ -26,7 +26,6 @@ class MyTestClientHandler : public ClientHandler {
   bool sendMsg(int out, const char* msg) {
     int is_sent = send(out, msg, strlen(msg), 0);
     return is_sent != -1;
-    return 2;
   }
 
  public:
@@ -47,12 +46,13 @@ class MyTestClientHandler : public ClientHandler {
       int valRead = read(in, buffer, 1024);
 
       if (valRead != 0 && valRead != -1) {
-        if (strcmp(buffer, "end") != 0) {
+        if (strcmp(buffer, "end") != 0) { //there is a line to read
           string problem = buffer;
 
           if (_cm->isSolutionExist(problem)) {
             //solutionExist exist in cm, we return in to the client
-            string solutionExist = _cm->getSolution(problem);
+            //todo stuck here
+            auto solutionExist = _cm->getSolution(problem);
             if (!sendMsg(in, solutionExist.c_str())) {
               cout << "Error sending message: " << solutionExist << endl;
             }
