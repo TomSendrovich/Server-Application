@@ -6,18 +6,18 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <thread>
-#include "MySerialServer.h"
+#include "Server.h"
 #define TIMEOUT 120;
 
 //todo: consider move this 'isStop' field to header file as data member
 bool isStop;
 
-void MySerialServer::open(int port, ClientHandler& clientHandler) {
+void server_side::MySerialServer::open(int port, ClientHandler& clientHandler) {
   isStop = false;
   thread listenThread(listenToClients, port, ref(clientHandler));
   listenThread.join();
 }
-void MySerialServer::listenToClients(int port, ClientHandler& clientHandler) {
+void server_side::MySerialServer::listenToClients(int port, ClientHandler& clientHandler) {
   while (!isStop) {
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -55,7 +55,7 @@ void MySerialServer::listenToClients(int port, ClientHandler& clientHandler) {
     close(socketfd); //closing the listening socket
   }//end of while loop
 }
-void MySerialServer::handleClient(int inSocket, ClientHandler& clientHandler) {
+void server_side::MySerialServer::handleClient(int inSocket, ClientHandler& clientHandler) {
   clientHandler.handleClient(inSocket);
 }
-void MySerialServer::stop() { isStop = true; }
+void server_side::MySerialServer::stop() { isStop = true; }
