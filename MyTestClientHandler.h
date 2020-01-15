@@ -14,66 +14,80 @@
 #include "CacheManager.h"
 #include "Solver.h"
 
+using namespace std;
 #define MILSTONE2__MYTESTCLIENTHANDLER_H_
 
 template<typename P, typename S>
 class MyTestClientHandler : public ClientHandler {
 
-  Solver<P, S>* _solver;
-  CacheManager<P, S>* _cm;
-  bool isEnd;
+    Solver<P, S> *_solver;
+    CacheManager<P, S> *_cm;
+    bool isEnd, needToRead;
 
-  bool sendMsg(int out, const char* msg) {
-    int is_sent = send(out, msg, strlen(msg), 0);
-    return is_sent != -1;
-  }
+    bool sendMsg(int out, const char *msg) {
+        int is_sent = send(out, msg, strlen(msg), 0);
+        return is_sent != -1;
+    }
 
- public:
-  MyTestClientHandler(Solver<P, S>* solver, CacheManager<P, S>* cm) {
-    _solver = solver;
-    _cm = cm;
-  }
+public:
+    MyTestClientHandler(Solver<P, S> *solver, CacheManager<P, S> *cm) {
+        _solver = solver;
+        _cm = cm;
+    }
 
-  ~MyTestClientHandler() override {
-    delete _solver;
-    delete _cm;
-  }
+    ~MyTestClientHandler() override {
+        delete _solver;
+        delete _cm;
+    }
 
-  void handleClient(int in) override {
-    isEnd = false;
-    while (!isEnd) {
-      char buffer[1024] = {0};
-      int valRead = read(in, buffer, 1024);
-
-      if (valRead != 0 && valRead != -1) {
-        if (strcmp(buffer, "end") != 0) { //there is a line to read
-          string problem = buffer;
-
-          if (_cm->isSolutionExist(problem)) {
-            //solutionExist exist in cm, we return in to the client
-            S solutionExist = _cm->getSolution(problem);
-            if (!sendMsg(in, solutionExist.c_str())) {
-              cout << "Error sending message: " << solutionExist << endl;
+    void handleClient(int in) override {
+        isEnd = false;
+        char buffer[1024] = {0};
+        char *ptrBuffer = buffer;
+        while (!isEnd) {
+            int valRead = read(in, buffer, 1024);
+            if (valRead == 0 || valRead == -1) {
+                throw "ERROR: message from client did not receive";
             }
-          } else {
-            //solutionNotExist dont exist in cm, we solve the problem and save it at cm
-            S solutionNotExist = _solver->solve(problem);
-            _cm->saveSolution(problem, solutionNotExist);
-            if (!sendMsg(in, solutionNotExist.c_str())) {
-              cout << "Error sending message: " << solutionNotExist << endl;
+            string allLines = ptrBuffer;
+            needToRead = false;
+            while (!needToRead) {
+                if (allLines == "\n") {
+                    needToRead = true;
+                    continue;
+                }
+                string oneLine = allLines;
+                int pos = oneLine.find('\n');
+                oneLine.erase(pos, oneLine.length()-pos);
+                allLines.erase(0, pos+1);
+                if (oneLine != "end") { //there is a line to read
+                    string problem = oneLine;
+
+                    if (_cm->isSolutionExist(problem)) {
+                        //solutionExist exist in cm, we return in to the client
+                        S solutionExist = _cm->getSolution(problem);
+                        if (!sendMsg(in, solutionExist.c_str())) {
+                            cout << "Error sending message: " << solutionExist << endl;
+                        }
+                    } else {
+                        //solutionNotExist dont exist in cm, we solve the problem and save it at cm
+                        S solutionNotExist = _solver->solve(problem);
+                        _cm->saveSolution(problem, solutionNotExist);
+                        if (!sendMsg(in, solutionNotExist.c_str())) {
+                            cout << "Error sending message: " << solutionNotExist << endl;
+                        }
+                    }
+                    problem.clear();
+                } else {
+                    //client wants to end communication
+                    cout << "end line" << endl;
+                    isEnd = true;
+                    break;
+                }
             }
-          }
-          problem.clear();
-        } else {
-          //client wants to end communication
-          cout << "end line" << endl;
-          isEnd = true;
-        }
-      } else {
-        throw "ERROR: message from client did not receive";
-      }
-    }//end of while loop
-  }
+
+        }//end of while loop
+    }
 
 };//end of class
 
