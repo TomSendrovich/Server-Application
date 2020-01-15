@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <thread>
 #include "Server.h"
-#define TIMEOUT 120;
+#define TIMEOUT 120
 
 //todo: consider move this 'isStop' field to header file as data member
 bool isStop;

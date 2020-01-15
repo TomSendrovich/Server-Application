@@ -13,7 +13,6 @@ template<typename P, typename S>
 class CacheManager {
  protected:
   unordered_map<P, S> cacheMap;
-  list<pair<P, S>> cacheList;
   int size;
 
  public:

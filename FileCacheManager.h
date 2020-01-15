@@ -69,9 +69,9 @@ class FileCacheManager : public CacheManager<P, S> {
   }
 
   S& getSolution(P& problem) override {
-    S ans = "abc";
-    S ret = ans;
-    return ret;
+    //S ans = "abc";
+    //S ret = ans;
+    return problem;
 
     /*string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
@@ -98,21 +98,21 @@ class FileCacheManager : public CacheManager<P, S> {
   }
 
   void saveSolution(P& problem, S& solution) override {
-    /* if (!isOutStreamOpen) {
-       isOutStreamOpen = true;
-       outStream.open("disk.txt", ios::out | ios::app);
-       if (!outStream.is_open()) {
-         throw "Unable to open file";
-       }
-     }
-     outStream << problem << ", " << solution << endl;
-     if (CacheManager<P, S>::cacheList.size() >= CacheManager<P, S>::size) {
-       pair<const char*, const char*> lastElement = CacheManager<P, S>::cacheList.back();
-       CacheManager<P, S>::cacheList.pop_back();
-       CacheManager<P, S>::cacheMap.erase(lastElement.first);
-     }
-     CacheManager<P, S>::cacheList.push_front(make_pair(problem, solution));
-     CacheManager<P, S>::cacheMap[problem] = solution;*/
+    string objectName = "string";
+    string problemHashName = to_string(hash_str(problem.c_str()));
+
+    if (!isOutStreamOpen) {
+      isOutStreamOpen = true;
+      outStream.open(objectName + ".txt", ios::out | ios::app);
+      if (!outStream.is_open()) {
+        throw "Unable to open file";
+      }
+    }
+    outStream << problemHashName << "," << solution << endl;
+    if (CacheManager<P, S>::cacheMap.size() >= CacheManager<P, S>::size) {
+      CacheManager<P, S>::cacheMap.erase(CacheManager<P, S>::cacheMap.begin());
+    }
+    CacheManager<P, S>::cacheMap[problem] = solution;
   }
 
   ~FileCacheManager() override = default;

@@ -52,13 +52,13 @@ class MyTestClientHandler : public ClientHandler {
           if (_cm->isSolutionExist(problem)) {
             //solutionExist exist in cm, we return in to the client
             //todo stuck here
-            auto solutionExist = _cm->getSolution(problem);
+            S solutionExist = _cm->getSolution(problem);
             if (!sendMsg(in, solutionExist.c_str())) {
               cout << "Error sending message: " << solutionExist << endl;
             }
           } else {
             //solutionNotExist dont exist in cm, we solve the problem and save it at cm
-            string solutionNotExist = _solver->solve(problem);
+            S solutionNotExist = _solver->solve(problem);
             _cm->saveSolution(problem, solutionNotExist);
             if (!sendMsg(in, solutionNotExist.c_str())) {
               cout << "Error sending message: " << solutionNotExist << endl;
