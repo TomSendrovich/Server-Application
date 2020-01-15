@@ -51,7 +51,6 @@ class MyTestClientHandler : public ClientHandler {
 
           if (_cm->isSolutionExist(problem)) {
             //solutionExist exist in cm, we return in to the client
-            //todo stuck here
             S solutionExist = _cm->getSolution(problem);
             if (!sendMsg(in, solutionExist.c_str())) {
               cout << "Error sending message: " << solutionExist << endl;
@@ -64,6 +63,7 @@ class MyTestClientHandler : public ClientHandler {
               cout << "Error sending message: " << solutionNotExist << endl;
             }
           }
+          problem.clear();
         } else {
           //client wants to end communication
           cout << "end line" << endl;
