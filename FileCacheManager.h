@@ -15,7 +15,7 @@
 
 #define MILSTONE2_FILECACHEMANAGER_H
 
-template<class P, class S>
+template<typename P, typename S>
 class FileCacheManager : public CacheManager<P, S> {
 
   ifstream inStream;

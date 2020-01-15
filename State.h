@@ -4,7 +4,7 @@
 
 #ifndef MILSTONE2__STATE_H_
 #define MILSTONE2__STATE_H_
-template<class T>
+template<typename T>
 class State {
 
 };

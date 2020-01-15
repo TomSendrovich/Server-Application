@@ -5,7 +5,7 @@
 #ifndef MILSTONE2_SOLVER_H
 #define MILSTONE2_SOLVER_H
 
-template<class P, class S>
+template<typename P, typename S>
 
 class Solver {
  public:

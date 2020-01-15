@@ -7,7 +7,7 @@
 #include "State.h"
 using namespace std;
 #define MILSTONE2__SEARCHABLE_H_
-template<class T>
+template<typename T>
 class Searchable {
   State<T> getInitialState() = 0;
   bool isGoalState(State<T> state) = 0;

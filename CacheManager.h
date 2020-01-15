@@ -8,7 +8,7 @@
 using namespace std;
 #define MILSTONE2__CACHEMANAGER_H_
 
-template<class P, class S>
+template<typename P, typename S>
 
 class CacheManager {
  protected:

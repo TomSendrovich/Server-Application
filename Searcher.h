@@ -5,7 +5,7 @@
 #ifndef MILSTONE2__SEARCHER_H_
 #include "Searchable.h"
 #define MILSTONE2__SEARCHER_H_
-template<class T, class S>
+template<typename T, typename S>
 class Searcher {
   S& Search(Searchable<T> searchable) = 0;
 };

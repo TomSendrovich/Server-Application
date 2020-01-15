@@ -36,7 +36,7 @@ class MySerialServer : public Server {
 
 namespace boot {
 using namespace server_side;
-template<class P, class S>
+template<typename P, typename S>
 class Main {
  public:
   static int main(int argc, char* argv[]) {

@@ -16,7 +16,7 @@
 
 #define MILSTONE2__MYTESTCLIENTHANDLER_H_
 
-template<class P, class S>
+template<typename P, typename S>
 class MyTestClientHandler : public ClientHandler {
 
   Solver<P, S>* _solver;

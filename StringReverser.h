@@ -8,7 +8,7 @@
 #include "Solver.h"
 #define MILSTONE2__STRINGREVERSER_H_
 
-template<class P, class S>
+template<typename P, typename S>
 class StringReverser : public Solver<P, S> {
 
   string problemToString(P& problem) {
