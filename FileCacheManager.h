@@ -108,7 +108,7 @@ class FileCacheManager : public CacheManager<P, S> {
         throw "Unable to open file";
       }
     }
-    outStream << problemHashName << "," << solution << endl;
+    outStream << problemHashName + "," + solution << endl;
     if (CacheManager<P, S>::cacheMap.size() >= CacheManager<P, S>::size) {
       CacheManager<P, S>::cacheMap.erase(CacheManager<P, S>::cacheMap.begin());
     }
