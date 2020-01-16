@@ -31,7 +31,6 @@ class FileCacheManager : public CacheManager<P, S> {
     return h; // or return h % C;
   }
 
-  //todo: test this function
   bool isSolutionExistInDisk(string line, string problemHashName) {
     string tokenProblem;
     size_t pos;
@@ -70,10 +69,6 @@ class FileCacheManager : public CacheManager<P, S> {
   }
 
   S getSolution(P& problem) override {
-    //S ans = "abc";
-    //S ret = ans;
-    //return problem;
-
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 

@@ -26,7 +26,7 @@ class Server {
 };
 
 class MySerialServer : public Server {
-  static void listenToClients(int socketfd, sockaddr_in address, ClientHandler &clientHandler);
+  static void listenToClients(int socketfd, sockaddr_in address, ClientHandler& clientHandler);
   static void handleClient(int inSocket, ClientHandler& clientHandler);
 
  public:

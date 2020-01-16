@@ -10,7 +10,6 @@ add_executable(Milstone2
         FileCacheManager.h
         main.cpp
         MySerialServer.cpp
-        MySerialServer.h
         MyTestClientHandler.h
         Searchable.h
         Searcher.h
@@ -18,4 +17,5 @@ add_executable(Milstone2
         Solver.h
         State.h
         StringReverser.h
+        MatrixProblem.h
         )

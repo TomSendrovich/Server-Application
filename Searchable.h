@@ -9,9 +9,11 @@ using namespace std;
 #define MILSTONE2__SEARCHABLE_H_
 template<typename T>
 class Searchable {
-  State<T> getInitialState() = 0;
-  bool isGoalState(State<T> state) = 0;
-  vector<State<T>> getAllPossibleStates(State<T> state) = 0;
+
+ public:
+  virtual State<T> getInitialState() = 0;
+  virtual bool isGoalState(State<T> state) = 0;
+  virtual vector<State<T>> getAllPossibleStates(State<T> state) = 0;
 };
 
 #endif //MILSTONE2__SEARCHABLE_H_
