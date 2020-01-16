@@ -57,7 +57,7 @@ class BestFirstSearch : public Searcher<T, S> {
   }
 
 
-  list<State<T>> getNodeSuccessors(State<T>) {
+  list<State<Cell>> getNodeSuccessors(State<T> node) {
 
   }
 };
