@@ -50,41 +50,35 @@ public:
                 throw "ERROR: message from client did not receive";
             }
             string allLines = ptrBuffer;
-            needToRead = false;
-            while (!needToRead) {
-                if (allLines == "\n") {
-                    needToRead = true;
-                    continue;
-                }
-                string oneLine = allLines;
-                int pos = oneLine.find('\n');
-                oneLine.erase(pos, oneLine.length()-pos);
-                allLines.erase(0, pos+1);
-                if (oneLine != "end") { //there is a line to read
-                    string problem = oneLine;
+            string oneLine = allLines;
+            int pos = oneLine.find('\n');
+            oneLine.erase(pos, oneLine.length() - pos);
+            allLines.erase(0, pos + 1);
+            if (oneLine != "end") { //there is a line to read
+                string problem = oneLine;
 
-                    if (_cm->isSolutionExist(problem)) {
-                        //solutionExist exist in cm, we return in to the client
-                        S solutionExist = _cm->getSolution(problem);
-                        if (!sendMsg(in, solutionExist.c_str())) {
-                            cout << "Error sending message: " << solutionExist << endl;
-                        }
-                    } else {
-                        //solutionNotExist dont exist in cm, we solve the problem and save it at cm
-                        S solutionNotExist = _solver->solve(problem);
-                        _cm->saveSolution(problem, solutionNotExist);
-                        if (!sendMsg(in, solutionNotExist.c_str())) {
-                            cout << "Error sending message: " << solutionNotExist << endl;
-                        }
+                if (_cm->isSolutionExist(problem)) {
+                    //solutionExist exist in cm, we return in to the client
+                    S solutionExist = _cm->getSolution(problem);
+                    if (!sendMsg(in, solutionExist.c_str())) {
+                        cout << "Error sending message: " << solutionExist << endl;
                     }
-                    problem.clear();
                 } else {
-                    //client wants to end communication
-                    cout << "end line" << endl;
-                    isEnd = true;
-                    break;
+                    //solutionNotExist dont exist in cm, we solve the problem and save it at cm
+                    S solutionNotExist = _solver->solve(problem);
+                    _cm->saveSolution(problem, solutionNotExist);
+                    if (!sendMsg(in, solutionNotExist.c_str())) {
+                        cout << "Error sending message: " << solutionNotExist << endl;
+                    }
                 }
+                problem.clear();
+            } else {
+                //client wants to end communication
+                cout << "end line" << endl;
+                isEnd = true;
+
             }
+
 
         }//end of while loop
     }

@@ -18,7 +18,7 @@ class CacheManager {
  public:
   virtual bool isSolutionExist(P& problem) = 0;
   //should be: virtual Solution getSolution()
-  virtual S& getSolution(P& problem) = 0;
+  virtual S getSolution(P& problem) = 0;
 
   virtual void saveSolution(P& problem, S& solution) = 0;
 

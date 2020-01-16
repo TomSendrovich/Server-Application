@@ -48,7 +48,6 @@ void server_side::MySerialServer::listenToClients(int socketfd, sockaddr_in addr
     while (!isStop) {
         cout << "Server is now listening ..." << endl;
 
-
         // accepting a client
          inSocket = accept(socketfd, (struct sockaddr *) &address, &size);
         if (inSocket == -1) { throw "ERROR: cannot accept client"; }

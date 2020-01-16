@@ -55,6 +55,7 @@ class FileCacheManager : public CacheManager<P, S> {
     } else {
       //solution is not in cache, maybe in disk (in a file at that case)
       string line;
+      inStream.close();
       inStream.open(objectName + ".txt", ios::binary);
       if (!inStream.is_open()) {
         throw "Unable to open file";
@@ -68,12 +69,12 @@ class FileCacheManager : public CacheManager<P, S> {
     return false;
   }
 
-  S& getSolution(P& problem) override {
+  S getSolution(P& problem) override {
     //S ans = "abc";
     //S ret = ans;
-    return problem;
+    //return problem;
 
-    /*string objectName = "string";
+    string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
     //solution is at the cache memory
@@ -81,7 +82,7 @@ class FileCacheManager : public CacheManager<P, S> {
       return CacheManager<P, S>::cacheMap[problemHashName];
     } else {
       //solution is at the disk (in a file at that case)
-      string line;
+      S line;
       inStream.close();
       inStream.open(objectName + ".txt", ios::in);
       if (!inStream.is_open()) {
@@ -94,7 +95,7 @@ class FileCacheManager : public CacheManager<P, S> {
           return line;
         }
       }
-    }*/
+    }
   }
 
   void saveSolution(P& problem, S& solution) override {
