@@ -5,7 +5,6 @@
 #ifndef MILSTONE2__SEARCHABLE_H_
 #include <vector>
 #include "State.h"
-using namespace std;
 #define MILSTONE2__SEARCHABLE_H_
 template<typename T>
 class Searchable {

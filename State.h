@@ -3,6 +3,7 @@
 //
 
 #ifndef MILSTONE2__STATE_H_
+using namespace std;
 #define MILSTONE2__STATE_H_
 template<typename T>
 class State {

@@ -5,9 +5,9 @@
 #ifndef MILSTONE2__MATRIXPROBLEM_H_
 #include <vector>
 #include <string>
+#include "Searchable.h"
 #define MILSTONE2__MATRIXPROBLEM_H_
 
-#include "Searchable.h"
 template<typename T>
 class MatrixProblem : public Searchable<T> {
 

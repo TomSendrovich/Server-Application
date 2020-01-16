@@ -18,4 +18,4 @@ add_executable(Milstone2
         State.h
         StringReverser.h
         MatrixProblem.h
-        )
+        BestFirstSearch.h)

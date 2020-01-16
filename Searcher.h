@@ -7,7 +7,11 @@
 #define MILSTONE2__SEARCHER_H_
 template<typename T, typename S>
 class Searcher {
-  S& Search(Searchable<T> searchable) = 0;
+
+  int evaluatedNodes;
+
+ public:
+  virtual S Search(Searchable<T> searchable) = 0;
 };
 
 #endif //MILSTONE2__SEARCHER_H_
