@@ -11,12 +11,12 @@
 template<typename T>
 class MatrixProblem : public Searchable<T> {
 
-  vector<vector<int>> data;
+  vector<vector<string>> data;
   State<T> initState, goalState;
 
  public:
 
-  MatrixProblem(const vector<vector<int>>& data, const State<T>& initial_state, const State<T>& goal_state)
+  MatrixProblem(const vector<vector<string>>& data, const State<T>& initial_state, const State<T>& goal_state)
       : data(data), initState(initial_state), goalState(goal_state) {}
 
   State<T> getInitialState() override {
