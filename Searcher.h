@@ -9,9 +9,10 @@ template<typename T, typename S>
 class Searcher {
 
   int evaluatedNodes;
+  Searchable<T> problem;
 
  public:
-  virtual S Search(Searchable<T> searchable) = 0;
+  virtual S Search(Searchable<T> problem) = 0;
 };
 
 #endif //MILSTONE2__SEARCHER_H_

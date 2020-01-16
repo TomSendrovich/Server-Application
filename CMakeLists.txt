@@ -5,10 +5,12 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(Milstone2
+        BestFirstSearch.h
         CacheManager.h
         ClientHandler.h
         FileCacheManager.h
         main.cpp
+        MatrixProblem.h
         MySerialServer.cpp
         MyTestClientHandler.h
         Searchable.h
@@ -17,5 +19,4 @@ add_executable(Milstone2
         Solver.h
         State.h
         StringReverser.h
-        MatrixProblem.h
-        BestFirstSearch.h)
+        Position.h Cell.h)

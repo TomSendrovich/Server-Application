@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include "Searchable.h"
+using namespace std;
 #define MILSTONE2__MATRIXPROBLEM_H_
 
 template<typename T>
@@ -19,18 +20,15 @@ class MatrixProblem : public Searchable<T> {
   MatrixProblem(const vector<vector<string>>& data, const State<T>& initial_state, const State<T>& goal_state)
       : data(data), initState(initial_state), goalState(goal_state) {}
 
-  State<T> getInitialState() override {
-    return initState;
-  }
-
-  bool isGoalState(State<T> state) override {
-    return state == goalState;
-  }
+  State<T> getInitialState() override { return initState; }
+  bool isGoalState(State<T> state) override { return state == goalState; }
 
   //todo implement
   vector<State<T>> getAllPossibleStates(State<T> state) override {
     return vector<State<T>>();
   }
+
+  string to_string() { return "MatrixProblem"; }
 
 };
 
