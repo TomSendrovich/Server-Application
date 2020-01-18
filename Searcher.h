@@ -8,6 +8,7 @@
 #include "State.h"
 #include <queue>
 #include <unordered_set>
+#include <algorithm>
 #define MILSTONE2__SEARCHER_H_
 template<typename T>
 class Searcher {
@@ -29,6 +30,13 @@ class Searcher {
   State<T> popOpenQueue() {
     evaluatedNodes++;
     return openQueue.pop();
+  }
+  void removeFromOpenQueue(State<T> state) {
+    auto it = find(openQueue->c.begin(), openQueue->c.end(), state);
+    if (it != openQueue->c.end()) {
+      openQueue->c.erase(it);
+      make_heap(openQueue->c.begin(), openQueue->c.end(), openQueue->comp);
+    }
   }
   bool isOpenQueueContains(State<T> state) {
     for (typename vector<State<T>>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {

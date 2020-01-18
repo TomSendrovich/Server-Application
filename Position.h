@@ -9,11 +9,20 @@ class Position {
   int _row, _col;
 
  public:
-  Position(int row, int col) : _row(row), _col(col) {}
+  Position(int row, int col) {
+    _row = row;
+    _col = col;
+  }
+  Position(Position* position) {
+    _row = position->getRow();
+    _col = position->getCol();
+  }
+
   int getRow() const { return _row; }
   void setRow(int row) { _row = row; }
   int getCol() const { return _col; }
   void setCol(int col) { _col = col; }
+
 };
 
 #endif //MILSTONE2__POSITION_H_

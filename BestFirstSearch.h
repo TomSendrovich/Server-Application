@@ -23,24 +23,33 @@ class BestFirstSearch : public Searcher<T> {
       State<T> node = Searcher<T>::popOpenQueue();
       closed.insert(node);
       if (problem.isGoalState(node)) {
-        //return backTrace();
+        Solution s = backTrace();
+        return s;
       }
       list<State<T>> successors = problem.getAllPossibleStates(node);
 
       for (State<T> s: successors) {
-
         if (closed.find(s) == closed.end() && !isOpenQueueContains(s)) {
           addToOpenQueue(s);
           //todo set s.parent(node), should be done by "getAllPossibleStates"
         } else {
-          //...
+          if (s.getParent().getCost() > node.getCost()) {
+            if (isOpenQueueContains(s)) {
+              s.setCost(node.getCost() + s.getCost());
+              removeFromOpenQueue(s);
+              addToOpenQueue(s);
+            } else {
+              s.setCost(s.getParent().getCost() + s.getCost());
+              addToOpenQueue(s);
+            }
+          }
         }
-
       }//end of foreach
     }
+  }
 
-    Solution s;
-    return s;
+  Solution backTrace() {
+    //todo implement
   }
 };
 

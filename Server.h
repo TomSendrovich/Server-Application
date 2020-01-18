@@ -41,6 +41,10 @@ template<typename P, typename S>
 class Main {
  public:
   static int main(int argc, char* argv[]) {
+    if (argc < 2) {
+      cout << "You forgot to insert port number!" << endl;
+      return 0;
+    }
     int port = atoi(argv[1]);
     Solver<P, S>* solver = new StringReverser<P, S>();
     CacheManager<P, S>* fileCacheManager = new FileCacheManager<P, S>(CACHE_SIZE);
