@@ -5,60 +5,42 @@
 #ifndef MILSTONE2__BESTFIRSTSEARCH_H_
 #include "Searcher.h"
 #include "Cell.h"
-#include <queue>
 #include <list>
 #include <set>
 using namespace std;
 #define MILSTONE2__BESTFIRSTSEARCH_H_
 
-template<typename T, typename S>
+template<typename T>
 class BestFirstSearch : public Searcher<T> {
 
-  priority_queue<State<Cell>> openQueue;
-  set<State<Cell>> closedSet;
-
  public:
-
   //todo implement algorithm
-  S Search(Searchable<T> problem) override {
-   /* openQueue.push(problem.getInitialState());
+  Solution Search(Searchable<T> problem) override {
+    addToOpenQueue(problem.getInitialState());
+    unordered_set<T> closed = new unordered_set<T>();
 
-    while (!openQueue.empty()) {
-      State<T> node = openQueue.pop();
-      closedSet.insert(node);
-
-      //check if node state is goal state
+    while (Searcher<T>::openQueueSize() > 0) {
+      State<T> node = Searcher<T>::popOpenQueue();
+      closed.insert(node);
       if (problem.isGoalState(node)) {
-        // backtrace path to node (through recorded parents) and return path
+        //return backTrace();
       }
+      list<State<T>> successors = problem.getAllPossibleStates(node);
 
-      //get nodes' successors
-      auto successors = getNodeSuccessors(node);
+      for (State<T> s: successors) {
 
-      //for each successor s
-      for (auto s: successors) {
-        if (closedSet.find(s) == closedSet.end()) {
-
-          //if s is not in CLOSED and not in OPEN
-          if (openQueue.find(s) == openQueue.end()) {
-            //update that we came to s from node
-            openQueue.push(s);
-          } else { //s is in OPEN
-
-            // if the is better path to s: update s.weight, pop s and push back.
-
-          }
+        if (closed.find(s) == closed.end() && !isOpenQueueContains(s)) {
+          addToOpenQueue(s);
+          //todo set s.parent(node), should be done by "getAllPossibleStates"
+        } else {
+          //...
         }
 
       }//end of foreach
-    }*/
+    }
 
-    return "";
-  }
-
-
-  list<State<Cell>> getNodeSuccessors(State<T> node) {
-
+    Solution s;
+    return s;
   }
 };
 

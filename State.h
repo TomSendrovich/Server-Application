@@ -3,8 +3,8 @@
 //
 
 #ifndef MILSTONE2__STATE_H_
-#define MILSTONE2__STATE_H_
 #include "Position.h"
+#define MILSTONE2__STATE_H_
 template<typename T>
 class State {
 
@@ -15,13 +15,14 @@ class State {
  public:
   //State(T cell, const State<T>& parent, double cost) : _state(cell), _parent(parent), _cost(cost) {}
   State(T state) : _state(state) {}
-  T getState() const { return _state; }
   void setState(T cell) { _state = cell; }
   const State<T>& getParent() const { return _parent; }
   void setParent(const State<T>& parent) { _parent = parent; }
   double getCost() const { return _cost; }
   void setCost(int cost) { _cost = cost; }
-  //todo: add equals method
+  T getState() const { return _state; }
+
+  virtual bool equals(State<T>& other) = 0;
 };
 
 #endif //MILSTONE2__STATE_H_

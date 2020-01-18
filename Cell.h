@@ -16,6 +16,7 @@ class Cell {
   const Position& GetPosition() const { return _position; }
   int getValue() const { return _value; }
   void setValue(int value) { _value = value; }
+
 };
 
 #endif //MILSTONE2__CELL_H_

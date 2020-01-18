@@ -22,7 +22,7 @@ class MatrixProblem : public Searchable<T> {
 
   State<T> getInitialState() override { return initState; }
   bool isGoalState(State<T> state) override { return state == goalState; }
-
+  State<T> getGoalState() { return goalState; }
   //todo implement
   vector<State<T>> getAllPossibleStates(State<T> state) override {
     return vector<State<T>>();
