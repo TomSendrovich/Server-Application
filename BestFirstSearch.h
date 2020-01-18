@@ -12,7 +12,7 @@ using namespace std;
 #define MILSTONE2__BESTFIRSTSEARCH_H_
 
 template<typename T, typename S>
-class BestFirstSearch : public Searcher<T, S> {
+class BestFirstSearch : public Searcher<T> {
 
   priority_queue<State<Cell>> openQueue;
   set<State<Cell>> closedSet;
@@ -21,7 +21,7 @@ class BestFirstSearch : public Searcher<T, S> {
 
   //todo implement algorithm
   S Search(Searchable<T> problem) override {
-    openQueue.push(problem.getInitialState());
+   /* openQueue.push(problem.getInitialState());
 
     while (!openQueue.empty()) {
       State<T> node = openQueue.pop();
@@ -51,7 +51,7 @@ class BestFirstSearch : public Searcher<T, S> {
         }
 
       }//end of foreach
-    }
+    }*/
 
     return "";
   }

@@ -3,24 +3,26 @@
 //
 
 #ifndef MILSTONE2__STATE_H_
-//using namespace std;
 #define MILSTONE2__STATE_H_
 #include "Position.h"
 template<typename T>
 class State {
 
-  T _cell;
+  T _state;
   State<T> _parent;
-  int _weight; //values of all parents, included this cell
+  double _cost; //values of all parents, included this cell
 
  public:
-  State(T cell, const State<T>& parent, int weight) : _cell(cell), _parent(parent), _weight(weight) {}
-  T getCell() const { return _cell; }
-  void setCell(T cell) { _cell = cell; }
+  //State(T cell, const State<T>& parent, double cost) : _state(cell), _parent(parent), _cost(cost) {}
+  State(T state) : _state(state) {}
+  T getState() const { return _state; }
+  void setState(T cell) { _state = cell; }
   const State<T>& getParent() const { return _parent; }
   void setParent(const State<T>& parent) { _parent = parent; }
-  int getWeight() const { return _weight; }
-  void setWeight(int weight) { _weight = weight; }
+  double getCost() const { return _cost; }
+  void setCost(int cost) { _cost = cost; }
+  //todo: add equals method
 };
 
 #endif //MILSTONE2__STATE_H_
+
