@@ -14,7 +14,7 @@ using namespace std;
 template<typename T>
 class MatrixProblem : public Searchable<T> {
 
-  vector<vector<string>> data;
+  vector<vector<State<T>>> data;
   State<T> initState, goalState;
   int size;
 
