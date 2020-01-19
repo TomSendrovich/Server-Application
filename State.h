@@ -10,7 +10,7 @@ class State {
 
   T _state;
   State<T> _parent;
-  double _cost; //values of all parents, included this cell
+  double _cost;
 
  public:
   //State(T cell, const State<T>& parent, double cost) : _state(cell), _parent(parent), _cost(cost) {}
