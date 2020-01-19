@@ -29,11 +29,10 @@ class BestFirstSearch : public Searcher<T> {
       list<State<T>> successors = problem.getAllPossibleStates(node);
 
       for (State<T> s: successors) {
-        if (closed.find(s) == closed.end() && !isOpenQueueContains(s)) {
-          addToOpenQueue(s);
-          //todo set s.parent(node), should be done by "getAllPossibleStates"
+        if (closed.find(s) == closed.end() && !isOpenQueueContains(s)) {// if s not in OPEN or CLOSE
+          addToOpenQueue(s); //parent of s was set in getAllPossibleStates
         } else {
-          if (s.getParent().getCost() > node.getCost()) {
+          if (s.getParent().getCost() > node.getCost()) {//found a better path
             if (isOpenQueueContains(s)) {
               s.setCost(node.getCost() + s.getCost());
               removeFromOpenQueue(s);

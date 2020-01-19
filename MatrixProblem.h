@@ -61,11 +61,12 @@ class MatrixProblem : public Searchable<T> {
     return list;
   }
   void pushToList(int row, int col, State<T> state, list<State<T>>& list) {
-    Position* p = new Position(row, col);
-    Cell* c = new Cell(p, 4);
+    Position* pos = new Position(row, col);
+    int value = atoi(data[row][col].c_str());
+    Cell* c = new Cell(pos, value);
     State<T> successor = new State<T>(c);
     successor.setParent(state);
-    successor.setCost(c->getValue());
+    successor.setCost(value);
     list.push_front(successor);
   }
   bool isValidPosition(int row, int col) { return !(row == -1 || row == size || col == -1 || col == size); }
