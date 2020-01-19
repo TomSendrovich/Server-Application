@@ -30,8 +30,8 @@ class MatrixProblem : public Searchable<T> {
 
     list<State<T>> list = new ::list<State<T>>();
 
-    int row = state.getState().GetPosition.getRow();
-    int col = state.getState().GetPosition.getCol();
+    int row = state.getState().getPosition.getRow();
+    int col = state.getState().getPosition.getCol();
 
     if (isValidPosition(row - 1, col - 1)) {
       pushToList(row - 1, col - 1, state, list);

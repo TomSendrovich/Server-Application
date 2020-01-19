@@ -20,7 +20,7 @@ class Cell {
     _position = new Position(row, col);
     _value = value;
   }*/
-  const Position& GetPosition() const { return _position; }
+  const Position& getPosition() const { return _position; }
   int getValue() const { return _value; }
   void setValue(int value) { _value = value; }
 
