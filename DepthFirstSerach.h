@@ -2,36 +2,39 @@
 // Created by tom5012 on 20/01/2020.
 //
 
-#ifndef MILSTONE2__BREADTHFIRSTSEARCH_H_
+#ifndef MILSTONE2__DEPTHFIRSTSERACH_H_
 #include "Searcher.h"
 #include "Cell.h"
 #include <list>
-#define MILSTONE2__BREADTHFIRSTSEARCH_H_
+#define MILSTONE2__DEPTHFIRSTSERACH_H_
 
 template<typename T>
-class BreadthFirstSearch : public Searcher<T> {
- public:
+class DepthFirstSerach : public Searcher<T> {
   list<State<T>> search(Searchable<T> problem) override {
+    problem.getInitialState().setIsDiscovered(true);
     addToOpenQueue(problem.getInitialState());
+
     while (Searcher<T>::openQueueSize() > 0) {
       State<T> node = Searcher<T>::popOpenQueue();
       if (problem.isGoalState(node)) {
         list<State<T>> retVal = backTrace(problem.getInitialState(), node);
         return retVal;
       }
-      if (!node.getIsDiscovered()) {
-        node.setIsDiscovered(true);
-        if (!node.equals(problem.getInitialState())) {
-          node.setCost(node.getParent().getCost() + node.getCost());
-        }
-        list<State<T>> successors = problem.getAllPossibleStates(node);
-        for (State<T> s: successors) {
+
+      list<State<T>> successors = problem.getAllPossibleStates(node);
+      for (State<T> s: successors) {
+        if (!s.getIsDiscovered()) {
+          s.setIsDiscovered(true);
+          s.setParent(node);
+          s.setCost(s.getParent().getCost() + s.getCost());
           addToOpenQueue(s);
         }
       }
     }
+    return list<State<T>>();
   }
+
 
 };
 
-#endif //MILSTONE2__BREADTHFIRSTSEARCH_H_
+#endif //MILSTONE2__DEPTHFIRSTSERACH_H_

@@ -31,7 +31,10 @@ class State {
   }
   T getState() const { return _state; }
 
-  virtual bool equals(State<T>& other) = 0;
+  bool equals(State<T>& other) {
+    return _state.getPosition.getRow() == other.getState().getPosition().getRow()
+        && _state.getPosition.getCol() == other.getState().getPosition().getCol();
+  }
 };
 
 #endif //MILSTONE2__STATE_H_
