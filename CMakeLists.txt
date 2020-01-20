@@ -9,4 +9,4 @@ add_executable(Milstone2 BestFirstSearch.h CacheManager.h ClientHandler.h FileCa
         StringReverser.h Position.h Cell.h Cell.cpp State.cpp Solution.cpp Solution.h BestFirstSearch.cpp
         CacheManager.cpp ClientHandler.cpp FileCacheManager.cpp MatrixProblem.cpp MyTestClientHandler.cpp
         Position.cpp Searchable.cpp Searcher.cpp Server.cpp Solver.cpp StringReverser.cpp MyClientHandler.cpp
-        MyClientHandler.h ObjectAdapter.cpp ObjectAdapter.h)
+        MyClientHandler.h ObjectAdapter.cpp ObjectAdapter.h BreadthFirstSearch.cpp BreadthFirstSearch.h)

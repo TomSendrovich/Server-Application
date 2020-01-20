@@ -11,15 +11,24 @@ class State {
   T _state;
   State<T> _parent;
   double _cost;
+  bool isDiscovered;
 
  public:
   //State(T cell, const State<T>& parent, double cost) : _state(cell), _parent(parent), _cost(cost) {}
-  State(T state) : _state(state) {}
+  State(T state) : _state(state) {
+    isDiscovered=false;
+  }
   void setState(T cell) { _state = cell; }
   const State<T>& getParent() const { return _parent; }
   void setParent(const State<T>& parent) { _parent = parent; }
   double getCost() const { return _cost; }
   void setCost(int cost) { _cost = cost; }
+  void setIsDiscovered(bool is_discovered) {
+    isDiscovered = is_discovered;
+  }
+  bool getIsDiscovered() const {
+    return isDiscovered;
+  }
   T getState() const { return _state; }
 
   virtual bool equals(State<T>& other) = 0;
