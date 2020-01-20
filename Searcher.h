@@ -46,6 +46,14 @@ class Searcher {
     }
     return false;
   }
+  int getStateCost(State<T> state) {
+    for (typename vector<State<T>>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
+      if (state.equals(p)) {
+        return p.getCost();
+      }
+    }
+    return -1;
+  }
 };
 
 #endif //MILSTONE2__SEARCHER_H_

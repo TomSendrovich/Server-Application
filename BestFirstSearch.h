@@ -30,16 +30,16 @@ class BestFirstSearch : public Searcher<T> {
       for (State<T> s: successors) {
         if (closed.find(s) == closed.end() && !isOpenQueueContains(s)) {// if s not in OPEN or CLOSE
           addToOpenQueue(s); //parent of s was set in getAllPossibleStates
-        } else {
-          if (s.getParent().getCost() > node.getCost()) {//found a better path
-            if (isOpenQueueContains(s)) {
+        } else { //found a better path
+          if (isOpenQueueContains(s)) {
+            if (getStateCost(s) > s.getCost() + node.getCost()) {
               s.setCost(node.getCost() + s.getCost());
               removeFromOpenQueue(s);
               addToOpenQueue(s);
-            } else {
-              s.setCost(s.getParent().getCost() + s.getCost());
-              addToOpenQueue(s);
             }
+          } else {
+            s.setCost(s.getParent().getCost() + s.getCost());
+            addToOpenQueue(s);
           }
         }
       }//end of foreach
