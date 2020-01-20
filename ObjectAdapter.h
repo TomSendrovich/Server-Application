@@ -16,8 +16,36 @@ class ObjectAdapter : public Solver<P, S> {
   ObjectAdapter(const Searcher<T>& searcher) : _searcher(searcher) {}
 
   S solve(P problem) override {
+    Solution solution;
     Searchable<P> searchable;
-    return _searcher.search(searchable);
+    list<State<T>> trace = _searcher.search(searchable);
+
+    //trace list is ready
+    for (State<T> it = trace.begin(); it != trace.end(); ++it) {
+      if (it == trace.begin()) {
+        continue;
+      }
+      string direction = getDirection(it);
+      int cost = it.getCost();
+      string move = direction + " (" + to_string(cost) + ")";
+      solution.addAction(move);
+    }
+
+    return solution.to_string();
+  }
+
+  ///return the correct direction depends of the pos of the state and his parent
+  string getDirection(State<T> state) {
+    int stateRow = state.getState().getPosition().getRow();
+    int stateCol = state.getState().getPosition().getCol();
+    int parentStateRow = state.getParent().getState().getPosition().getRow();
+    int parentStateCol = state.getParent().getState().getPosition().getCol();
+
+    if (stateRow - parentStateRow == 1 && stateCol - parentStateCol == 0) { return "Up"; }
+    else if (stateRow - parentStateRow == -1 && stateCol - parentStateCol == 0) { return "Down"; }
+    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == 1) { return "Left"; }
+    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == -1) { return "Right"; }
+    else return "Error";
   }
 };
 
