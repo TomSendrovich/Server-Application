@@ -54,6 +54,21 @@ class Searcher {
     }
     return -1;
   }
+  list<State<T>> backTrace(State<T> initState, State<T> goalState) {
+    Solution solution;
+    bool done = false;
+    list<State<T>> trace = new ::list<State<T>>();
+    trace.push_front(goalState);
+    State<T> currentState;
+    while (!done) {
+      currentState = goalState.getParent();
+      trace.push_front(currentState);
+      if (initState.equals(currentState)) {
+        done = true;
+      }
+    }
+    return trace;
+  }
 };
 
 #endif //MILSTONE2__SEARCHER_H_
