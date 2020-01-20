@@ -19,6 +19,9 @@ class Solution {
       _solution += ", " + act;
     }
   }
+  string to_string() {
+    return _solution;
+  }
 };
 
 #endif //MILSTONE2__SOLUTION_H_

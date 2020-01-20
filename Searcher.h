@@ -23,7 +23,7 @@ class Searcher {
     evaluatedNodes = 0;
     openQueue = new priority_queue<State<T>>();
   }
-  virtual Solution search(Searchable<T> problem) = 0;
+  virtual list<State<T>> search(Searchable<T> problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
   int openQueueSize() { return openQueue.size(); };
   void addToOpenQueue(State<T> state) { openQueue.push(state); }
