@@ -3,26 +3,24 @@
 //
 
 #ifndef MILSTONE2__CELL_H_
-#include "Position.h"
+#include <utility>
+using namespace std;
 #define MILSTONE2__CELL_H_
 
 class Cell {
 
-  Position _position = Position(0, 0);
+  pair<int,int> _position;
   int _value;
 
  public:
-  Cell(Position position, int value) {
-    _position = position;
-    _value = value;
-  }
- /* Cell(int row, int col, int value) {
-    _position = new Position(row, col);
-    _value = value;
-  }*/
-  const Position& getPosition() const { return _position; }
-  int getValue() const { return _value; }
-  void setValue(int value) { _value = value; }
+  Cell(pair<int, int> position, int value);
+  pair<int, int> getPosition();
+  int getRow();
+  int getCol();
+  int getValue();
+  void setValue(int value);
+  ~Cell() = default;
+  bool equal(Cell* other);
 
 };
 
