@@ -4,16 +4,17 @@
 
 #ifndef MILSTONE2__STRINGREVERSER_H_
 #include "Solver.h"
+#include <string>
+using namespace std;
 #define MILSTONE2__STRINGREVERSER_H_
 
-template<typename P, typename S>
-class StringReverser : public Solver<P, S> {
+class StringReverser : public Solver<string, string> {
 
  public:
-  StringReverser() = default;
+  StringReverser() ;
 
-  S solve(P problem) override {
-    P retVal = problem;
+  string solve(string problem) override {
+    string retVal = problem;
     int n = problem.length();
 
     // Swap character starting from two corners
