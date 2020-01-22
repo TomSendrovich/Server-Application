@@ -10,10 +10,10 @@
 template<typename P, typename S, typename T>
 class ObjectAdapter : public Solver<P, S> {
 
-  Searcher<T> _searcher;
+  Searcher<T>* _searcher;
 
  public:
-  ObjectAdapter(const Searcher<T>& searcher) : _searcher(searcher) {}
+  ObjectAdapter(Searcher<T>* searcher) : _searcher(searcher) {}
 
   S solve(P problem) override {
     Solution solution;

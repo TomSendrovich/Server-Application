@@ -18,19 +18,20 @@ class MatrixProblem : public Searchable<Cell*> {
   int _size;
 
  public:
+
   MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int size);
 
   //override functions
   State<Cell*>* getInitialState() override;
   bool isGoalState(State<Cell*>* state) override;
   list<State<Cell*>*> getAllPossibleStates(State<Cell*>* state) override;
+  string to_string() override;
 
   void initMatrix(vector<vector<string>> matrix);
   int getMatrixSize();
   vector<vector<Cell*>> getMatrix();
   Cell* getCell(int row, int col);
   bool isValidPosition(int row, int col);
-  string to_string();
 
 };
 

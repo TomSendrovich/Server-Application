@@ -43,7 +43,7 @@ class FileCacheManager : public CacheManager<P, S> {
  public:
   FileCacheManager<P, S>(int sizeNum) { CacheManager<P, S>::size = sizeNum; }
 
-  bool isSolutionExist(P& problem) override {
+  virtual bool isSolutionExist(P problem) {
 
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
@@ -68,7 +68,7 @@ class FileCacheManager : public CacheManager<P, S> {
     return false;
   }
 
-  S getSolution(P& problem) override {
+  virtual S getSolution(P problem) {
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
@@ -93,7 +93,7 @@ class FileCacheManager : public CacheManager<P, S> {
     }
   }
 
-  void saveSolution(P& problem, S& solution) override {
+  virtual void saveSolution(P problem, S solution) {
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
@@ -111,6 +111,6 @@ class FileCacheManager : public CacheManager<P, S> {
     CacheManager<P, S>::cacheMap[problem] = solution;
   }
 
-  ~FileCacheManager() override = default;
+  virtual ~FileCacheManager() = default;
 };
 #endif //MILSTONE2_FILECACHEMANAGER_H

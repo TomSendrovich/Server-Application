@@ -7,6 +7,10 @@
 #include "StringReverser.h"
 #include "FileCacheManager.h"
 #include "MyTestClientHandler.h"
+#include "ObjectAdapter.h"
+#include "BestFirstSearch.h"
+#include "MatrixProblem.h"
+#include "Cell.h"
 #define MILSTONE2__BOOT_H_
 
 namespace boot {
@@ -16,9 +20,12 @@ class Main {
   Main() {}
 
   static int main(int port) {
-    Solver<string, string>* solver = new StringReverser();
-    CacheManager<string, string>* cacheManager = new FileCacheManager<string, string>(CACHE_SIZE);
-    ClientHandler* clientHandler = new MyTestClientHandler<string, string>(solver, cacheManager);
+    Solver<MatrixProblem, string>* solver =
+        new ObjectAdapter<MatrixProblem, string, Cell*>(
+            new BestFirstSearch<Cell*>()); ///switch algorithm here
+
+    CacheManager<MatrixProblem, string>* cacheManager = new FileCacheManager<MatrixProblem, string>(CACHE_SIZE);
+    ClientHandler* clientHandler = new MyTestClientHandler<MatrixProblem, string>(solver, cacheManager);
 
     Server* server = new MySerialServer();
     server->open(port, clientHandler);

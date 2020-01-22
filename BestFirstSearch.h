@@ -14,6 +14,7 @@ template<typename T>
 class BestFirstSearch : public Searcher<T> {
 
  public:
+  //BestFirstSearch(Searcher<T>* problem) : Searcher<T>(problem) {}
   BestFirstSearch() {}
   list<State<T>*> search(Searchable<T>* problem) override {
     addToOpenQueue(problem->getInitialState());

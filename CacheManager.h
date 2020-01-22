@@ -12,15 +12,15 @@ template<typename P, typename S>
 
 class CacheManager {
  protected:
-  unordered_map<P, S> cacheMap;
+  unordered_map<P, S>* cacheMap;
   int size;
 
  public:
-  virtual bool isSolutionExist(P& problem) = 0;
+  virtual bool isSolutionExist(P problem) = 0;
   //should be: virtual Solution getSolution()
-  virtual S getSolution(P& problem) = 0;
+  virtual S getSolution(P problem) = 0;
 
-  virtual void saveSolution(P& problem, S& solution) = 0;
+  virtual void saveSolution(P problem, S solution) = 0;
 
   virtual ~CacheManager() = default;
 };

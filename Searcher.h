@@ -14,9 +14,8 @@ template<typename T>
 class Searcher {
 
   int evaluatedNodes;
-  Searchable<T> problem;
+  Searchable<T>* problem;
   priority_queue<State<T>> openQueue;
-  //unordered_set<State<T>> closedSet;
 
  public:
   Searcher(Searchable<T>* problem) : problem(problem) {
