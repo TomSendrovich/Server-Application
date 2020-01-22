@@ -13,11 +13,18 @@ class DepthFirstSearch : public Searcher<T> {
  public:
   DepthFirstSearch() {}
   list<State<T>*> search(Searchable<T>* problem) override {
-    problem->getInitialState()->setIsDiscovered(true);
     addToOpenQueue(problem->getInitialState());
 
     while (Searcher<T>::openQueueSize() > 0) {
-      State<T> node = Searcher<T>::popOpenQueue();
+      State<T>* node = Searcher<T>::popOpenQueue();
+
+      if (node->equals(problem->getInitialState())) {
+        node->setPathCost(node->getCost());
+      }
+
+      if (!node->isDiscovered()) { continue; }
+      node->setIsDiscovered(true);
+
       if (problem->isGoalState(node)) {
         list<State<T>*> retVal = backTrace(problem->getInitialState(), node);
         return retVal;
@@ -25,17 +32,33 @@ class DepthFirstSearch : public Searcher<T> {
 
       list<State<T>*> successors = problem->getAllPossibleStates(node);
       for (State<T>* s: successors) {
-        if (!s->getIsDiscovered()) {
-          s->setIsDiscovered(true);
-          s->setParent(node);
-          s->setCost(s->getParent().getCost() + s->getCost());
+        if (!s->isDiscovered()) {
           addToOpenQueue(s);
+          popOpenQueue(s);
+          DFS(problem, s);
         }
       }
     }
-    return list<State<T>>();
+    return nullptr;
   }
 
+  void DFS(Searchable<T>* problem, State<T>* node) {
+    node->setIsDiscovered(true);
+    node->setPathCost()(node->getParent()->getPathCost() + node->getCost());
+
+    if (problem->isGoalState(node)) {
+      list<State<T>*> retVal = backTrace(problem->getInitialState(), node);
+      return retVal;
+    }
+
+    list<State<T>*> successors = problem->getAllPossibleStates(node);
+    for (State<T>* s: successors) {
+      if (!s->isDiscovered()) {
+        addToOpenQueue(s);
+        DFS(problem, s);
+      }
+    }
+  }
 };
 
 #endif //MILSTONE2__DEPTHFIRSTSERACH_H_

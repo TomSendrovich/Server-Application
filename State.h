@@ -22,11 +22,11 @@ class State {
   State<T>* getParent() { return _parent; }
   void setParent(State<T>* parent) { _parent = parent; }
   int getCost() { return _cost; }
-  void setCost(int cost) { _cost = cost; }
+  //void setCost(int cost) { _cost = cost; }
   int getPathCost() { return _pathCost; }
   void setPathCost(int pathCost) { _pathCost = pathCost; }
   void setIsDiscovered(bool is_discovered) { _isDiscovered = is_discovered; }
-  bool getIsDiscovered() { return _isDiscovered; }
+  bool isDiscovered() { return _isDiscovered; }
   T getState() { return _state; }
   bool equals(State<T>* other) { return _state.equals(other->getState()); }
 };
