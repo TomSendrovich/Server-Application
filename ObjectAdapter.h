@@ -10,36 +10,37 @@
 template<typename P, typename S, typename T>
 class ObjectAdapter : public Solver<P, S> {
 
-  Searcher<T> _searcher;
+  Searcher<T>* _searcher;
 
  public:
-  ObjectAdapter(const Searcher<T>& searcher) : _searcher(searcher) {}
+  ObjectAdapter(Searcher<T>* searcher) : _searcher(searcher) {}
 
-  S solve(P problem) override {
+  S solve(P* problem) override {
     Solution solution;
-    Searchable<P> searchable;
-    list<State<T>> trace = _searcher.search(searchable);
+    // Searchable<P>* searchable;
+    list<State<T>*>* trace = _searcher->search(problem);
 
     //trace list is ready
-    for (State<T> it = trace.begin(); it != trace.end(); ++it) {
-      if (it == trace.begin()) {
+    for (typename list<State<T>*>::iterator it = trace->begin(); it != trace->end(); ++it) {
+      if (it == trace->begin()) {
         continue;
       }
-      string direction = getDirection(it);
-      int cost = it.getCost();
+      string direction = getDirection(*it);
+      int cost = (*it)->getCost();
       string move = direction + " (" + to_string(cost) + ")";
       solution.addAction(move);
     }
+    string finalSolution = solution.to_string();
 
-    return solution.to_string();
+    return finalSolution;
   }
 
   ///return the correct direction depends of the pos of the state and his parent
-  string getDirection(State<T> state) {
-    int stateRow = state.getState().getPosition().getRow();
-    int stateCol = state.getState().getPosition().getCol();
-    int parentStateRow = state.getParent().getState().getPosition().getRow();
-    int parentStateCol = state.getParent().getState().getPosition().getCol();
+  string getDirection(State<T>* state) {
+    int stateRow = state->getState()->getPosition().first;
+    int stateCol = state->getState()->getPosition().second;
+    int parentStateRow = state->getParent()->getState()->getPosition().first;
+    int parentStateCol = state->getParent()->getState()->getPosition().second;
 
     if (stateRow - parentStateRow == 1 && stateCol - parentStateCol == 0) { return "Up"; }
     else if (stateRow - parentStateRow == -1 && stateCol - parentStateCol == 0) { return "Down"; }

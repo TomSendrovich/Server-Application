@@ -11,27 +11,37 @@
 template<typename T>
 class BreadthFirstSearch : public Searcher<T> {
  public:
-  list<State<T>> search(Searchable<T> problem) override {
-    addToOpenQueue(problem.getInitialState());
+  BreadthFirstSearch() {
+    Searcher<T>::evaluatedNodes = 0;
+    Searcher<T>::openQueue = new priority_queue<State<T>*>();
+  }
+  list<State<T>*>* search(Searchable<T>* problem) override {
+    Searcher<T>::addToOpenQueue(problem->getInitialState());
+
     while (Searcher<T>::openQueueSize() > 0) {
-      State<T> node = Searcher<T>::popOpenQueue();
-      if (problem.isGoalState(node)) {
-        list<State<T>> retVal = backTrace(problem.getInitialState(), node);
+      State<T>* node = Searcher<T>::popOpenQueue();
+
+      if (!node->isDiscovered()) { continue; }
+      node->setIsDiscovered(true);
+
+      if (problem->isGoalState(node)) {
+        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
         return retVal;
       }
-      if (!node.getIsDiscovered()) {
-        node.setIsDiscovered(true);
-        if (!node.equals(problem.getInitialState())) {
-          node.setCost(node.getParent().getCost() + node.getCost());
-        }
-        list<State<T>> successors = problem.getAllPossibleStates(node);
-        for (State<T> s: successors) {
-          addToOpenQueue(s);
-        }
+
+      if (node != problem->getInitialState()) {
+        node->setPathCost(node->getParent()->getPathCost() + node->getCost());
+      } else {
+        node->setPathCost(node->getCost());
       }
+
+      list<State<T>*> successors = problem->getAllPossibleStates(node);
+      for (State<T>* s: successors) {
+        Searcher<T>::addToOpenQueue(s);
+      }
+
     }
   }
-
 };
 
 #endif //MILSTONE2__BREADTHFIRSTSEARCH_H_

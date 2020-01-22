@@ -21,7 +21,7 @@ template<typename P, typename S>
 class MyTestClientHandler : public ClientHandler {
 
   Solver<P, S>* _solver;
-  CacheManager<P, S>* _cm;
+  CacheManager* _cm;
   bool isEnd, needToRead;
 
   bool sendMsg(int out, const char* msg) {
@@ -30,7 +30,7 @@ class MyTestClientHandler : public ClientHandler {
   }
 
  public:
-  MyTestClientHandler(Solver<P, S>* solver, CacheManager<P, S>* cm) {
+  MyTestClientHandler(Solver<P, S>* solver, CacheManager* cm) {
     _solver = solver;
     _cm = cm;
   }
