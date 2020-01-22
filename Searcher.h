@@ -19,51 +19,51 @@ class Searcher {
   //unordered_set<State<T>> closedSet;
 
  public:
-  Searcher(const Searchable<T>& problem) : problem(problem) {
+  Searcher(Searchable<T>* problem) : problem(problem) {
     evaluatedNodes = 0;
     openQueue = new priority_queue<State<T>>();
   }
-  virtual list<State<T>> search(Searchable<T> problem) = 0;
+  virtual list<State<T>*> search(Searchable<T>* problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
   int openQueueSize() { return openQueue.size(); };
-  void addToOpenQueue(State<T> state) { openQueue.push(state); }
-  State<T> popOpenQueue() {
+  void addToOpenQueue(State<T>* state) { openQueue.push(state); }
+  State<T>* popOpenQueue() {
     evaluatedNodes++;
     return openQueue.pop();
   }
-  void removeFromOpenQueue(State<T> state) {
+  void removeFromOpenQueue(State<T>* state) {
     auto it = find(openQueue->c.begin(), openQueue->c.end(), state);
     if (it != openQueue->c.end()) {
       openQueue->c.erase(it);
       make_heap(openQueue->c.begin(), openQueue->c.end(), openQueue->comp);
     }
   }
-  bool isOpenQueueContains(State<T> state) {
-    for (typename vector<State<T>>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
-      if (state.equals(p)) {
+  bool isOpenQueueContains(State<T>* state) {
+    for (typename vector<State<T>*>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
+      if (state->equals(p)) {
         return true;
       }
     }
     return false;
   }
-  int getStateCost(State<T> state) {
-    for (typename vector<State<T>>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
-      if (state.equals(p)) {
-        return p.getCost();
+  State<T>* getStateFromQueue(State<T>* state) {
+    for (typename vector<State<T>*>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
+      if (state->equals(p)) {
+        p;
       }
     }
     return -1;
   }
-  list<State<T>> backTrace(State<T> initState, State<T> goalState) {
+  list<State<T>*> backTrace(State<T>* initState, State<T>* goalState) {
     Solution solution;
     bool done = false;
-    list<State<T>> trace = new ::list<State<T>>();
+    list<State<T>*> trace = new ::list<State<T>*>();
     trace.push_front(goalState);
-    State<T> currentState;
+    State<T>* currentState;
     while (!done) {
-      currentState = goalState.getParent();
+      currentState = goalState->getParent();
       trace.push_front(currentState);
-      if (initState.equals(currentState)) {
+      if (initState->equals(currentState)) {
         done = true;
       }
     }
