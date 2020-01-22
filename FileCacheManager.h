@@ -15,8 +15,8 @@
 
 #define MILSTONE2_FILECACHEMANAGER_H
 
-template<typename P, typename S>
-class FileCacheManager : public CacheManager<P, S> {
+
+class FileCacheManager : public CacheManager {
 
   ifstream inStream;
   ofstream outStream;
@@ -41,15 +41,15 @@ class FileCacheManager : public CacheManager<P, S> {
   }
 
  public:
-  FileCacheManager<P, S>(int sizeNum) { CacheManager<P, S>::size = sizeNum; }
+  FileCacheManager(int sizeNum) { CacheManager::size = sizeNum; }
 
-  virtual bool isSolutionExist(P problem) {
+  virtual bool isSolutionExist(string problem) {
 
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
     //solution is at the cache memory
-    if (CacheManager<P, S>::cacheMap.find(problem) != CacheManager<P, S>::cacheMap.end()) {
+    if (CacheManager::cacheMap.find(problem) != CacheManager::cacheMap.end()) {
       return true;
     } else {
       //solution is not in cache, maybe in disk (in a file at that case)
@@ -68,16 +68,16 @@ class FileCacheManager : public CacheManager<P, S> {
     return false;
   }
 
-  virtual S getSolution(P problem) {
+  virtual string getSolution(string problem) {
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
     //solution is at the cache memory
-    if (CacheManager<P, S>::cacheMap.find(problemHashName) != CacheManager<P, S>::cacheMap.end()) {
-      return CacheManager<P, S>::cacheMap[problemHashName];
+    if (CacheManager::cacheMap.find(problemHashName) != CacheManager::cacheMap.end()) {
+      return CacheManager::cacheMap[problemHashName];
     } else {
       //solution is at the disk (in a file at that case)
-      S line;
+      string line;
       inStream.close();
       inStream.open(objectName + ".txt", ios::in);
       if (!inStream.is_open()) {
@@ -93,7 +93,7 @@ class FileCacheManager : public CacheManager<P, S> {
     }
   }
 
-  virtual void saveSolution(P problem, S solution) {
+  virtual void saveSolution(string problem, string solution) {
     string objectName = "string";
     string problemHashName = to_string(hash_str(problem.c_str()));
 
@@ -105,10 +105,10 @@ class FileCacheManager : public CacheManager<P, S> {
       }
     }
     outStream << problemHashName + "," + solution << endl;
-    if (CacheManager<P, S>::cacheMap.size() >= CacheManager<P, S>::size) {
-      CacheManager<P, S>::cacheMap.erase(CacheManager<P, S>::cacheMap.begin());
+    if (CacheManager::cacheMap.size() >= CacheManager::size) {
+      CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
     }
-    CacheManager<P, S>::cacheMap[problem] = solution;
+    CacheManager::cacheMap[problem] = solution;
   }
 
   virtual ~FileCacheManager() = default;

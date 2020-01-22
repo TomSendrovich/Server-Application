@@ -6,7 +6,7 @@
 #include "MySerialServer.h"
 #include "StringReverser.h"
 #include "FileCacheManager.h"
-#include "MyTestClientHandler.h"
+#include "MyClientHandler.h"
 #include "ObjectAdapter.h"
 #include "BestFirstSearch.h"
 #include "MatrixProblem.h"
@@ -24,9 +24,9 @@ class Main {
         new ObjectAdapter<MatrixProblem, string, Cell*>(
             new BestFirstSearch<Cell*>()); ///switch algorithm here
 
-    CacheManager<MatrixProblem, string>* cacheManager = new FileCacheManager<MatrixProblem, string>(CACHE_SIZE);
-    ClientHandler* clientHandler = new MyTestClientHandler<MatrixProblem, string>(solver, cacheManager);
-
+    CacheManager* cacheManager = new FileCacheManager(CACHE_SIZE);
+    //ClientHandler* clientHandler = new MyTestClientHandler<MatrixProblem, string>(solver, cacheManager);
+    ClientHandler* clientHandler = new MyClientHandler<MatrixProblem,string>(solver,cacheManager);
     Server* server = new MySerialServer();
     server->open(port, clientHandler);
 

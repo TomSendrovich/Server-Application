@@ -7,8 +7,8 @@
 
 MatrixProblem::MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int size) {
   _size = size;
-  State<Cell*>* initState = new State<Cell*>(init);
-  State<Cell*>* goalState = new State<Cell*>(init);
+  auto* initState = new State<Cell*>(init);
+  auto* goalState = new State<Cell*>(goal);
   _initState = initState;
   _goalState = goalState;
   initMatrix(matrix);

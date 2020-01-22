@@ -19,13 +19,13 @@
 using namespace std;
 
 #define MILSTONE2__MYCLIENTHANDLER_H_
-template<typename P, typename S, typename T>
+template<typename P, typename S>
 
 class MyClientHandler : public ClientHandler {
   Solver<P, S>* _solver;
-  CacheManager<P, S>* _cm;
-  vector<vector<State<T>>> matrix;
-  bool isEnd, needToRead;
+  CacheManager* _cm;
+  vector<vector<string>> matrix;
+  bool isEnd;
 
   bool sendMsg(int out, const char* msg) {
     int is_sent = send(out, msg, strlen(msg), 0);
@@ -33,7 +33,7 @@ class MyClientHandler : public ClientHandler {
   }
 
  public:
-  MyClientHandler(Solver<P, S>* solver, CacheManager<P, S>* cm) {
+  MyClientHandler(Solver<P, S>* solver, CacheManager* cm) {
     _solver = solver;
     _cm = cm;
   }
@@ -46,7 +46,7 @@ class MyClientHandler : public ClientHandler {
   void handleClient(int in) override {
     isEnd = false;
     bool inCell = false;
-    Cell* initCell, * goalCell;
+    Cell* initCell = nullptr, * goalCell= nullptr;
     int row = -1, col = 0;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
@@ -60,13 +60,11 @@ class MyClientHandler : public ClientHandler {
       if (oneLine != "end") {
         row++;
         string problem = oneLine;
-        while (problem != "") {
+        while (!problem.empty()) {
           int pos = problem.find(',');
           if (problem.find(',', pos + 1) != -1) {
             string singleState = problem.erase(0, problem.length() - pos);
-            Cell* cell = new Cell(new Position(row, col), atoi(singleState.c_str()));
-            State<T> state = new State<T>(cell);
-            matrix[row][col] = state;
+            matrix[row][col] = singleState;
             col++;
             oneLine.erase(0, pos + 1);
             problem = oneLine;
@@ -74,29 +72,30 @@ class MyClientHandler : public ClientHandler {
             if (!inCell) {
               row = atoi(problem.erase(pos, problem.length() - pos).c_str());
               col = atoi(oneLine.erase(0, pos + 1).c_str());
-              initCell = matrix[row][col];
+              initCell = new Cell(make_pair(row,col),atoi(matrix[row][col].c_str()));
               inCell = true;
             } else {
               row = atoi(problem.erase(pos, problem.length() - pos).c_str());
               col = atoi(oneLine.erase(0, pos + 1).c_str());
-              goalCell = matrix[row][col];
+              goalCell = new Cell(make_pair(row,col),atoi(matrix[row][col].c_str()));
             }
           }
 
         }
       } else {
         //client wants to end communication
-        MatrixProblem<T> problem = new MatrixProblem<T>(matrix, initCell, goalCell);
-        if (_cm->isSolutionExist(problem)) {
+        auto *problem = new MatrixProblem(matrix, initCell, goalCell,0);
+        string hashProblem = matrixToHash(matrix);
+        if (_cm->isSolutionExist(hashProblem)) {
           //solutionExist exist in cm, we return in to the client
-          S solutionExist = _cm->getSolution(problem);
+          string solutionExist = _cm->getSolution(hashProblem);
           if (!sendMsg(in, solutionExist.c_str())) {
             cout << "Error sending message: " << solutionExist << endl;
           }
         } else {
           //solutionNotExist dont exist in cm, we solve the problem and save it at cm
-          S solutionNotExist = _solver->solve(problem);
-          _cm->saveSolution(problem, solutionNotExist);
+          string solutionNotExist = _solver->solve(problem);
+          _cm->saveSolution(hashProblem, solutionNotExist);
           if (!sendMsg(in, solutionNotExist.c_str())) {
             cout << "Error sending message: " << solutionNotExist << endl;
           }
@@ -105,6 +104,10 @@ class MyClientHandler : public ClientHandler {
         isEnd = true;
       }
     }
+  }
+
+  string matrixToHash(vector<vector<string>> problem){
+    return "abc";
   }
 
 };
