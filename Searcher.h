@@ -13,56 +13,88 @@
 template<typename T>
 class Searcher {
 
+ protected:
   int evaluatedNodes;
   Searchable<T>* problem;
-  priority_queue<State<T>> openQueue;
+  priority_queue<State<T>*>* openQueue;
 
  public:
-  Searcher(Searchable<T>* problem) : problem(problem) {
+  /*Searcher(Searchable<T>* problem) : problem(problem) {
     evaluatedNodes = 0;
     openQueue = new priority_queue<State<T>>();
-  }
-  virtual list<State<T>*> search(Searchable<T>* problem) = 0;
+  }*/
+  virtual list<State<T>*>* search(Searchable<T>* problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
-  int openQueueSize() { return openQueue.size(); };
-  void addToOpenQueue(State<T>* state) { openQueue.push(state); }
+  int openQueueSize() { return openQueue->size(); };
+  void addToOpenQueue(State<T>* state) { openQueue->push(state); }
   State<T>* popOpenQueue() {
+    State<T>* element = openQueue->top();
+    openQueue->pop();
     evaluatedNodes++;
-    return openQueue.pop();
+    return element;
   }
   void removeFromOpenQueue(State<T>* state) {
-    auto it = find(openQueue->c.begin(), openQueue->c.end(), state);
-    if (it != openQueue->c.end()) {
-      openQueue->c.erase(it);
-      make_heap(openQueue->c.begin(), openQueue->c.end(), openQueue->comp);
+    vector<State<T>*> tmpVector;
+    State<T>* top;
+    while (openQueueSize() != 0) {
+      top = popOpenQueue();
+      if (top == state) {
+        break;
+      }
+      tmpVector.push_back(top);
+    }
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      addToOpenQueue(tmpVector[i]);
     }
   }
   bool isOpenQueueContains(State<T>* state) {
-    for (typename vector<State<T>*>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
-      if (state->equals(p)) {
-        return true;
+    vector<State<T>*> tmpVector;
+    State<T>* top;
+    bool contains = false;
+    while (openQueueSize() != 0) {
+      top = popOpenQueue();
+      tmpVector.push_back(top);
+      if (top == state) {
+        contains = true;
       }
     }
-    return false;
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      addToOpenQueue(tmpVector[i]);
+    }
+    return contains;
   }
   State<T>* getStateFromQueue(State<T>* state) {
-    for (typename vector<State<T>*>::iterator p = openQueue.begin(); p != openQueue.end(); p++) {
-      if (state->equals(p)) {
-        p;
+    vector<State<T>*> tmpVector;
+    State<T>* top;
+    State<T>* retVal = nullptr;
+    while (openQueueSize() != 0) {
+      top = popOpenQueue();
+      tmpVector.push_back(top);
+      if (top == state) {
+        retVal = top;
       }
     }
-    return -1;
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      addToOpenQueue(tmpVector[i]);
+    }
+    return retVal;
   }
-  list<State<T>*> backTrace(State<T>* initState, State<T>* goalState) {
+  list<State<T>*>* backTrace(State<T>* initState, State<T>* goalState) {
     Solution solution;
     bool done = false;
-    list<State<T>*> trace = new ::list<State<T>*>();
-    trace.push_front(goalState);
+    list<State<T>*>* trace = new list<State<T>*>();
+    trace->push_front(goalState);
     State<T>* currentState;
     while (!done) {
       currentState = goalState->getParent();
-      trace.push_front(currentState);
-      if (initState->equals(currentState)) {
+      trace->push_front(currentState);
+      if (initState == currentState) {
         done = true;
       }
     }

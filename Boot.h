@@ -4,7 +4,6 @@
 
 #ifndef MILSTONE2__BOOT_H_
 #include "MySerialServer.h"
-#include "StringReverser.h"
 #include "FileCacheManager.h"
 #include "MyClientHandler.h"
 #include "ObjectAdapter.h"
@@ -20,14 +19,11 @@ class Main {
   Main() {}
 
   static int main(int port) {
-    Solver<MatrixProblem, string>* solver =
-        new ObjectAdapter<MatrixProblem, string, Cell*>(
-            new BestFirstSearch<Cell*>()); ///switch algorithm here
-
-    CacheManager* cacheManager = new FileCacheManager(CACHE_SIZE);
-    //ClientHandler* clientHandler = new MyTestClientHandler<MatrixProblem, string>(solver, cacheManager);
-    ClientHandler* clientHandler = new MyClientHandler<MatrixProblem,string>(solver,cacheManager);
-    Server* server = new MySerialServer();
+    auto* searcher = new BestFirstSearch<Cell*>(); ///switch algorithm here
+    auto* solver =  new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
+    auto* cacheManager = new FileCacheManager(CACHE_SIZE);
+    auto* clientHandler = new MyClientHandler<MatrixProblem, string>(solver, cacheManager);
+    auto* server = new MySerialServer();
     server->open(port, clientHandler);
 
     return 1;

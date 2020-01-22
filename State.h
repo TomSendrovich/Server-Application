@@ -28,7 +28,7 @@ class State {
   void setIsDiscovered(bool is_discovered) { _isDiscovered = is_discovered; }
   bool isDiscovered() { return _isDiscovered; }
   T getState() { return _state; }
-  bool equals(State<T>* other) { return _state.equals(other->getState()); }
+  bool operator==(const State<T>* other) { return (_state == other->state); }
 };
 
 #endif //MILSTONE2__STATE_H_

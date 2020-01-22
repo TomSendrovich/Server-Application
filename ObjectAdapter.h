@@ -18,11 +18,11 @@ class ObjectAdapter : public Solver<P, S> {
   S solve(P* problem) override {
     Solution solution;
     // Searchable<P>* searchable;
-    list<State<T>*> trace = _searcher->search(problem);
+    list<State<T>*>* trace = _searcher->search(problem);
 
     //trace list is ready
-    for (typename list<State<T>*>::iterator it = trace.begin(); it != trace.end(); ++it) {
-      if (it == trace.begin()) {
+    for (typename list<State<T>*>::iterator it = trace->begin(); it != trace->end(); ++it) {
+      if (it == trace->begin()) {
         continue;
       }
       string direction = getDirection(*it);

@@ -20,7 +20,8 @@ class Cell {
   int getValue();
   void setValue(int value);
   ~Cell() = default;
-  bool equal(Cell* other);
+  bool operator==(const Cell& rhs) const;
+  bool operator!=(const Cell& rhs) const;
 
 };
 

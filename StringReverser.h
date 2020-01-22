@@ -13,7 +13,9 @@ class StringReverser : public Solver<string, string> {
  public:
   StringReverser() ;
 
-  string solve(string problem) override {
+  string solve(string* problem) override;
+
+  /*string solve(string problem) override {
     string retVal = problem;
     int n = problem.length();
 
@@ -23,7 +25,7 @@ class StringReverser : public Solver<string, string> {
     }
 
     return retVal;
-  };
+  };*/
 };
 
 #endif //MILSTONE2__STRINGREVERSER_H_
