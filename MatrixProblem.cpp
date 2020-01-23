@@ -44,50 +44,33 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   int row = state->getState()->getRow();
   int col = state->getState()->getCol();
 
-  if (isValidPosition(row - 1, col - 1)) {
-    Cell* c = getCell(row - 1, col - 1);
-    if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
-    }
-  }
+  ///up successor
   if (isValidPosition(row - 1, col)) {
     Cell* c = getCell(row - 1, col);
     if (c->getValue() != WALL) {
       list.push_back(new State<Cell*>(c));
     }
   }
-  if (isValidPosition(row - 1, col + 1)) {
-    Cell* c = getCell(row - 1, col + 1);
-    if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
-    }
-  }
+
+  ///left successor
   if (isValidPosition(row, col - 1)) {
     Cell* c = getCell(row, col - 1);
     if (c->getValue() != WALL) {
       list.push_back(new State<Cell*>(c));
     }
   }
+
+  ///right successor
   if (isValidPosition(row, col + 1)) {
     Cell* c = getCell(row, col + 1);
     if (c->getValue() != WALL) {
       list.push_back(new State<Cell*>(c));
     }
   }
-  if (isValidPosition(row + 1, col - 1)) {
-    Cell* c = getCell(row + 1, col - 1);
-    if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
-    }
-  }
+
+  ///down successor
   if (isValidPosition(row + 1, col)) {
     Cell* c = getCell(row + 1, col);
-    if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
-    }
-  }
-  if (isValidPosition(row + 1, col + 1)) {
-    Cell* c = getCell(row + 1, col + 1);
     if (c->getValue() != WALL) {
       list.push_back(new State<Cell*>(c));
     }
