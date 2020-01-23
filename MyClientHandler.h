@@ -45,21 +45,21 @@ class MyClientHandler : public ClientHandler {
 
   void handleClient(int in) override {
     isEnd = false;
-    bool inCell = false,isValRead=false;
+    bool inCell = false, isValRead = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
     int row = -1, col = 0, pos, value;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
-    string singleState,allLines;
-    while(!isValRead){
-      int valRead = read(in, buffer, 1024);
+    string singleState, allLines;
+    while (!isValRead) {
+      int valRead = read(in, buffer, 1);
       if (valRead == 0 || valRead == -1) {
         isValRead = true;
-      }else{
-        allLines+=ptrBuffer;
-        cout<<allLines<<endl;
-        if (!allLines.find("end")){
+      } else {
+        allLines += ptrBuffer;
+        //cout << allLines << endl;
+        if (!allLines.find("end")) {
           break;
         }
       }
@@ -67,10 +67,9 @@ class MyClientHandler : public ClientHandler {
     while (!isEnd) {
       pos = allLines.find('\n');
       string oneLine = allLines;
-      oneLine.erase(pos,oneLine.length()-pos);
-      allLines.erase(0,pos+1);
+      oneLine.erase(pos, oneLine.length() - pos);
+      allLines.erase(0, pos + 1);
       if (oneLine != "end") {
-        //row++;
         string problem = oneLine;
         while (!problem.empty()) {
           pos = problem.find(',');
@@ -82,7 +81,6 @@ class MyClientHandler : public ClientHandler {
             oneLine.erase(0, oneLine.length());
           }
           completeRow.push_back(singleState);
-          //col++;
           problem = oneLine;
         }
         if (completeRow.size() == 2 && !inCell) {
@@ -101,7 +99,7 @@ class MyClientHandler : public ClientHandler {
           inCell = true;
         } else {
           matrix.push_back(completeRow);
-          cout << "completeRow" << endl;
+          //cout << "completeRow" << endl;
         }
         completeRow.clear();
       } else {
