@@ -112,7 +112,7 @@ class Searcher {
   int queueSize() { return queue.size(); };
   void addToQueue(State<T>* state) { queue.push(state); }
   State<T>* popQueue() {
-    State<T>* element = queue.top();
+    State<T>* element = queue.front();
     queue.pop();
     evaluatedNodes++;
     return element;
