@@ -64,23 +64,21 @@ class FileCacheManager : public CacheManager {
     return false;
   }
 
-  virtual string getSolution(string problem) {
-    string objectName = "string";
-    string problemHashName = to_string(hash_str(problem.c_str()));
+  virtual string getSolution(string hashProblem) {
 
     //solution is at the cache memory
-    if (CacheManager::cacheMap.find(problemHashName) != CacheManager::cacheMap.end()) {
-      return CacheManager::cacheMap[problemHashName];
+    if (CacheManager::cacheMap.find(hashProblem) != CacheManager::cacheMap.end()) {
+      return CacheManager::cacheMap[hashProblem];
     } else {
       //solution is at the disk (in a file at that case)
       string line;
       inStream.close();
-      inStream.open(objectName + ".txt", ios::in);
+      inStream.open(hashProblem + ".txt", ios::in);
       if (!inStream.is_open()) {
         throw "Unable to open file";
       }
       while (getline(inStream, line)) {
-        if (isSolutionExistInDisk(line, problemHashName)) {
+        if (isSolutionExistInDisk(line, hashProblem)) {
           size_t pos = line.find(DELIMITER);
           line.erase(0, pos + DELIMITER_LENGTH);
           return line;
@@ -89,22 +87,19 @@ class FileCacheManager : public CacheManager {
     }
   }
 
-  virtual void saveSolution(string problem, string solution) {
-    string objectName = "string";
-    string problemHashName = to_string(hash_str(problem.c_str()));
-
+  virtual void saveSolution(string hashProblem, string solution) {
     if (!isOutStreamOpen) {
       isOutStreamOpen = true;
-      outStream.open(objectName + ".txt", ios::out | ios::app);
+      outStream.open(hashProblem + ".txt", ios::out | ios::app);
       if (!outStream.is_open()) {
         throw "Unable to open file";
       }
     }
-    outStream << problemHashName + "," + solution << endl;
+    outStream << hashProblem + "," + solution << endl;
     if (CacheManager::cacheMap.size() >= CacheManager::size) {
       CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
     }
-    CacheManager::cacheMap[problem] = solution;
+    CacheManager::cacheMap[hashProblem] = solution;
   }
 
   virtual ~FileCacheManager() = default;
