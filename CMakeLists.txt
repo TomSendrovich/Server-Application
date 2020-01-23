@@ -10,4 +10,4 @@ add_executable(Milstone2 BestFirstSearch.h CacheManager.h ClientHandler.h FileCa
         CacheManager.cpp ClientHandler.cpp FileCacheManager.cpp MatrixProblem.cpp MyTestClientHandler.cpp
         Searchable.cpp Searcher.cpp Server.cpp Solver.cpp StringReverser.cpp MyClientHandler.cpp
         MyClientHandler.h ObjectAdapter.cpp ObjectAdapter.h BreadthFirstSearch.cpp BreadthFirstSearch.h
-        DepthFirstSearch.cpp DepthFirstSearch.h MySerialServer.h Boot.h)
+        DepthFirstSearch.cpp DepthFirstSearch.h MySerialServer.h Boot.h MyParallelServer.cpp MyParallelServer.h)

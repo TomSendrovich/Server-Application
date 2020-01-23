@@ -129,9 +129,9 @@ class MyClientHandler : public ClientHandler {
       }
     }
   }
-
-  string matrixToHash(vector<vector<string>> problem) {
-    return "abc";
+  ClientHandler* copy() {
+    ClientHandler* newClientHandler = new MyClientHandler(_solver, _cm);
+    return newClientHandler;
   }
 
 };
