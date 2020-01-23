@@ -53,13 +53,13 @@ class MyClientHandler : public ClientHandler {
     char* ptrBuffer = buffer;
     string singleState,allLines;
     while(!isValRead){
-      int valRead = read(in, buffer, 1024);
+      int valRead = read(in, buffer, 1);
       if (valRead == 0 || valRead == -1) {
         isValRead = true;
       }else{
         allLines+=ptrBuffer;
         cout<<allLines<<endl;
-        if (!allLines.find("end")){
+        if (allLines.find("end",0)!=string::npos){
           break;
         }
       }
@@ -67,9 +67,9 @@ class MyClientHandler : public ClientHandler {
     while (!isEnd) {
       pos = allLines.find('\n');
       string oneLine = allLines;
-      oneLine.erase(pos,oneLine.length()-pos);
-      allLines.erase(0,pos+1);
       if (oneLine != "end") {
+        oneLine.erase(pos,oneLine.length()-pos);
+        allLines.erase(0,pos+1);
         //row++;
         string problem = oneLine;
         while (!problem.empty()) {
