@@ -30,7 +30,7 @@ class Main {
     try {
       server->open(port, clientHandler);
     } catch (const char* e) {
-      cout << e << endl;
+      cerr << e << endl;
     }
 
     return 1;

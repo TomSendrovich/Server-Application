@@ -54,7 +54,7 @@ void MySerialServer::start(int socket, sockaddr_in address, ClientHandler* c) {
     try {
       c->handleClient(clientSocket);
     } catch (const char* e) {
-      cout << e << endl;
+      cerr << e << endl;
     }
   }
 }
