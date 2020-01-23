@@ -48,7 +48,9 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   if (isValidPosition(row - 1, col)) {
     Cell* c = getCell(row - 1, col);
     if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
+      auto* successor = new State<Cell*>(c);
+      successor->setParent(state);
+      list.push_back(successor);
     }
   }
 
@@ -56,7 +58,9 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   if (isValidPosition(row, col - 1)) {
     Cell* c = getCell(row, col - 1);
     if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
+      auto* successor = new State<Cell*>(c);
+      successor->setParent(state);
+      list.push_back(successor);
     }
   }
 
@@ -64,7 +68,9 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   if (isValidPosition(row, col + 1)) {
     Cell* c = getCell(row, col + 1);
     if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
+      auto* successor = new State<Cell*>(c);
+      successor->setParent(state);
+      list.push_back(successor);
     }
   }
 
@@ -72,7 +78,9 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   if (isValidPosition(row + 1, col)) {
     Cell* c = getCell(row + 1, col);
     if (c->getValue() != WALL) {
-      list.push_back(new State<Cell*>(c));
+      auto* successor = new State<Cell*>(c);
+      successor->setParent(state);
+      list.push_back(successor);
     }
   }
 
