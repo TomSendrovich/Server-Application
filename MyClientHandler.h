@@ -48,7 +48,7 @@ class MyClientHandler : public ClientHandler {
     bool inCell = false, isValRead = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
-    int row = -1, col = 0, pos, value;
+    int row = -1, col = 0, pos, value,matrixSize=0;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
     string singleState, allLines;
@@ -58,12 +58,13 @@ class MyClientHandler : public ClientHandler {
         isValRead = true;
       } else {
         allLines += ptrBuffer;
-        //cout << allLines << endl;
+
         if (allLines.find("end", 0) != string::npos) {
           break;
         }
       }
     }
+    cout << allLines << endl;
     while (!isEnd) {
       pos = allLines.find('\n');
       string oneLine = allLines;
@@ -81,6 +82,7 @@ class MyClientHandler : public ClientHandler {
             oneLine.erase(0, oneLine.length());
           }
           completeRow.push_back(singleState);
+          matrixSize++;
           problem = oneLine;
         }
         if (completeRow.size() == 2 && !inCell) {
@@ -105,7 +107,7 @@ class MyClientHandler : public ClientHandler {
       } else {
         cout << "client wants to end communication" << endl;
         //client wants to end communication
-        auto* problem = new MatrixProblem(matrix, initCell, goalCell, 0);
+        auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixSize);
         int intHashProblem = problem->hashFunc(matrix);
         string hashProblem = to_string(intHashProblem);
         if (_cm->isSolutionExist(hashProblem)) {
