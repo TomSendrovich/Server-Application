@@ -51,7 +51,11 @@ void MySerialServer::start(int socket, sockaddr_in address, ClientHandler* c) {
       }
     }
     cout << "Client is now connected to server" << endl;
-    c->handleClient(clientSocket);
+    try {
+      c->handleClient(clientSocket);
+    } catch (const char* e) {
+      cout << e << endl;
+    }
   }
 }
 int MySerialServer::getSocket() { return _socket; }
