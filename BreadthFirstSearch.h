@@ -15,12 +15,25 @@ class BreadthFirstSearch : public Searcher<T> {
   BreadthFirstSearch() { Searcher<T>::evaluatedNodes = 0; }
   list<State<T>*>* search(Searchable<T>* problem) override {
     Searcher<T>::addToPriorityQueue(problem->getInitialState());
+    auto* discoveredNodes = new list<State<T>*>;
+    bool isDiscovered=false;
 
     while (Searcher<T>::priorityQueueSize() > 0) {
       State<T>* node = Searcher<T>::popPriorityQueue();
-
-      if (node->isDiscovered()) { continue; }
-      node->setIsDiscovered(true);
+      typename list<State<T>*>::iterator it = discoveredNodes->begin();
+      for(int i=0;i<discoveredNodes->size();i++){
+        State<T>* currentNode = *it;
+        if (currentNode->operator==(node)){
+          isDiscovered=true;
+        }
+        it++;
+      }
+      if (isDiscovered) {
+        isDiscovered=false;
+        continue;
+      }
+      //node->setIsDiscovered(true);
+      discoveredNodes->push_front(node);
 
       if (problem->isGoalState(node)) {
         node->setPathCost(node->getParent()->getPathCost() + node->getCost());
