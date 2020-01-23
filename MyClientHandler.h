@@ -58,7 +58,8 @@ class MyClientHandler : public ClientHandler {
         isValRead = true;
       }else{
         allLines+=ptrBuffer;
-        if (allLines.find("end")){
+        cout<<allLines<<endl;
+        if (!allLines.find("end")){
           break;
         }
       }
