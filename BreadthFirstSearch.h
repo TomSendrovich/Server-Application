@@ -32,7 +32,6 @@ class BreadthFirstSearch : public Searcher<T> {
         isDiscovered = false;
         continue;
       }
-      //node->setIsDiscovered(true);
       discoveredNodes->push_front(node);
 
       if (problem->isGoalState(node)) {

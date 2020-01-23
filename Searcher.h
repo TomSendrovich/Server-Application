@@ -167,6 +167,7 @@ class Searcher {
     for (int i = 0; i < size; i++) {
       addToQueue(tmpVector[i]);
     }
+    evaluatedNodes++;
     return retVal;
   }
 };
