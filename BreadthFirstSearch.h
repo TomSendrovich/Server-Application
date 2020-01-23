@@ -21,10 +21,11 @@ class BreadthFirstSearch : public Searcher<T> {
     while (Searcher<T>::openQueueSize() > 0) {
       State<T>* node = Searcher<T>::popOpenQueue();
 
-      if (!node->isDiscovered()) { continue; }
+      if (node->isDiscovered()) { continue; }
       node->setIsDiscovered(true);
 
       if (problem->isGoalState(node)) {
+        node->setPathCost(node->getParent()->getPathCost() + node->getCost());
         list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
         return retVal;
       }
@@ -37,6 +38,7 @@ class BreadthFirstSearch : public Searcher<T> {
 
       list<State<T>*> successors = problem->getAllPossibleStates(node);
       for (State<T>* s: successors) {
+        s->setParent(node);
         Searcher<T>::addToOpenQueue(s);
       }
 
