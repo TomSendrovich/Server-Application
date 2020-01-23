@@ -7,25 +7,27 @@
 #include "Cell.h"
 #include <list>
 #include <set>
+#include <iostream>
 using namespace std;
 #define MILSTONE2__BESTFIRSTSEARCH_H_
 
 template<typename T>
 class BestFirstSearch : public Searcher<T> {
 
+  list<State<T>*>* closed;
+
  public:
-  //BestFirstSearch(Searcher<T>* problem) : Searcher<T>(problem) {}
   BestFirstSearch() {
     Searcher<T>::evaluatedNodes = 0;
-    Searcher<T>::openQueue = new priority_queue<State<T>*>();
   }
+
   list<State<T>*>* search(Searchable<T>* problem) override {
     Searcher<T>::addToOpenQueue(problem->getInitialState());
-    unordered_set<State<T>*>* closed = new unordered_set<State<T>*>();
+    closed = new list<State<T>*>();
 
     while (Searcher<T>::openQueueSize() > 0) {
       State<T>* node = Searcher<T>::popOpenQueue();
-      closed->insert(node);
+      closed->push_back(node);
       if (problem->isGoalState(node)) {
         list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
         return retVal;
@@ -33,22 +35,40 @@ class BestFirstSearch : public Searcher<T> {
       list<State<T>*> successors = problem->getAllPossibleStates(node);
 
       for (State<T>* s: successors) {
-        if (closed->find(s) == closed->end() && !Searcher<T>::isOpenQueueContains(s)) {// if s not in OPEN or CLOSE
+        //bool inOpen = Searcher<T>::isOpenQueueContains(s);
+        //bool inClose = isInClosed(s);
+        if (!isInClosed(s) && !Searcher<T>::isOpenQueueContains(s)) {// if s not in OPEN or CLOSE
+          s->setPathCost(s->getCost() + node->getPathCost());
           Searcher<T>::addToOpenQueue(s); ///parent of s was set in getAllPossibleStates
-        } else { //found a better path
-          if (Searcher<T>::isOpenQueueContains(s)) {
-            if (node->getPathCost() + s->getCost() < Searcher<T>::getStateFromQueue(s)->getPathCost()) { //node + s < node in queue
-              s->setPathCost(s->getCost() + node->getPathCost());
-              Searcher<T>::removeFromOpenQueue(s);
-              Searcher<T>::addToOpenQueue(s);
-            }
-          } else {
-            s->setPathCost(s->getCost() + s->getParent()->getPathCost());
-            Searcher<T>::addToOpenQueue(s);
-          }
         }
       }//end of foreach
     }
+  }
+
+  bool isInClosed(State<T>* s) {
+    vector<State<T>*> tmpVector;
+    State<T>* top;
+    bool contains = false;
+    while (closed->size() != 0) {
+      top = closed->back();
+      closed->pop_back();
+      tmpVector.push_back(top);
+
+      int topR = top->getState()->getRow();
+      int topC = top->getState()->getCol();
+      int sR = s->getState()->getRow();
+      int sC = s->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
+        contains = true;
+      }
+    }
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      closed->push_back(tmpVector[i]);
+    }
+    return contains;
   }
 };
 

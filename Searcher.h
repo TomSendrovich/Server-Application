@@ -10,13 +10,22 @@
 #include <unordered_set>
 #include <algorithm>
 #define MILSTONE2__SEARCHER_H_
+
+template<typename T>
+class StateComparator {
+ public:
+  int operator()(State<T>* s1, State<T>* s2) {
+    return s1->getCost() > s2->getCost();
+  }
+};
+
 template<typename T>
 class Searcher {
 
  protected:
   int evaluatedNodes;
   Searchable<T>* problem;
-  priority_queue<State<T>*>* openQueue;
+  priority_queue<State<T>*, vector<State<T>*>, StateComparator<T>> openQueue;
 
  public:
   /*Searcher(Searchable<T>* problem) : problem(problem) {
@@ -25,11 +34,11 @@ class Searcher {
   }*/
   virtual list<State<T>*>* search(Searchable<T>* problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
-  int openQueueSize() { return openQueue->size(); };
-  void addToOpenQueue(State<T>* state) { openQueue->push(state); }
+  int openQueueSize() { return openQueue.size(); };
+  void addToOpenQueue(State<T>* state) { openQueue.push(state); }
   State<T>* popOpenQueue() {
-    State<T>* element = openQueue->top();
-    openQueue->pop();
+    State<T>* element = openQueue.top();
+    openQueue.pop();
     evaluatedNodes++;
     return element;
   }
@@ -90,9 +99,9 @@ class Searcher {
     bool done = false;
     list<State<T>*>* trace = new list<State<T>*>();
     trace->push_front(goalState);
-    State<T>* currentState;
+    State<T>* currentState = goalState;
     while (!done) {
-      currentState = goalState->getParent();
+      currentState = currentState->getParent();
       trace->push_front(currentState);
       if (initState == currentState) {
         done = true;

@@ -36,7 +36,14 @@ void MatrixProblem::initMatrix(vector<vector<string>> matrix) {
 }
 
 State<Cell*>* MatrixProblem::getInitialState() { return _initState; }
-bool MatrixProblem::isGoalState(State<Cell*>* state) { return state == _goalState; }
+bool MatrixProblem::isGoalState(State<Cell*>* state) {
+  int oneR = state->getState()->getRow();
+  int oneC = state->getState()->getCol();
+  int twoR = _goalState->getState()->getRow();
+  int twoC = _goalState->getState()->getCol();
+
+  return oneR == twoR && oneC == twoC;
+}
 list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
 
   list<State<Cell*>*> list;
