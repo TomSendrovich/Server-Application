@@ -29,6 +29,7 @@ class Searcher {
  public:
   virtual list<State<T>*>* search(Searchable<T>* problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
+  void resetNumOfEvaluatedNodes() { evaluatedNodes = 0; };
   list<State<T>*>* backTrace(State<T>* initState, State<T>* goalState) {
     Solution solution;
     bool done = false;

@@ -5,6 +5,7 @@
 #ifndef MILSTONE2__OBJECTADAPTER_H_
 #include "Solver.h"
 #include "Searcher.h"
+#include <iostream>
 #define MILSTONE2__OBJECTADAPTER_H_
 
 template<typename P, typename S, typename T>
@@ -16,10 +17,12 @@ class ObjectAdapter : public Solver<P, S> {
   ObjectAdapter(Searcher<T>* searcher) : _searcher(searcher) {}
 
   S solve(P* problem) override {
+    _searcher->resetNumOfEvaluatedNodes();
     Solution solution;
     // Searchable<P>* searchable;
     list<State<T>*>* trace = _searcher->search(problem);
 
+    cout << "number of nodes: " << _searcher->getNumOfEvaluatedNodes() << endl;
     //trace list is ready
     for (typename list<State<T>*>::iterator it = trace->begin(); it != trace->end(); ++it) {
       if (it == trace->begin()) {

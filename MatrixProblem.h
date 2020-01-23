@@ -33,7 +33,7 @@ class MatrixProblem : public Searchable<Cell*> {
   vector<vector<Cell*>> getMatrix();
   Cell* getCell(int row, int col);
   bool isValidPosition(int row, int col);
-  int hashFunc(vector<vector<string>> matrix);
+  int hashFunc(vector<vector<string>> matrix, int size);
 };
 
 #endif //MILSTONE2__MATRIXPROBLEM_H_

@@ -108,7 +108,7 @@ class MyClientHandler : public ClientHandler {
         cout << "client wants to end communication" << endl;
         //client wants to end communication
         auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixSize);
-        int intHashProblem = problem->hashFunc(matrix);
+        int intHashProblem = problem->hashFunc(matrix, matrixSize * matrixSize);
         string hashProblem = to_string(intHashProblem);
         if (_cm->isSolutionExist(hashProblem)) {
           //solutionExist exist in cm, we return in to the client

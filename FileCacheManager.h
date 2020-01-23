@@ -6,13 +6,6 @@
 #include "CacheManager.h"
 #include <fstream>
 #include "string"
-#define A 54059 /* a prime */
-#define B 76963 /* another prime */
-#define C 86969 /* yet another prime */
-#define FIRSTH 37 /* also prime */
-#define DELIMITER ","
-#define DELIMITER_LENGTH 1
-
 #define MILSTONE2_FILECACHEMANAGER_H
 
 class FileCacheManager : public CacheManager {
@@ -20,24 +13,6 @@ class FileCacheManager : public CacheManager {
   ifstream inStream;
   ofstream outStream;
   bool isOutStreamOpen = false;
-
-  unsigned hash_str(const char* s) {
-    unsigned h = FIRSTH;
-    while (*s) {
-      h = (h * A) ^ (s[0] * B);
-      s++;
-    }
-    return h; // or return h % C;
-  }
-
-  bool isSolutionExistInDisk(string line, string problemHashName) {
-    string tokenProblem;
-    size_t pos;
-    pos = line.find(DELIMITER);
-    tokenProblem = line.substr(0, pos);
-
-    return tokenProblem == problemHashName;
-  }
 
  public:
   FileCacheManager(int sizeNum) { CacheManager::size = sizeNum; }
@@ -52,16 +27,8 @@ class FileCacheManager : public CacheManager {
       string line;
       inStream.close();
       inStream.open(hashProblem + ".txt", ios::binary);
-      if (!inStream.is_open()) {
-        return false;
-      }
-      while (getline(inStream, line)) {
-        if (isSolutionExistInDisk(line, hashProblem)) {
-          return true;
-        }
-      }
+      return inStream.is_open();
     }
-    return false;
   }
 
   virtual string getSolution(string hashProblem) {
@@ -77,25 +44,19 @@ class FileCacheManager : public CacheManager {
       if (!inStream.is_open()) {
         throw "Unable to open file";
       }
-      while (getline(inStream, line)) {
-        if (isSolutionExistInDisk(line, hashProblem)) {
-          size_t pos = line.find(DELIMITER);
-          line.erase(0, pos + DELIMITER_LENGTH);
-          return line;
-        }
-      }
+      getline(inStream, line);
+      return line;
     }
   }
 
   virtual void saveSolution(string hashProblem, string solution) {
-    if (!isOutStreamOpen) {
-      isOutStreamOpen = true;
-      outStream.open(hashProblem + ".txt", ios::out | ios::app);
-      if (!outStream.is_open()) {
-        throw "Unable to open file";
-      }
+
+    outStream.open(hashProblem + ".txt", ios::out | ios::app);
+    if (!outStream.is_open()) {
+      throw "Unable to open file";
     }
-    outStream << hashProblem + "," + solution << endl;
+
+    outStream << solution << endl;
     if (CacheManager::cacheMap.size() >= CacheManager::size) {
       CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
     }
