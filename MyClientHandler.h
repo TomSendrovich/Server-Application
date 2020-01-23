@@ -48,7 +48,7 @@ class MyClientHandler : public ClientHandler {
     bool inCell = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
-    int row = -1, col = 0,pos,value;
+    int row = -1, col = 0, pos, value;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
     string singleState;
@@ -63,11 +63,11 @@ class MyClientHandler : public ClientHandler {
         //row++;
         string problem = oneLine;
         while (!problem.empty()) {
-           pos = problem.find(',');
+          pos = problem.find(',');
           if (pos != -1) {
             singleState = problem.erase(pos, problem.length() - pos);
             oneLine.erase(0, pos + 1);
-          } else{
+          } else {
             singleState = oneLine;
             oneLine.erase(0, oneLine.length());
           }
@@ -75,25 +75,27 @@ class MyClientHandler : public ClientHandler {
           //col++;
           problem = oneLine;
         }
-        if (completeRow.size()==2&&!inCell){
+        if (completeRow.size() == 2 && !inCell) {
           row = atoi(completeRow.begin()->c_str());
           col = atoi(completeRow.rbegin()->c_str());
-          pair<int,int> p = make_pair(row,col);
+          pair<int, int> p = make_pair(row, col);
           value = atoi(matrix[row][col].c_str());
-          initCell = new Cell(p,value);
-          inCell=true;
-        }else if(completeRow.size()==2&&inCell){
+          initCell = new Cell(p, value);
+          inCell = true;
+        } else if (completeRow.size() == 2 && inCell) {
           row = atoi(completeRow.begin()->c_str());
           col = atoi(completeRow.rbegin()->c_str());
           value = atoi(matrix[row][col].c_str());
-          pair<int,int> p1 = make_pair(row,col);
+          pair<int, int> p1 = make_pair(row, col);
           //initCell = new Cell(p1,matrix[p1.first][p1.second]);
-          inCell=true;
-        } else{
+          inCell = true;
+        } else {
           matrix.push_back(completeRow);
+          cout << "completeRow" << endl;
         }
         completeRow.clear();
       } else {
+        cout << "client wants to end communication" << endl;
         //client wants to end communication
         auto* problem = new MatrixProblem(matrix, initCell, goalCell, 0);
         int intHashProblem = problem->hashFunc(matrix);
