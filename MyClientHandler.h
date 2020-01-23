@@ -59,7 +59,7 @@ class MyClientHandler : public ClientHandler {
       }
       string oneLine = ptrBuffer;
       oneLine.erase(oneLine.length() - 1, 1);//erase \n
-      if (oneLine != "end") {
+      if (oneLine != "end\n ") {
         //row++;
         string problem = oneLine;
         while (!problem.empty()) {
