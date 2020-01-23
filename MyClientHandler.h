@@ -45,21 +45,30 @@ class MyClientHandler : public ClientHandler {
 
   void handleClient(int in) override {
     isEnd = false;
-    bool inCell = false;
+    bool inCell = false,isValRead=false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
     int row = -1, col = 0, pos, value;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
-    string singleState;
-    while (!isEnd) {
-      int valRead = read(in, buffer, 6);
+    string singleState,allLines;
+    while(!isValRead){
+      int valRead = read(in, buffer, 1024);
       if (valRead == 0 || valRead == -1) {
-        throw "ERROR: message from client did not receive";
+        isValRead = true;
+      }else{
+        allLines+=ptrBuffer;
+        if (allLines.find("end")){
+          break;
+        }
       }
-      string oneLine = ptrBuffer;
-      oneLine.erase(oneLine.length() - 1, 1);//erase \n
-      if (oneLine != "end\n ") {
+    }
+    while (!isEnd) {
+      pos = allLines.find('\n');
+      string oneLine = allLines;
+      oneLine.erase(pos,oneLine.length()-pos);
+      allLines.erase(0,pos+1);
+      if (oneLine != "end") {
         //row++;
         string problem = oneLine;
         while (!problem.empty()) {
