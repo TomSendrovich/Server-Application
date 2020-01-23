@@ -46,45 +46,56 @@ class MyClientHandler : public ClientHandler {
   void handleClient(int in) override {
     isEnd = false;
     bool inCell = false;
-    Cell* initCell = nullptr, * goalCell= nullptr;
-    int row = -1, col = 0;
+    vector<string> completeRow;
+    Cell* initCell = nullptr, * goalCell = nullptr;
+    int row = -1, col = 0,pos,value;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
+    string singleState;
     while (!isEnd) {
-      int valRead = read(in, buffer, 1024);
+      int valRead = read(in, buffer, 6);
       if (valRead == 0 || valRead == -1) {
         throw "ERROR: message from client did not receive";
       }
       string oneLine = ptrBuffer;
       oneLine.erase(oneLine.length() - 1, 1);//erase \n
       if (oneLine != "end") {
-        row++;
+        //row++;
         string problem = oneLine;
         while (!problem.empty()) {
-          int pos = problem.find(',');
-          if (problem.find(',', pos + 1) != -1) {
-            string singleState = problem.erase(0, problem.length() - pos);
-            matrix[row][col] = singleState;
-            col++;
+           pos = problem.find(',');
+          if (pos != -1) {
+            singleState = problem.erase(pos, problem.length() - pos);
             oneLine.erase(0, pos + 1);
-            problem = oneLine;
-          } else {
-            if (!inCell) {
-              row = atoi(problem.erase(pos, problem.length() - pos).c_str());
-              col = atoi(oneLine.erase(0, pos + 1).c_str());
-              initCell = new Cell(make_pair(row,col),atoi(matrix[row][col].c_str()));
-              inCell = true;
-            } else {
-              row = atoi(problem.erase(pos, problem.length() - pos).c_str());
-              col = atoi(oneLine.erase(0, pos + 1).c_str());
-              goalCell = new Cell(make_pair(row,col),atoi(matrix[row][col].c_str()));
-            }
+          } else{
+            singleState = oneLine;
+            oneLine.erase(0, oneLine.length());
           }
-
+          completeRow.push_back(singleState);
+          //col++;
+          problem = oneLine;
         }
+        if (completeRow.size()==2&&!inCell){
+          row = atoi(completeRow.begin()->c_str());
+          col = atoi(completeRow.rbegin()->c_str());
+          pair<int,int> p = make_pair(row,col);
+          value = atoi(matrix[row][col].c_str());
+          initCell = new Cell(p,value);
+          inCell=true;
+        }else if(completeRow.size()==2&&inCell){
+          row = atoi(completeRow.begin()->c_str());
+          col = atoi(completeRow.rbegin()->c_str());
+          value = atoi(matrix[row][col].c_str());
+          pair<int,int> p1 = make_pair(row,col);
+          //initCell = new Cell(p1,matrix[p1.first][p1.second]);
+          inCell=true;
+        } else{
+          matrix.push_back(completeRow);
+        }
+        completeRow.clear();
       } else {
         //client wants to end communication
-        auto *problem = new MatrixProblem(matrix, initCell, goalCell,0);
+        auto* problem = new MatrixProblem(matrix, initCell, goalCell, 0);
         string hashProblem = matrixToHash(matrix);
         if (_cm->isSolutionExist(hashProblem)) {
           //solutionExist exist in cm, we return in to the client
@@ -106,7 +117,7 @@ class MyClientHandler : public ClientHandler {
     }
   }
 
-  string matrixToHash(vector<vector<string>> problem){
+  string matrixToHash(vector<vector<string>> problem) {
     return "abc";
   }
 
