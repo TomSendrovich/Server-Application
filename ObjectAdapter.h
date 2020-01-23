@@ -26,8 +26,8 @@ class ObjectAdapter : public Solver<P, S> {
         continue;
       }
       string direction = getDirection(*it);
-      int cost = (*it)->getCost();
-      string move = direction + " (" + to_string(cost) + ")";
+      int pathCost = (*it)->getPathCost();
+      string move = direction + " (" + to_string(pathCost) + ")";
       solution.addAction(move);
     }
     string finalSolution = solution.to_string();
@@ -42,10 +42,10 @@ class ObjectAdapter : public Solver<P, S> {
     int parentStateRow = state->getParent()->getState()->getPosition().first;
     int parentStateCol = state->getParent()->getState()->getPosition().second;
 
-    if (stateRow - parentStateRow == 1 && stateCol - parentStateCol == 0) { return "Up"; }
-    else if (stateRow - parentStateRow == -1 && stateCol - parentStateCol == 0) { return "Down"; }
-    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == 1) { return "Left"; }
-    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == -1) { return "Right"; }
+    if (stateRow - parentStateRow == 1 && stateCol - parentStateCol == 0) { return "Down"; }
+    else if (stateRow - parentStateRow == -1 && stateCol - parentStateCol == 0) { return "Up"; }
+    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == 1) { return "Right"; }
+    else if (stateRow - parentStateRow == 0 && stateCol - parentStateCol == -1) { return "Left"; }
     else return "Error";
   }
 };
