@@ -48,7 +48,7 @@ class MyClientHandler : public ClientHandler {
     bool inCell = false, isValRead = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
-    int row = -1, col = 0, pos, value,matrixSize=0;
+    int row = -1, col = 0, pos, value, matrixSize = 0;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
     string singleState, allLines;
@@ -82,7 +82,6 @@ class MyClientHandler : public ClientHandler {
             oneLine.erase(0, oneLine.length());
           }
           completeRow.push_back(singleState);
-          matrixSize++;
           problem = oneLine;
         }
         if (completeRow.size() == 2 && !inCell) {
@@ -101,6 +100,7 @@ class MyClientHandler : public ClientHandler {
           inCell = true;
         } else {
           matrix.push_back(completeRow);
+          matrixSize++;
           //cout << "completeRow" << endl;
         }
         completeRow.clear();
@@ -114,14 +114,14 @@ class MyClientHandler : public ClientHandler {
           //solutionExist exist in cm, we return in to the client
           string solutionExist = _cm->getSolution(hashProblem);
           if (!sendMsg(in, solutionExist.c_str())) {
-            cout << "Error sending message: " << solutionExist << endl;
+            cerr << "Error sending message: " << solutionExist << endl;
           }
         } else {
           //solutionNotExist dont exist in cm, we solve the problem and save it at cm
           string solutionNotExist = _solver->solve(problem);
           _cm->saveSolution(hashProblem, solutionNotExist);
           if (!sendMsg(in, solutionNotExist.c_str())) {
-            cout << "Error sending message: " << solutionNotExist << endl;
+            cerr << "Error sending message: " << solutionNotExist << endl;
           }
         }
         cout << "end line" << endl;
