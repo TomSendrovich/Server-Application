@@ -22,11 +22,11 @@ class BestFirstSearch : public Searcher<T> {
   }
 
   list<State<T>*>* search(Searchable<T>* problem) override {
-    Searcher<T>::addToOpenQueue(problem->getInitialState());
+    Searcher<T>::addToPriorityQueue(problem->getInitialState());
     closed = new list<State<T>*>();
 
-    while (Searcher<T>::openQueueSize() > 0) {
-      State<T>* node = Searcher<T>::popOpenQueue();
+    while (Searcher<T>::priorityQueueSize() > 0) {
+      State<T>* node = Searcher<T>::popPriorityQueue();
       closed->push_back(node);
       if (problem->isGoalState(node)) {
         list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
@@ -35,11 +35,9 @@ class BestFirstSearch : public Searcher<T> {
       list<State<T>*> successors = problem->getAllPossibleStates(node);
 
       for (State<T>* s: successors) {
-        //bool inOpen = Searcher<T>::isOpenQueueContains(s);
-        //bool inClose = isInClosed(s);
-        if (!isInClosed(s) && !Searcher<T>::isOpenQueueContains(s)) {// if s not in OPEN or CLOSE
+        if (!isInClosed(s) && !Searcher<T>::isPriorityQueueContains(s)) {// if s not in OPEN or CLOSE
           s->setPathCost(s->getCost() + node->getPathCost());
-          Searcher<T>::addToOpenQueue(s); ///parent of s was set in getAllPossibleStates
+          Searcher<T>::addToPriorityQueue(s); ///parent of s was set in getAllPossibleStates
         }
       }//end of foreach
     }

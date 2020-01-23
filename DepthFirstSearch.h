@@ -13,13 +13,13 @@ class DepthFirstSearch : public Searcher<T> {
  public:
   DepthFirstSearch() {
     Searcher<T>::evaluatedNodes = 0;
-    Searcher<T>::openQueue = new priority_queue<State<T>*>();
+    Searcher<T>::priorityQueue = new priority_queue<State<T>*>();
   }
   list<State<T>*>* search(Searchable<T>* problem) override {
-    Searcher<T>::addToOpenQueue(problem->getInitialState());
+    Searcher<T>::addToPriorityQueue(problem->getInitialState());
 
-    while (Searcher<T>::openQueueSize() > 0) {
-      State<T>* node = Searcher<T>::popOpenQueue();
+    while (Searcher<T>::priorityQueueSize() > 0) {
+      State<T>* node = Searcher<T>::popPriorityQueue();
 
       if (node == problem->getInitialState()) {
         node->setPathCost(node->getCost());
@@ -36,8 +36,8 @@ class DepthFirstSearch : public Searcher<T> {
       list<State<T>*> successors = problem->getAllPossibleStates(node);
       for (State<T>* s: successors) {
         if (!s->isDiscovered()) {
-          Searcher<T>::addToOpenQueue(s);
-          Searcher<T>::popOpenQueue();
+          Searcher<T>::addToPriorityQueue(s);
+          Searcher<T>::popPriorityQueue();
           return DFS(problem, s);
         }
       }
@@ -57,7 +57,7 @@ class DepthFirstSearch : public Searcher<T> {
     list<State<T>*> successors = problem->getAllPossibleStates(node);
     for (State<T>* s: successors) {
       if (!s->isDiscovered()) {
-        Searcher<T>::addToOpenQueue(s);
+        Searcher<T>::addToPriorityQueue(s);
         return DFS(problem, s);
       }
     }

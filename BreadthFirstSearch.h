@@ -10,16 +10,14 @@
 
 template<typename T>
 class BreadthFirstSearch : public Searcher<T> {
- public:
-  BreadthFirstSearch() {
-    Searcher<T>::evaluatedNodes = 0;
-    Searcher<T>::openQueue = new priority_queue<State<T>*>();
-  }
-  list<State<T>*>* search(Searchable<T>* problem) override {
-    Searcher<T>::addToOpenQueue(problem->getInitialState());
 
-    while (Searcher<T>::openQueueSize() > 0) {
-      State<T>* node = Searcher<T>::popOpenQueue();
+ public:
+  BreadthFirstSearch() { Searcher<T>::evaluatedNodes = 0; }
+  list<State<T>*>* search(Searchable<T>* problem) override {
+    Searcher<T>::addToPriorityQueue(problem->getInitialState());
+
+    while (Searcher<T>::priorityQueueSize() > 0) {
+      State<T>* node = Searcher<T>::popPriorityQueue();
 
       if (node->isDiscovered()) { continue; }
       node->setIsDiscovered(true);
@@ -39,7 +37,7 @@ class BreadthFirstSearch : public Searcher<T> {
       list<State<T>*> successors = problem->getAllPossibleStates(node);
       for (State<T>* s: successors) {
         s->setParent(node);
-        Searcher<T>::addToOpenQueue(s);
+        Searcher<T>::addToPriorityQueue(s);
       }
 
     }
