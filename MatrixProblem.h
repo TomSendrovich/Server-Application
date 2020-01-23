@@ -8,6 +8,7 @@
 #include <list>
 #include "Searchable.h"
 #include "Cell.h"
+#define C 86969 /* yet another prime */
 using namespace std;
 #define MILSTONE2__MATRIXPROBLEM_H_
 
@@ -32,7 +33,7 @@ class MatrixProblem : public Searchable<Cell*> {
   vector<vector<Cell*>> getMatrix();
   Cell* getCell(int row, int col);
   bool isValidPosition(int row, int col);
-
+  int hashFunc(vector<vector<string>> matrix);
 };
 
 #endif //MILSTONE2__MATRIXPROBLEM_H_
