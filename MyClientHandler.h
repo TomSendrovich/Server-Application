@@ -96,7 +96,7 @@ class MyClientHandler : public ClientHandler {
           col = atoi(completeRow.rbegin()->c_str());
           value = atoi(matrix[row][col].c_str());
           pair<int, int> p1 = make_pair(row, col);
-          //initCell = new Cell(p1,matrix[p1.first][p1.second]);
+          goalCell = new Cell(p1, value);
           inCell = true;
         } else {
           matrix.push_back(completeRow);
