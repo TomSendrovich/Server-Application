@@ -21,12 +21,17 @@ class Main {
   Main() {}
 
   static int main(int port) {
-    auto* searcher = new DepthFirstSearch<Cell*>(); ///switch algorithm here
-    auto* solver =  new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
+    auto* searcher = new BestFirstSearch<Cell*>(); ///switch algorithm here
+    auto* solver = new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
     auto* cacheManager = new FileCacheManager(CACHE_SIZE);
     auto* clientHandler = new MyClientHandler<MatrixProblem, string>(solver, cacheManager);
     auto* server = new MySerialServer();
-    server->open(port, clientHandler);
+
+    try {
+      server->open(port, clientHandler);
+    } catch (const char* e) {
+      cout << e << endl;
+    }
 
     return 1;
   }
