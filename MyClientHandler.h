@@ -44,6 +44,7 @@ class MyClientHandler : public ClientHandler {
   }
 
   void handleClient(int in) override {
+    matrix.clear();
     isEnd = false;
     bool inCell = false, isValRead = false;
     vector<string> completeRow;
