@@ -125,7 +125,7 @@ class Searcher {
 
     return minState;
   }
-  void removeFromPriorityQueue(State<T>* state) {
+  /*void removeFromPriorityQueue(State<T>* state) {
     vector<State<T>*> tmpVector;
     State<T>* top;
     while (priorityQueueSize() != 0) {
@@ -146,7 +146,7 @@ class Searcher {
     for (int i = 0; i < size; i++) {
       addToPriorityQueue(tmpVector[i]);
     }
-  }
+  }*/
   bool isPriorityQueueContains(State<T>* state) {
     vector<State<T>*> tmpVector;
     State<T>* top;
@@ -154,7 +154,13 @@ class Searcher {
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
       tmpVector.push_back(top);
-      if (top == state) {
+
+      int topR = top->getState()->getRow();
+      int topC = top->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
         contains = true;
       }
     }
@@ -171,7 +177,6 @@ class Searcher {
     State<T>* retVal = nullptr;
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
-      tmpVector.push_back(top);
 
       int topR = top->getState()->getRow();
       int topC = top->getState()->getCol();
@@ -180,7 +185,10 @@ class Searcher {
 
       if (topR == sR && topC == sC) {
         retVal = top;
+        break;
       }
+      tmpVector.push_back(top);
+
     }
     // return the states to the queue
     int size = tmpVector.size();

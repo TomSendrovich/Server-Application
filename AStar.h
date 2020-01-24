@@ -32,14 +32,10 @@ class AStar : public Searcher<T> {
         return retVal;
       }
 
-      cout << "nodes: " << Searcher<T>::getNumOfEvaluatedNodes() << ", open: " << Searcher<T>::priorityQueueSize()
-           << ", close: " << visited->size() << endl;
-
-
-      /*if (Searcher<T>::getNumOfEvaluatedNodes() == 500) {
-        cout << "HI" << endl;
-        cout <<  Searcher<T>::getNumOfEvaluatedNodes() << endl;
-      }*/
+      if (Searcher<T>::getNumOfEvaluatedNodes() % 50 == 0) {
+        cout << "nodes: " << Searcher<T>::getNumOfEvaluatedNodes() << ", open: " << Searcher<T>::priorityQueueSize()
+             << endl;
+      }
 
       list<State<T>*> successors = problem->getAllPossibleStates(node);
 
@@ -48,90 +44,27 @@ class AStar : public Searcher<T> {
         s->setHeuristicCost(heuristicFunc(s, problem->getGoalState()));
         s->setPathCost(s->getCost() + node->getPathCost());
 
-        if (!isVisited(s) && !Searcher<T>::isPriorityQueueContains(s)) {// if s not in OPEN or CLOSE
-          Searcher<T>::addToPriorityQueue(s); ///parent of s was set in getAllPossibleStates
-        } else {
-          /*if (Searcher<T>::isPriorityQueueContains(s)) {
-            if(s->getPathCost()+s->getCost()<)
-          }*/
+        if (!isVisited(s)) {
+          if (!Searcher<T>::isPriorityQueueContains(s)) { // if s not in OPEN or CLOSE
+            Searcher<T>::addToPriorityQueue(s);
+          } else { // s in Open, check better path
+
+            State<T>* sInQueue = Searcher<T>::getStateFromPriorityQueue(s);
+
+            int oldCost = sInQueue->getPathCost(), newCost = s->getCost() + s->getPathCost();
+
+            if (newCost < oldCost) {
+              //replace parent, pathCost, heuristicCost
+              sInQueue->setParent(s);
+              sInQueue->setPathCost(sInQueue->getCost() + s->getPathCost());
+              sInQueue->setHeuristicCost(heuristicFunc(sInQueue, problem->getGoalState()));
+            }
+            Searcher<T>::addToQueue(sInQueue);
+          }
         }
-      }//end of foreach
+      }
     }
-
-    /*visited = new list<State<T>*>();
-
-    //pathCost = cost for initial state
-    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
-
-    //mark initial state visited
-    visited->push_front(problem->getInitialState());
-
-    //push initial state to queue
-    Searcher<T>::addToQueue(problem->getInitialState());
-
-    //while queue is not empty
-    while (Searcher<T>::queueSize() > 0) {
-      State<T>* node = Searcher<T>::popQueue();
-      visited->push_back(node);
-      Searcher<T>::evaluatedNodes++;
-
-      *//*if (Searcher<T>::getNumOfEvaluatedNodes() == 116) {
-        cout << "HI" << endl;
-        cout <<  Searcher<T>::getNumOfEvaluatedNodes() << endl;
-      }
-
-      if (node == nullptr) {
-        cout << "null node" << endl;
-        cout <<  Searcher<T>::getNumOfEvaluatedNodes() << endl;
-      }*//*
-
-      //case for initial state that has no parent
-      if (node->getParent() != nullptr) {
-        node->setPathCost(node->getParent()->getPathCost() + node->getCost());
-      }
-
-      //if node is goal state, check backtrace
-      if (problem->isGoalState(node)) {
-        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
-        return retVal;
-      }
-
-      //get all successors
-      list<State<T>*> successors = problem->getAllPossibleStates(node);
-
-      State<T>* s = findBestSuccessor(successors, problem->getGoalState());
-      Searcher<T>::addToQueue(s);
-
-    }*/
   }
-
-  /*State<T>* calcHeuristicCost(list<State<T>*> successors, State<T>* goal) {
-    int g, f, h;
-    int minF = 99999;
-    State<T>* minFState = nullptr;
-
-    for (State<T>* s: successors) {
-      if (!isVisited(s)) {
-
-        if (s->getParent() != nullptr) {
-          g = s->getCost() + s->getParent()->getPathCost();
-        } else {
-          g = 0;
-          cout << "no parent: " << s->getState()->getRow() << "," << s->getState()->getCol() << endl;
-        }
-        h = heuristicFunc(s, goal);
-        f = g + h;
-
-        if (f < minF) {
-          minF = f;
-          minFState = s;
-        }
-      }
-    }
-
-    return minFState;
-
-  }*/
 
   int heuristicFunc(State<T>* node, State<T>* goal) {
     int alpha = 1;
