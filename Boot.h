@@ -11,6 +11,7 @@
 #include "BestFirstSearch.h"
 #include "BreadthFirstSearch.h"
 #include "DepthFirstSearch.h"
+#include "AStar.h"
 #include "MatrixProblem.h"
 #include "Cell.h"
 #define MILSTONE2__BOOT_H_
@@ -22,7 +23,7 @@ class Main {
   Main() {}
 
   static int main(int port) {
-    auto* searcher = new DepthFirstSearch<Cell*>(); ///switch algorithm here
+    auto* searcher = new AStar<Cell*>(); ///switch algorithm here
     auto* solver = new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
     auto* cacheManager = new FileCacheManager(CACHE_SIZE);
     auto* clientHandler = new MyClientHandler<MatrixProblem, string>(solver, cacheManager);

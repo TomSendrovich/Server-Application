@@ -24,6 +24,7 @@ class MatrixProblem : public Searchable<Cell*> {
 
   //override functions
   State<Cell*>* getInitialState() override;
+  State<Cell*>* getGoalState() override;
   bool isGoalState(State<Cell*>* state) override;
   list<State<Cell*>*> getAllPossibleStates(State<Cell*>* state) override;
   string to_string() override;

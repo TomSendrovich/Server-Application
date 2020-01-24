@@ -7,6 +7,7 @@
 #include "Solution.h"
 #include "State.h"
 #include <queue>
+#include <limits.h>
 #define MILSTONE2__SEARCHER_H_
 
 template<typename T>
@@ -87,7 +88,48 @@ class Searcher {
 
     return minState;
   }
-  void removeFromPriorityQueue(State<T>* state) {
+  State<T>* popPriorityQueueHeuristic() {
+    int f, g, h;
+    int minF = INT_MAX;
+    int elementHeuristic;
+    State<T>* minState = priorityQueue.top();
+
+    vector<State<T>*> tmpVector;
+    State<T>* element;
+    while (priorityQueueSize() != 0) {
+      element = priorityQueue.top();
+      priorityQueue.pop();
+      tmpVector.push_back(element);
+
+      h = element->getHeuristicCost();
+      g = element->getPathCost();
+      f = g + h;
+
+      if (f < minF) {
+        minF = f;
+        minState = element;
+      }
+
+    }
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      State<T>* state = tmpVector[i];
+      int topR = minState->getState()->getRow();
+      int topC = minState->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
+        continue;
+      } else {
+        addToPriorityQueue(tmpVector[i]);
+      }
+    }
+
+    return minState;
+  }
+  /*void removeFromPriorityQueue(State<T>* state) {
     vector<State<T>*> tmpVector;
     State<T>* top;
     while (priorityQueueSize() != 0) {
@@ -108,7 +150,7 @@ class Searcher {
     for (int i = 0; i < size; i++) {
       addToPriorityQueue(tmpVector[i]);
     }
-  }
+  }*/
   bool isPriorityQueueContains(State<T>* state) {
     vector<State<T>*> tmpVector;
     State<T>* top;
@@ -116,7 +158,13 @@ class Searcher {
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
       tmpVector.push_back(top);
-      if (top == state) {
+
+      int topR = top->getState()->getRow();
+      int topC = top->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
         contains = true;
       }
     }
@@ -133,7 +181,6 @@ class Searcher {
     State<T>* retVal = nullptr;
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
-      tmpVector.push_back(top);
 
       int topR = top->getState()->getRow();
       int topC = top->getState()->getCol();
@@ -142,7 +189,10 @@ class Searcher {
 
       if (topR == sR && topC == sC) {
         retVal = top;
+        break;
       }
+      tmpVector.push_back(top);
+
     }
     // return the states to the queue
     int size = tmpVector.size();
