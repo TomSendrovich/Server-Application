@@ -7,6 +7,7 @@
 #include "Solution.h"
 #include "State.h"
 #include <queue>
+#include <limits.h>
 #define MILSTONE2__SEARCHER_H_
 
 template<typename T>
@@ -88,7 +89,8 @@ class Searcher {
     return minState;
   }
   State<T>* popPriorityQueueHeuristic() {
-    int minHeuristic = priorityQueue.top()->getHeuristicCost();
+    int f, g, h;
+    int minF = INT_MAX;
     int elementHeuristic;
     State<T>* minState = priorityQueue.top();
 
@@ -97,15 +99,17 @@ class Searcher {
     while (priorityQueueSize() != 0) {
       element = priorityQueue.top();
       priorityQueue.pop();
+      tmpVector.push_back(element);
 
-      elementHeuristic = element->getPathCost();
+      h = element->getHeuristicCost();
+      g = element->getPathCost();
+      f = g + h;
 
-      if (elementHeuristic < minHeuristic) {
+      if (f < minF) {
+        minF = f;
         minState = element;
-        minHeuristic = elementHeuristic;
       }
 
-      tmpVector.push_back(element);
     }
     // return the states to the queue
     int size = tmpVector.size();

@@ -124,7 +124,6 @@ class MyClientHandler : public ClientHandler {
             cerr << "Error sending message: " << solutionNotExist << endl;
           }
         }
-        cout << "end line" << endl;
         isEnd = true;
       }
     }

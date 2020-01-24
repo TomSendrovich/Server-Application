@@ -19,6 +19,8 @@ class AStar : public Searcher<T> {
   AStar() { Searcher<T>::evaluatedNodes = 0; }
   list<State<T>*>* search(Searchable<T>* problem) override {
 
+    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
+    problem->getInitialState()->setHeuristicCost(heuristicFunc(problem->getInitialState(), problem->getGoalState()));
     Searcher<T>::addToPriorityQueue(problem->getInitialState());
     visited = new list<State<T>*>();
 
@@ -51,15 +53,14 @@ class AStar : public Searcher<T> {
 
             State<T>* sInQueue = Searcher<T>::getStateFromPriorityQueue(s);
 
-            int oldCost = sInQueue->getPathCost(), newCost = s->getCost() + s->getPathCost();
+            int oldCost = sInQueue->getPathCost(), newCost = s->getPathCost();
 
             if (newCost < oldCost) {
               //replace parent, pathCost, heuristicCost
-              sInQueue->setParent(s);
-              sInQueue->setPathCost(sInQueue->getCost() + s->getPathCost());
-              sInQueue->setHeuristicCost(heuristicFunc(sInQueue, problem->getGoalState()));
+              sInQueue->setParent(s->getParent());
+              sInQueue->setPathCost(sInQueue->getCost() + s->getParent()->getPathCost());
             }
-            Searcher<T>::addToQueue(sInQueue);
+            Searcher<T>::addToPriorityQueue(sInQueue);
           }
         }
       }

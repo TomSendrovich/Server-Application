@@ -74,7 +74,6 @@ class MyTestClientHandler : public ClientHandler {
         problem.clear();
       } else {
         //client wants to end communication
-        cout << "end line" << endl;
         isEnd = true;
       }
 
