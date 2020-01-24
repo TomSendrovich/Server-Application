@@ -42,7 +42,7 @@ void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) 
   setTimeOut(socket);
   socklen_t size = sizeof(address);
   while (!isStop) {
-    if (listen(socket, 1) == -1) {
+    if (listen(socket, 10) == -1) {
       throw "ERROR: cannot make socket listen to the port";
     } else {
       cout << "Server is now listening ..." << endl;
@@ -59,8 +59,8 @@ void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) 
     clientCounter++;
     cout << "Client is now connected to server" << endl;
     try {
-      thread handelingClient(handleOneClient, clientSocket, c->copy());
-      handelingClient.join();
+      thread handlingClient(handleOneClient, clientSocket, c->copy());
+      handlingClient.detach();
     } catch (const char* e) {
       cerr << e << endl;
     }
