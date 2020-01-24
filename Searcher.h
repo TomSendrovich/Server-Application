@@ -60,7 +60,13 @@ class Searcher {
     State<T>* top;
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
-      if (top == state) {
+
+      int topR = top->getState()->getRow();
+      int topC = top->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
         break;
       }
       tmpVector.push_back(top);
@@ -96,7 +102,13 @@ class Searcher {
     while (priorityQueueSize() != 0) {
       top = popPriorityQueue();
       tmpVector.push_back(top);
-      if (top == state) {
+
+      int topR = top->getState()->getRow();
+      int topC = top->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
         retVal = top;
       }
     }
