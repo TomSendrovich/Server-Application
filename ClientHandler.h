@@ -11,6 +11,7 @@ class ClientHandler {
  public:
   virtual void handleClient(int in) = 0;
   virtual ~ClientHandler() = default;
+  virtual ClientHandler* copy() = 0;
 };
 
 #endif //MILSTONE2__CLIENTHANDLER_H_
