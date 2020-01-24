@@ -4,8 +4,6 @@
 
 #ifndef MILSTONE2__BREADTHFIRSTSEARCH_H_
 #include "Searcher.h"
-#include "Cell.h"
-#include <list>
 #define MILSTONE2__BREADTHFIRSTSEARCH_H_
 
 template<typename T>

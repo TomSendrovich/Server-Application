@@ -8,10 +8,9 @@
 using namespace std;
 #define MILSTONE2__CACHEMANAGER_H_
 
-
 class CacheManager {
  protected:
-  unordered_map<string,string> cacheMap;
+  unordered_map<string, string> cacheMap;
   int size;
 
  public:

@@ -5,7 +5,6 @@
 #ifndef MILSTONE2__SEARCHER_H_
 #include "Searchable.h"
 #include "Solution.h"
-#include "State.h"
 #include <queue>
 #include <limits.h>
 #define MILSTONE2__SEARCHER_H_

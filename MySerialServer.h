@@ -3,7 +3,6 @@
 //
 
 #ifndef MILSTONE2__MYSERIALSERVER_H_
-#include <netinet/in.h>
 #include "Server.h"
 #define MILSTONE2__MYSERIALSERVER_H_
 class MySerialServer : public server_side::Server {

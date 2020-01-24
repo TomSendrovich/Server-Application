@@ -9,7 +9,7 @@ using namespace std;
 
 class Cell {
 
-  pair<int,int> _position;
+  pair<int, int> _position;
   int _value;
 
  public:
@@ -18,7 +18,6 @@ class Cell {
   int getRow();
   int getCol();
   int getValue();
-  void setValue(int value);
   ~Cell() = default;
   bool operator==(const Cell& rhs) const;
   bool operator!=(const Cell& rhs) const;

@@ -11,21 +11,9 @@ using namespace std;
 class StringReverser : public Solver<string, string> {
 
  public:
-  StringReverser() ;
+  StringReverser();
 
   string solve(string* problem) override;
-
-  /*string solve(string problem) override {
-    string retVal = problem;
-    int n = problem.length();
-
-    // Swap character starting from two corners
-    for (int i = 0; i < n / 2; i++) {
-      swap(retVal[i], retVal[n - i - 1]);
-    }
-
-    return retVal;
-  };*/
 };
 
 #endif //MILSTONE2__STRINGREVERSER_H_

@@ -4,7 +4,6 @@
 
 #ifndef MILSTONE2__SEARCHABLE_H_
 #include <list>
-#include <string>
 #include "State.h"
 using namespace std;
 #define MILSTONE2__SEARCHABLE_H_

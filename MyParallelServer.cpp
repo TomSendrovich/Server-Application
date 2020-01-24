@@ -10,7 +10,6 @@ bool MyParallelServer::isStop;
 int MyParallelServer::clientCounter;
 int MyParallelServer::_socket;
 
-
 MyParallelServer::MyParallelServer() {
   isStop = false;
   clientCounter = 0;

@@ -5,11 +5,8 @@
 #ifndef MILSTONE2__MATRIXPROBLEM_H_
 #include <vector>
 #include <string>
-#include <list>
 #include "Searchable.h"
 #include "Cell.h"
-#define C 86969 /* yet another prime */
-using namespace std;
 #define MILSTONE2__MATRIXPROBLEM_H_
 
 class MatrixProblem : public Searchable<Cell*> {

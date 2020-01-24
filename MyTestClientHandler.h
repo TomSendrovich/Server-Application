@@ -3,18 +3,12 @@
 //
 
 #ifndef MILSTONE2__MYTESTCLIENTHANDLER_H_
-
-#include <ostream>
 #include <unistd.h>
 #include <cstring>
 #include <sys/socket.h>
-#include <sstream>
-#include <thread>
 #include "ClientHandler.h"
 #include "CacheManager.h"
 #include "Solver.h"
-
-using namespace std;
 #define MILSTONE2__MYTESTCLIENTHANDLER_H_
 
 template<typename P, typename S>
@@ -22,7 +16,7 @@ class MyTestClientHandler : public ClientHandler {
 
   Solver<P, S>* _solver;
   CacheManager* _cm;
-  bool isEnd, needToRead;
+  bool isEnd;
 
   bool sendMsg(int out, const char* msg) {
     int is_sent = send(out, msg, strlen(msg), 0);
@@ -34,12 +28,10 @@ class MyTestClientHandler : public ClientHandler {
     _solver = solver;
     _cm = cm;
   }
-
   ~MyTestClientHandler() override {
     delete _solver;
     delete _cm;
   }
-
   void handleClient(int in) override {
     isEnd = false;
     char buffer[1024] = {0};
@@ -78,6 +70,10 @@ class MyTestClientHandler : public ClientHandler {
       }
 
     }//end of while loop
+  }
+  ClientHandler* copy() {
+    ClientHandler* newClientHandler = new MyTestClientHandler(_solver, _cm);
+    return newClientHandler;
   }
 
 };//end of class

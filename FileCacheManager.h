@@ -5,7 +5,6 @@
 #ifndef MILSTONE2_FILECACHEMANAGER_H
 #include "CacheManager.h"
 #include <fstream>
-#include "string"
 #define MILSTONE2_FILECACHEMANAGER_H
 
 class FileCacheManager : public CacheManager {

@@ -4,11 +4,6 @@
 
 #ifndef MILSTONE2__BESTFIRSTSEARCH_H_
 #include "Searcher.h"
-#include "Cell.h"
-#include <list>
-#include <set>
-#include <iostream>
-using namespace std;
 #define MILSTONE2__BESTFIRSTSEARCH_H_
 
 template<typename T>

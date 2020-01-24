@@ -10,7 +10,7 @@
 class MyParallelServer : public server_side::Server {
  public:
   static bool isStop;
-  static int _socket,clientCounter;
+  static int _socket, clientCounter;
   MyParallelServer();
 
   static void start(int socket, sockaddr_in address, ClientHandler* c);

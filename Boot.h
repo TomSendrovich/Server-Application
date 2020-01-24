@@ -12,8 +12,6 @@
 #include "BreadthFirstSearch.h"
 #include "DepthFirstSearch.h"
 #include "AStar.h"
-#include "MatrixProblem.h"
-#include "Cell.h"
 #define MILSTONE2__BOOT_H_
 
 namespace boot {

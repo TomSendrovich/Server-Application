@@ -25,5 +25,4 @@ class Server {
 
 }
 
-
 #endif //MILSTONE2_SERVER_H

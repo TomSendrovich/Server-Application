@@ -4,10 +4,6 @@
 
 #ifndef MILSTONE2__ASTAR_H_
 #include "Searcher.h"
-#include "Cell.h"
-#include <list>
-#include <set>
-#include <iostream>
 #define MILSTONE2__ASTAR_H_
 
 template<typename T>

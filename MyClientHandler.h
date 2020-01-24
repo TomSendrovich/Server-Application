@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <cstring>
 #include <sys/socket.h>
-#include <unordered_map>
 #include "ClientHandler.h"
 #include "CacheManager.h"
 #include "Solver.h"
