@@ -87,6 +87,44 @@ class Searcher {
 
     return minState;
   }
+  State<T>* popPriorityQueueHeuristic() {
+    int minHeuristic = priorityQueue.top()->getHeuristicCost();
+    int elementHeuristic;
+    State<T>* minState = priorityQueue.top();
+
+    vector<State<T>*> tmpVector;
+    State<T>* element;
+    while (priorityQueueSize() != 0) {
+      element = priorityQueue.top();
+      priorityQueue.pop();
+
+      elementHeuristic = element->getPathCost();
+
+      if (elementHeuristic < minHeuristic) {
+        minState = element;
+        minHeuristic = elementHeuristic;
+      }
+
+      tmpVector.push_back(element);
+    }
+    // return the states to the queue
+    int size = tmpVector.size();
+    for (int i = 0; i < size; i++) {
+      State<T>* state = tmpVector[i];
+      int topR = minState->getState()->getRow();
+      int topC = minState->getState()->getCol();
+      int sR = state->getState()->getRow();
+      int sC = state->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
+        continue;
+      } else {
+        addToPriorityQueue(tmpVector[i]);
+      }
+    }
+
+    return minState;
+  }
   void removeFromPriorityQueue(State<T>* state) {
     vector<State<T>*> tmpVector;
     State<T>* top;

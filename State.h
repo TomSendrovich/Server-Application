@@ -9,7 +9,7 @@ class State {
 
   T _state;
   State<T>* _parent;
-  int _cost, _pathCost;
+  int _cost, _pathCost, _heuristicCost;
   bool _isDiscovered;
 
   void setCost(int cost) { _cost = cost; }
@@ -31,7 +31,9 @@ class State {
   void setIsDiscovered(bool is_discovered) { _isDiscovered = is_discovered; }
   bool isDiscovered() { return _isDiscovered; }
   T getState() { return _state; }
-  bool operator==( State<T>* other) {
+  int getHeuristicCost() const { return _heuristicCost; }
+  void setHeuristicCost(int heuristic_cost) { _heuristicCost = heuristic_cost; }
+  bool operator==(State<T>* other) {
     int oneR = _state->getPosition().first;
     int oneC = _state->getPosition().second;
     T cell = other->getState();

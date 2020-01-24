@@ -106,7 +106,6 @@ class MyClientHandler : public ClientHandler {
         }
         completeRow.clear();
       } else {
-        cout << "client wants to end communication" << endl;
         //client wants to end communication
         auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixSize);
         int intHashProblem = problem->hashFunc(matrix, matrixSize * matrixSize);
