@@ -31,15 +31,19 @@ class DepthFirstSearch : public Searcher<T> {
   void DFS(Searchable<T>* problem, State<T>* node) {
     Searcher<T>::evaluatedNodes++;
     visited->push_back(node);
+
+    //case for initial state that has no parent
     if (node->getParent() != nullptr) {
       node->setPathCost(node->getParent()->getPathCost() + node->getCost());
     }
 
+    //if node is goal state, check backtrace
     if (problem->isGoalState(node)) {
       trace = Searcher<T>::backTrace(problem->getInitialState(), node);
       return;
     }
 
+    //get all successors
     list<State<T>*> successors = problem->getAllPossibleStates(node);
     for (State<T>* s: successors) {
       if (!isVisited(s)) {
