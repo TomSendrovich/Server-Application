@@ -31,6 +31,7 @@ class BreadthFirstSearch : public Searcher<T> {
     //while queue is not empty
     while (Searcher<T>::queueSize() > 0) {
       State<T>* node = Searcher<T>::popQueue();
+      Searcher<T>::evaluatedNodes++;
 
       //case for initial state that has no parent
       if (node->getParent() != nullptr) {

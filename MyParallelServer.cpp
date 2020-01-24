@@ -61,7 +61,7 @@ void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) 
     cout << "Client is now connected to server" << endl;
     try {
       thread handelingClient(handleOneClient, clientSocket, c->copy());
-      handelingClient.detach();
+      handelingClient.join();
     } catch (const char* e) {
       cerr << e << endl;
     }

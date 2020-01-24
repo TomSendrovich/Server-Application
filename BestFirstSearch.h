@@ -27,6 +27,8 @@ class BestFirstSearch : public Searcher<T> {
 
     while (Searcher<T>::priorityQueueSize() > 0) {
       State<T>* node = Searcher<T>::popPriorityQueue();
+      Searcher<T>::evaluatedNodes++;
+
       closed->push_back(node);
       if (problem->isGoalState(node)) {
         list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);

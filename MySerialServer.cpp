@@ -5,7 +5,7 @@
 #include "MySerialServer.h"
 using namespace server_side;
 
-#define TIMEOUT 120
+#define TIMEOUT 30
 bool MySerialServer::isStop;
 
 MySerialServer::MySerialServer() { isStop = false; }
@@ -32,7 +32,7 @@ void MySerialServer::open(int port, ClientHandler* clientHandler) {
   stop();
 }
 void MySerialServer::start(int socket, sockaddr_in address, ClientHandler* c) {
-  setTimeOut(socket);
+  //setTimeOut(socket);
   socklen_t size = sizeof(address);
 
   while (!isStop) {
