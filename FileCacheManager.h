@@ -50,7 +50,7 @@ class FileCacheManager : public CacheManager {
   }
 
   virtual void saveSolution(string hashProblem, string solution) {
-
+    outStream.close();
     outStream.open(hashProblem + ".txt", ios::out | ios::app);
     if (!outStream.is_open()) {
       throw "Unable to open file";
