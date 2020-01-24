@@ -27,7 +27,7 @@ class Main {
     auto* solver = new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
     auto* cacheManager = new FileCacheManager(CACHE_SIZE);
     auto* clientHandler = new MyClientHandler<MatrixProblem, string>(solver, cacheManager);
-    auto* server = new MySerialServer();
+    auto* server = new MyParallelServer();
 
     try {
       server->open(port, clientHandler);

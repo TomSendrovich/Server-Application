@@ -27,14 +27,12 @@ class MatrixProblem : public Searchable<Cell*> {
   State<Cell*>* getGoalState() override;
   bool isGoalState(State<Cell*>* state) override;
   list<State<Cell*>*> getAllPossibleStates(State<Cell*>* state) override;
-  string to_string() override;
 
   void initMatrix(vector<vector<string>> matrix);
   int getMatrixSize();
   vector<vector<Cell*>> getMatrix();
   Cell* getCell(int row, int col);
   bool isValidPosition(int row, int col);
-  int hashFunc(vector<vector<string>> matrix, int size);
 };
 
 #endif //MILSTONE2__MATRIXPROBLEM_H_

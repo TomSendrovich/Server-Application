@@ -98,26 +98,7 @@ bool MatrixProblem::isValidPosition(int row, int col) {
   int size = getMatrixSize();
   return !(row == -1 || row == size || col == -1 || col == size);
 }
-string MatrixProblem::to_string() { return "MatrixProblem"; }
 int MatrixProblem::getMatrixSize() { return _size; }
 vector<vector<Cell*>> MatrixProblem::getMatrix() { return _matrix; }
 Cell* MatrixProblem::getCell(int row, int col) { return getMatrix().at(row).at(col); }
-int MatrixProblem::hashFunc(vector<vector<string>> matrix, int size) {
-  int counter = 1;
-  int sum = 0;
-
-  for (auto& row : matrix) {
-    for (string strValue : row) {
-      int integerValue = stoi(strValue);
-      sum += integerValue * counter;
-      sum = sum % C;
-      counter++;
-      if (counter >= size) {
-        return sum;
-      }
-    }
-  }
-
-  return sum;
-}
 

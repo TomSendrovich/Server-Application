@@ -3,18 +3,13 @@
 //
 
 #ifndef MILSTONE2__MYCLIENTHANDLER_H_
-#include <ostream>
 #include <unistd.h>
 #include <cstring>
 #include <sys/socket.h>
-#include <sstream>
-#include <thread>
-#include <vector>
+#include <unordered_map>
 #include "ClientHandler.h"
 #include "CacheManager.h"
 #include "Solver.h"
-#include "State.h"
-#include "Cell.h"
 #include "MatrixProblem.h"
 using namespace std;
 
@@ -26,6 +21,8 @@ class MyClientHandler : public ClientHandler {
   CacheManager* _cm;
   vector<vector<string>> matrix;
   bool isEnd;
+  hash<string> hasher;
+  size_t hashName;
 
   bool sendMsg(int out, const char* msg) {
     int is_sent = send(out, msg, strlen(msg), 0);
@@ -37,12 +34,10 @@ class MyClientHandler : public ClientHandler {
     _solver = solver;
     _cm = cm;
   }
-
   ~MyClientHandler() override {
     delete _solver;
     delete _cm;
   }
-
   void handleClient(int in) override {
     matrix.clear();
     isEnd = false;
@@ -65,7 +60,7 @@ class MyClientHandler : public ClientHandler {
         }
       }
     }
-    cout << allLines << endl;
+    hashName = hasher(allLines);
     while (!isEnd) {
       pos = allLines.find('\n');
       string oneLine = allLines;
@@ -106,12 +101,10 @@ class MyClientHandler : public ClientHandler {
         }
         completeRow.clear();
       } else {
-        //client wants to end communication
+        ///client wants to end communication
         auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixSize);
-        int intHashProblem = problem->hashFunc(matrix, matrixSize * matrixSize);
-        string hashProblem = to_string(intHashProblem);
+        string hashProblem = to_string(hashName);
         if (_cm->isSolutionExist(hashProblem)) {
-          //solutionExist exist in cm, we return in to the client
           string solutionExist = _cm->getSolution(hashProblem);
           if (!sendMsg(in, solutionExist.c_str())) {
             cerr << "Error sending message: " << solutionExist << endl;
@@ -132,7 +125,6 @@ class MyClientHandler : public ClientHandler {
     ClientHandler* newClientHandler = new MyClientHandler(_solver, _cm);
     return newClientHandler;
   }
-
 };
 
 #endif //MILSTONE2__MYCLIENTHANDLER_H_

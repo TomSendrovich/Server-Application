@@ -45,12 +45,15 @@ class FileCacheManager : public CacheManager {
         throw "Unable to open file";
       }
       getline(inStream, line);
+      if (CacheManager::cacheMap.size() >= CacheManager::size) {
+        CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
+      }
+      CacheManager::cacheMap[hashProblem] = line;
       return line;
     }
   }
 
   virtual void saveSolution(string hashProblem, string solution) {
-    outStream.close();
     outStream.open(hashProblem + ".txt", ios::out | ios::app);
     if (!outStream.is_open()) {
       throw "Unable to open file";
@@ -61,6 +64,7 @@ class FileCacheManager : public CacheManager {
       CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
     }
     CacheManager::cacheMap[hashProblem] = solution;
+    outStream.close();
   }
 
   virtual ~FileCacheManager() = default;

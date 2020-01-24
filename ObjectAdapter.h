@@ -22,7 +22,7 @@ class ObjectAdapter : public Solver<P, S> {
     // Searchable<P>* searchable;
     list<State<T>*>* trace = _searcher->search(problem);
 
-    cout << "number of nodes: " << _searcher->getNumOfEvaluatedNodes() << endl;
+    cout << "evaluatedNodes: " << _searcher->getNumOfEvaluatedNodes() << endl;
     //trace list is ready
     for (typename list<State<T>*>::iterator it = trace->begin(); it != trace->end(); ++it) {
       if (it == trace->begin()) {

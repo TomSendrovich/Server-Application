@@ -16,7 +16,6 @@ class Searchable {
   virtual State<T>* getGoalState() = 0;
   virtual bool isGoalState(State<T>* state) = 0;
   virtual list<State<T>*> getAllPossibleStates(State<T>* state) = 0;
-  virtual string to_string() = 0;
 };
 
 #endif //MILSTONE2__SEARCHABLE_H_
