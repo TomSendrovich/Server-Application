@@ -5,7 +5,7 @@
 #include "MySerialServer.h"
 using namespace server_side;
 
-#define TIMEOUT 30
+#define TIMEOUT 120
 bool MySerialServer::isStop;
 
 MySerialServer::MySerialServer() { isStop = false; }

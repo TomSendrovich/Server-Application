@@ -12,62 +12,38 @@ template<typename T>
 class DepthFirstSearch : public Searcher<T> {
 
   list<State<T>*>* visited;
+  list<State<T>*>* trace;
 
  public:
   DepthFirstSearch() { Searcher<T>::evaluatedNodes = 0; }
   list<State<T>*>* search(Searchable<T>* problem) override {
     visited = new list<State<T>*>();
 
-    Searcher<T>::addToQueue(problem->getInitialState());
+    //pathCost = cost for initial state
+    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
 
-    while (Searcher<T>::queueSize() > 0) {
-      State<T>* node = Searcher<T>::popQueue();
+    DFS(problem, problem->getInitialState());
 
-      //handle the first node
-      if (node == problem->getInitialState()) {
-        node->setPathCost(node->getCost());
-      }
-
-      //if node was visited, pass him
-      if (isVisited(node)) {
-        continue;
-      }
-      visited->push_back(node);
-
-      if (problem->isGoalState(node)) {
-        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
-        return retVal;
-      }
-
-      list<State<T>*> successors = problem->getAllPossibleStates(node);
-      for (State<T>* s: successors) {
-        if (!isVisited(s)) {
-          Searcher<T>::queue.push(s);
-          State<T>* sFromQueue = Searcher<T>::queue.back();
-          Searcher<T>::evaluatedNodes++;
-          return DFS(problem, sFromQueue);
-        }
-      }
-    }
-    return nullptr;
+    ///until here
+    return trace;
   }
 
-  list<State<T>*>* DFS(Searchable<T>* problem, State<T>* node) {
+  void DFS(Searchable<T>* problem, State<T>* node) {
+    Searcher<T>::evaluatedNodes++;
     visited->push_back(node);
-    node->setPathCost(node->getParent()->getPathCost() + node->getCost());
+    if (node->getParent() != nullptr) {
+      node->setPathCost(node->getParent()->getPathCost() + node->getCost());
+    }
 
     if (problem->isGoalState(node)) {
-      list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
-      return retVal;
+      trace = Searcher<T>::backTrace(problem->getInitialState(), node);
+      return;
     }
 
     list<State<T>*> successors = problem->getAllPossibleStates(node);
     for (State<T>* s: successors) {
       if (!isVisited(s)) {
-        Searcher<T>::queue.push(s);
-        State<T>* sFromQueue = Searcher<T>::queue.back();
-        Searcher<T>::evaluatedNodes++;
-        return DFS(problem, sFromQueue);
+        DFS(problem, s);
       }
     }
   }
