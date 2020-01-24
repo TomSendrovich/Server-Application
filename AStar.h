@@ -21,22 +21,17 @@ class AStar : public Searcher<T> {
 
     problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
     problem->getInitialState()->setHeuristicCost(heuristicFunc(problem->getInitialState(), problem->getGoalState()));
-    Searcher<T>::addToPriorityQueue(problem->getInitialState());
+    Searcher<T>::addToQueue(problem->getInitialState());
     visited = new list<State<T>*>();
 
-    while (Searcher<T>::priorityQueueSize() > 0) {
-      State<T>* node = Searcher<T>::popPriorityQueueHeuristic();
+    while (Searcher<T>::queueSize() > 0) {
+      State<T>* node = Searcher<T>::popQueueHeuristic();
       Searcher<T>::evaluatedNodes++;
       visited->push_back(node);
 
       if (problem->isGoalState(node)) {
         list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
         return retVal;
-      }
-
-      if (Searcher<T>::getNumOfEvaluatedNodes() % 50 == 0) {
-        cout << "nodes: " << Searcher<T>::getNumOfEvaluatedNodes() << ", open: " << Searcher<T>::priorityQueueSize()
-             << endl;
       }
 
       list<State<T>*> successors = problem->getAllPossibleStates(node);
@@ -47,11 +42,11 @@ class AStar : public Searcher<T> {
         s->setPathCost(s->getCost() + node->getPathCost());
 
         if (!isVisited(s)) {
-          if (!Searcher<T>::isPriorityQueueContains(s)) { // if s not in OPEN or CLOSE
-            Searcher<T>::addToPriorityQueue(s);
+          if (!Searcher<T>::isQueueContains(s)) { // if s not in OPEN or CLOSE
+            Searcher<T>::addToQueue(s);
           } else { // s in Open, check better path
 
-            State<T>* sInQueue = Searcher<T>::getStateFromPriorityQueue(s);
+            State<T>* sInQueue = Searcher<T>::getStateFromQueue(s);
 
             int oldCost = sInQueue->getPathCost(), newCost = s->getPathCost();
 
@@ -60,7 +55,7 @@ class AStar : public Searcher<T> {
               sInQueue->setParent(s->getParent());
               sInQueue->setPathCost(sInQueue->getCost() + s->getParent()->getPathCost());
             }
-            Searcher<T>::addToPriorityQueue(sInQueue);
+            Searcher<T>::addToQueue(sInQueue);
           }
         }
       }
