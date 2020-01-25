@@ -5,8 +5,9 @@
 #include "Cell.h"
 #define WALL -1
 
-MatrixProblem::MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int size) {
-  _size = size;
+MatrixProblem::MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int rowSize, int colSize) {
+  _rowSize = rowSize;
+  _colSize = colSize;
   auto* initState = new State<Cell*>(init);
   auto* goalState = new State<Cell*>(goal);
   _initState = initState;
@@ -95,10 +96,10 @@ list<State<Cell*>*> MatrixProblem::getAllPossibleStates(State<Cell*>* state) {
   return list;
 }
 bool MatrixProblem::isValidPosition(int row, int col) {
-  int size = getMatrixSize();
-  return !(row == -1 || row == size || col == -1 || col == size);
+  return !(row == -1 || row == _rowSize || col == -1 || col == _colSize);
 }
-int MatrixProblem::getMatrixSize() { return _size; }
 vector<vector<Cell*>> MatrixProblem::getMatrix() { return _matrix; }
 Cell* MatrixProblem::getCell(int row, int col) { return getMatrix().at(row).at(col); }
+int MatrixProblem::getMatrixRowSize() { return _rowSize; }
+int MatrixProblem::getMatrixColSize() { return _colSize; }
 

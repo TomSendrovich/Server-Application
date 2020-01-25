@@ -13,11 +13,11 @@ class MatrixProblem : public Searchable<Cell*> {
 
   vector<vector<Cell*>> _matrix;
   State<Cell*>* _initState, * _goalState;
-  int _size;
+  int _rowSize, _colSize;
 
  public:
 
-  MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int size);
+  MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int rowSize, int colSize);
 
   //override functions
   State<Cell*>* getInitialState() override;
@@ -26,7 +26,8 @@ class MatrixProblem : public Searchable<Cell*> {
   list<State<Cell*>*> getAllPossibleStates(State<Cell*>* state) override;
 
   void initMatrix(vector<vector<string>> matrix);
-  int getMatrixSize();
+  int getMatrixRowSize();
+  int getMatrixColSize();
   vector<vector<Cell*>> getMatrix();
   Cell* getCell(int row, int col);
   bool isValidPosition(int row, int col);
