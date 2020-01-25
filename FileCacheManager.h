@@ -19,7 +19,6 @@ class FileCacheManager : public CacheManager {
   FileCacheManager(int sizeNum) { CacheManager::size = sizeNum; }
 
   virtual bool isSolutionExist(string hashProblem) {
-    cout << "isSolutionExist" << endl;
     //solution is at the cache memory
     cache_lock.lock();
     if (CacheManager::cacheMap.find(hashProblem) != CacheManager::cacheMap.end()) {
@@ -36,14 +35,12 @@ class FileCacheManager : public CacheManager {
         inStream.close();
       }
       file_lock.unlock();
-      cout << "isSolutionExistEnd" << endl;
       return isOpen;
     }
   }
 
   virtual string getSolution(string hashProblem) {
     file_lock.lock();
-    cout << "getSolution" << endl;
     //solution is at the cache memory
     if (CacheManager::cacheMap.find(hashProblem) != CacheManager::cacheMap.end()) {
       file_lock.unlock();
@@ -71,7 +68,6 @@ class FileCacheManager : public CacheManager {
 
   virtual void saveSolution(string hashProblem, string solution) {
     file_lock.lock();
-    cout << "saveSolution" << endl;
     outStream.open(hashProblem + ".txt", ios::out | ios::app);
     if (!outStream.is_open()) {
       file_lock.unlock();
