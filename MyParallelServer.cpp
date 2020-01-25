@@ -45,7 +45,7 @@ void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) 
     if (listen(socket, 10) == -1) {
       throw "ERROR: cannot make socket listen to the port";
     } else {
-      cout << "Server is now listening ..." << endl;
+      //cout << "Server is now listening ..." << endl;
     }
     // accepting a client
     int clientSocket = accept(socket, (struct sockaddr*) &address, &size);
@@ -57,7 +57,7 @@ void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) 
       }
     }
     clientCounter++;
-    cout << "Client is now connected to server" << endl;
+    //cout << "Client is now connected to server" << endl;
     try {
       thread handlingClient(handleOneClient, clientSocket, c->copy());
       handlingClient.detach();

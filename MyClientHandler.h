@@ -34,8 +34,8 @@ class MyClientHandler : public ClientHandler {
     _cm = cm;
   }
   ~MyClientHandler() override {
-    delete _solver;
-    delete _cm;
+//    delete _solver;
+//    delete _cm;
   }
   void handleClient(int in) override {
     matrix.clear();

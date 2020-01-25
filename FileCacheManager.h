@@ -5,6 +5,7 @@
 #ifndef MILSTONE2_FILECACHEMANAGER_H
 #include "CacheManager.h"
 #include <fstream>
+#include <iostream>
 #define MILSTONE2_FILECACHEMANAGER_H
 
 class FileCacheManager : public CacheManager {
@@ -17,21 +18,25 @@ class FileCacheManager : public CacheManager {
   FileCacheManager(int sizeNum) { CacheManager::size = sizeNum; }
 
   virtual bool isSolutionExist(string hashProblem) {
-
+    cout << "isSolutionExist" << endl;
     //solution is at the cache memory
     if (CacheManager::cacheMap.find(hashProblem) != CacheManager::cacheMap.end()) {
       return true;
     } else {
       //solution is not in cache, maybe in disk (in a file at that case)
       string line;
-      inStream.close();
       inStream.open(hashProblem + ".txt", ios::binary);
-      return inStream.is_open();
+      bool isOpen = inStream.is_open();
+      if (isOpen) {
+        inStream.close();
+      }
+      cout << "isSolutionExistEnd" << endl;
+      return isOpen;
     }
   }
 
   virtual string getSolution(string hashProblem) {
-
+    cout << "getSolution" << endl;
     //solution is at the cache memory
     if (CacheManager::cacheMap.find(hashProblem) != CacheManager::cacheMap.end()) {
       return CacheManager::cacheMap[hashProblem];
@@ -53,6 +58,7 @@ class FileCacheManager : public CacheManager {
   }
 
   virtual void saveSolution(string hashProblem, string solution) {
+    cout << "saveSolution" << endl;
     outStream.open(hashProblem + ".txt", ios::out | ios::app);
     if (!outStream.is_open()) {
       throw "Unable to open file";

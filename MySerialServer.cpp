@@ -39,7 +39,7 @@ void MySerialServer::start(int socket, sockaddr_in address, ClientHandler* c) {
     if (listen(socket, 1) == -1) {
       throw "ERROR: cannot make socket listen to the port";
     } else {
-      cout << "Server is now listening ..." << endl;
+      //cout << "Server is now listening ..." << endl;
     }
     // accepting a client
     int clientSocket = accept(socket, (struct sockaddr*) &address, &size);
@@ -50,7 +50,7 @@ void MySerialServer::start(int socket, sockaddr_in address, ClientHandler* c) {
         break;
       }
     }
-    cout << "Client is now connected to server" << endl;
+    //cout << "Client is now connected to server" << endl;
     try {
       c->handleClient(clientSocket);
     } catch (const char* e) {

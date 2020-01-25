@@ -29,8 +29,8 @@ class MyTestClientHandler : public ClientHandler {
     _cm = cm;
   }
   ~MyTestClientHandler() override {
-    delete _solver;
-    delete _cm;
+//    delete _solver;
+//    delete _cm;
   }
   void handleClient(int in) override {
     isEnd = false;
