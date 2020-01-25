@@ -39,7 +39,7 @@ void MyParallelServer::open(int port, ClientHandler* clientHandler) {
   }
 }
 void MyParallelServer::start(int socket, sockaddr_in address, ClientHandler* c) {
-  setTimeOut(socket);
+  //setTimeOut(socket);
   socklen_t size = sizeof(address);
   while (!isStop) {
     if (listen(socket, 10) == -1) {
