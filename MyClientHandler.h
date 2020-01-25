@@ -97,6 +97,7 @@ class MyClientHandler : public ClientHandler {
         } else {
           matrix.push_back(completeRow);
           rowSize++;
+          colSize=0;
           //cout << "completeRow" << endl;
         }
         completeRow.clear();
