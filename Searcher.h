@@ -6,6 +6,7 @@
 #include "Searchable.h"
 #include "Solution.h"
 #include <queue>
+#include <iostream>
 #include <limits.h>
 #define MILSTONE2__SEARCHER_H_
 
@@ -30,11 +31,18 @@ class Searcher {
     while (!done) {
       currentState = currentState->getParent();
       trace->push_front(currentState);
-      if (initState == currentState) {
+
+      int topR = initState->getState()->getRow();
+      int topC = initState->getState()->getCol();
+      int sR = currentState->getState()->getRow();
+      int sC = currentState->getState()->getCol();
+
+      if (topR == sR && topC == sC) {
         done = true;
       }
     }
-    return trace;
+    return
+        trace;
   }
 
   State<T>* popQueue() {

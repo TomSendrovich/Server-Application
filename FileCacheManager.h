@@ -30,7 +30,6 @@ class FileCacheManager : public CacheManager {
       if (isOpen) {
         inStream.close();
       }
-      cout << "isSolutionExistEnd" << endl;
       return isOpen;
     }
   }
@@ -43,7 +42,6 @@ class FileCacheManager : public CacheManager {
     } else {
       //solution is at the disk (in a file at that case)
       string line;
-      inStream.close();
       inStream.open(hashProblem + ".txt", ios::in);
       if (!inStream.is_open()) {
         throw "Unable to open file";
@@ -53,6 +51,7 @@ class FileCacheManager : public CacheManager {
         CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
       }
       CacheManager::cacheMap[hashProblem] = line;
+      inStream.close();
       return line;
     }
   }

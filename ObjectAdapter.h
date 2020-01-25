@@ -6,12 +6,14 @@
 #include "Solver.h"
 #include "Searcher.h"
 #include <iostream>
+//#include <mutex>
 #define MILSTONE2__OBJECTADAPTER_H_
 
 template<typename P, typename S, typename T>
 class ObjectAdapter : public Solver<P, S> {
 
   Searcher<T>* _searcher;
+  //mutex mutex_;
 
  public:
   ObjectAdapter(Searcher<T>* searcher) : _searcher(searcher) {}
@@ -19,7 +21,7 @@ class ObjectAdapter : public Solver<P, S> {
   S solve(P* problem) override {
     _searcher->resetNumOfEvaluatedNodes();
     Solution solution;
-    // Searchable<P>* searchable;
+    //lock_guard<mutex> lock(mutex_);
     list<State<T>*>* trace = _searcher->search(problem);
 
     cout << "evaluatedNodes: " << _searcher->getNumOfEvaluatedNodes() << endl;

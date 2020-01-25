@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <thread>
 #include "ClientHandler.h"
-#define CACHE_SIZE 5
+#define CACHE_SIZE 10
 
 #define MILSTONE2_SERVER_H
 
