@@ -26,7 +26,7 @@ class FileCacheManager : public CacheManager {
       cache_lock.unlock();
       return true;
     } else {
-      cache_lock.lock();
+      cache_lock.unlock();
       //solution is not in cache, maybe in disk (in a file at that case)
       string line;
       file_lock.lock();
@@ -36,6 +36,7 @@ class FileCacheManager : public CacheManager {
         inStream.close();
       }
       file_lock.unlock();
+      cout << "isSolutionExistEnd" << endl;
       return isOpen;
     }
   }
