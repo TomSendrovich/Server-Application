@@ -43,7 +43,7 @@ class MyClientHandler : public ClientHandler {
     bool inCell = false, isValRead = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
-    int row = -1, col = 0, pos, value, matrixSize = 0;
+    int row = -1, col = 0, pos, value, matrixRow = 0,matrixCol=0;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
     string singleState, allLines;
@@ -77,6 +77,7 @@ class MyClientHandler : public ClientHandler {
             oneLine.erase(0, oneLine.length());
           }
           completeRow.push_back(singleState);
+          matrixCol++;
           problem = oneLine;
         }
         if (completeRow.size() == 2 && !inCell) {
@@ -95,13 +96,13 @@ class MyClientHandler : public ClientHandler {
           inCell = true;
         } else {
           matrix.push_back(completeRow);
-          matrixSize++;
+          matrixRow++;
           //cout << "completeRow" << endl;
         }
         completeRow.clear();
       } else {
         ///client wants to end communication
-        auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixSize);
+        auto* problem = new MatrixProblem(matrix, initCell, goalCell, matrixRow,matrixCol);
         string hashProblem = to_string(hashName);
         if (_cm->isSolutionExist(hashProblem)) {
           string solutionExist = _cm->getSolution(hashProblem);
