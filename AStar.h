@@ -13,11 +13,12 @@ class AStar : public Searcher<T> {
 
  public:
   AStar() { Searcher<T>::evaluatedNodes = 0; }
-  list<State<T>*>* search(Searchable<T>* problem) override {
+  virtual ~AStar() {}
+  list<State<T>*>* search(Searchable<T>* matrix) override {
 
-    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
-    problem->getInitialState()->setHeuristicCost(heuristicFunc(problem->getInitialState(), problem->getGoalState()));
-    Searcher<T>::addToQueue(problem->getInitialState());
+    matrix->getInitialState()->setPathCost(matrix->getInitialState()->getCost());
+    matrix->getInitialState()->setHeuristicCost(heuristicFunc(matrix->getInitialState(), matrix->getGoalState()));
+    Searcher<T>::addToQueue(matrix->getInitialState());
     visited = new list<State<T>*>();
 
     while (Searcher<T>::queueSize() > 0) {
@@ -25,16 +26,16 @@ class AStar : public Searcher<T> {
       Searcher<T>::evaluatedNodes++;
       visited->push_back(node);
 
-      if (problem->isGoalState(node)) {
-        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
+      if (matrix->isGoalState(node)) {
+        list<State<T>*>* retVal = Searcher<T>::backTrace(matrix->getInitialState(), node);
         return retVal;
       }
 
-      list<State<T>*> successors = problem->getAllPossibleStates(node);
+      list<State<T>*> successors = matrix->getAllPossibleStates(node);
 
       for (State<T>* s: successors) {
 
-        s->setHeuristicCost(heuristicFunc(s, problem->getGoalState()));
+        s->setHeuristicCost(heuristicFunc(s, matrix->getGoalState()));
         s->setPathCost(s->getCost() + node->getPathCost());
 
         if (!isVisited(s)) {
@@ -56,6 +57,7 @@ class AStar : public Searcher<T> {
         }
       }
     }
+    return nullptr;
   }
 
   int heuristicFunc(State<T>* node, State<T>* goal) {

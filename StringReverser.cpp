@@ -5,6 +5,7 @@
 #include <string>
 StringReverser::StringReverser() = default;
 string StringReverser::solve(string* problem) {
+  problem = problem;
   return std::__cxx11::string();
 }
 /*string solve(string problem) override {

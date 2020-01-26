@@ -68,3 +68,4 @@ void MySerialServer::setTimeOut(int socket) {
   setsockopt(socket, SOL_SOCKET, SO_RCVTIMEO, (char*) &timeout, sizeof(timeout));
 }
 void MySerialServer::stop() { close(getSocket()); }
+MySerialServer::~MySerialServer() {}

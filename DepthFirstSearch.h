@@ -14,13 +14,14 @@ class DepthFirstSearch : public Searcher<T> {
 
  public:
   DepthFirstSearch() { Searcher<T>::evaluatedNodes = 0; }
-  list<State<T>*>* search(Searchable<T>* problem) override {
+  virtual ~DepthFirstSearch() {}
+  list<State<T>*>* search(Searchable<T>* matrix) override {
     visited = new list<State<T>*>();
 
     //pathCost = cost for initial state
-    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
+    matrix->getInitialState()->setPathCost(matrix->getInitialState()->getCost());
 
-    DFS(problem, problem->getInitialState());
+    DFS(matrix, matrix->getInitialState());
 
     ///until here
     return trace;

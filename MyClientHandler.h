@@ -33,17 +33,14 @@ class MyClientHandler : public ClientHandler {
     _solver = solver;
     _cm = cm;
   }
-  ~MyClientHandler() override {
-//    delete _solver;
-//    delete _cm;
-  }
+  ~MyClientHandler() override {}
   void handleClient(int in) override {
     matrix.clear();
     isEnd = false;
     bool inCell = false, isValRead = false;
     vector<string> completeRow;
     Cell* initCell = nullptr, * goalCell = nullptr;
-    int row = -1, col = 0, pos, value, rowSize = 0, colSize = 0,finalColSize;
+    int row = -1, col = 0, pos, value, rowSize = 0, colSize = 0, finalColSize;
     char buffer[1024] = {0};
     char* ptrBuffer = buffer;
     string singleState, allLines;
@@ -98,7 +95,7 @@ class MyClientHandler : public ClientHandler {
           matrix.push_back(completeRow);
           rowSize++;
           finalColSize = colSize;
-          colSize=0;
+          colSize = 0;
           //cout << "completeRow" << endl;
         }
         completeRow.clear();

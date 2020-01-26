@@ -21,6 +21,7 @@ class MyParallelServer : public server_side::Server {
   static void setTimeOut(int socket);
   static void setStop(bool isStop);
   static void handleOneClient(int clientSocket, ClientHandler* clientHandler);
+  virtual ~MyParallelServer();
 };
 
 #endif //MILSTONE2__MYPARALLELSERVER_H_

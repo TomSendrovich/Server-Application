@@ -28,10 +28,7 @@ class MyTestClientHandler : public ClientHandler {
     _solver = solver;
     _cm = cm;
   }
-  ~MyTestClientHandler() override {
-//    delete _solver;
-//    delete _cm;
-  }
+  ~MyTestClientHandler() override {}
   void handleClient(int in) override {
     isEnd = false;
     char buffer[1024] = {0};

@@ -15,9 +15,10 @@ class BestFirstSearch : public Searcher<T> {
   BestFirstSearch() {
     Searcher<T>::evaluatedNodes = 0;
   }
+  virtual ~BestFirstSearch() {}
 
-  list<State<T>*>* search(Searchable<T>* problem) override {
-    Searcher<T>::addToQueue(problem->getInitialState());
+  list<State<T>*>* search(Searchable<T>* matrix) override {
+    Searcher<T>::addToQueue(matrix->getInitialState());
     closed = new list<State<T>*>();
 
     while (Searcher<T>::queueSize() > 0) {
@@ -25,11 +26,11 @@ class BestFirstSearch : public Searcher<T> {
       Searcher<T>::evaluatedNodes++;
 
       closed->push_back(node);
-      if (problem->isGoalState(node)) {
-        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
+      if (matrix->isGoalState(node)) {
+        list<State<T>*>* retVal = Searcher<T>::backTrace(matrix->getInitialState(), node);
         return retVal;
       }
-      list<State<T>*> successors = problem->getAllPossibleStates(node);
+      list<State<T>*> successors = matrix->getAllPossibleStates(node);
 
       for (State<T>* s: successors) {
         if (!isInClosed(s) && !Searcher<T>::isQueueContains(s)) {// if s not in OPEN or CLOSE
@@ -38,6 +39,7 @@ class BestFirstSearch : public Searcher<T> {
         }
       }//end of foreach
     }
+    return nullptr;
   }
 
   bool isInClosed(State<T>* s) {

@@ -19,6 +19,7 @@ class Searcher {
   std::queue<State<T>*> queue;
 
  public:
+  virtual ~Searcher() {}
   virtual list<State<T>*>* search(Searchable<T>* problem) = 0;
   int getNumOfEvaluatedNodes() { return evaluatedNodes; };
   void resetNumOfEvaluatedNodes() { evaluatedNodes = 0; };
@@ -91,7 +92,6 @@ class Searcher {
   State<T>* popQueueHeuristic() {
     int f, g, h;
     int minF = INT_MAX;
-    int elementHeuristic;
     State<T>* minState = queue.front();
 
     vector<State<T>*> tmpVector;

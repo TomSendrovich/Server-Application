@@ -21,6 +21,8 @@ class Server {
 
   //close the server.
   virtual void stop() = 0;
+
+  virtual ~Server();
 };
 
 }

@@ -18,6 +18,7 @@ class MySerialServer : public server_side::Server {
   void setSocket(int socket);
   static void setTimeOut(int socket);
   static void setStop(bool isStop);
+  virtual ~MySerialServer();
 };
 
 #endif //MILSTONE2__MYSERIALSERVER_H_

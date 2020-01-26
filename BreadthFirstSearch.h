@@ -13,18 +13,19 @@ class BreadthFirstSearch : public Searcher<T> {
 
  public:
   BreadthFirstSearch() { Searcher<T>::evaluatedNodes = 0; }
-  list<State<T>*>* search(Searchable<T>* problem) override {
+  virtual ~BreadthFirstSearch() {}
+  list<State<T>*>* search(Searchable<T>* matrix) override {
 
     visited = new list<State<T>*>();
 
     //pathCost = cost for initial state
-    problem->getInitialState()->setPathCost(problem->getInitialState()->getCost());
+    matrix->getInitialState()->setPathCost(matrix->getInitialState()->getCost());
 
     //mark initial state visited
-    visited->push_front(problem->getInitialState());
+    visited->push_front(matrix->getInitialState());
 
     //push initial state to queue
-    Searcher<T>::addToQueue(problem->getInitialState());
+    Searcher<T>::addToQueue(matrix->getInitialState());
 
     //while queue is not empty
     while (Searcher<T>::queueSize() > 0) {
@@ -37,13 +38,13 @@ class BreadthFirstSearch : public Searcher<T> {
       }
 
       //if node is goal state, check backtrace
-      if (problem->isGoalState(node)) {
-        list<State<T>*>* retVal = Searcher<T>::backTrace(problem->getInitialState(), node);
+      if (matrix->isGoalState(node)) {
+        list<State<T>*>* retVal = Searcher<T>::backTrace(matrix->getInitialState(), node);
         return retVal;
       }
 
       //get all successors
-      list<State<T>*> successors = problem->getAllPossibleStates(node);
+      list<State<T>*> successors = matrix->getAllPossibleStates(node);
       for (State<T>* s: successors) {
         if (!isVisited(s)) {
           visited->push_back(s);
@@ -51,6 +52,7 @@ class BreadthFirstSearch : public Searcher<T> {
         }
       }
     }
+    return nullptr;
   }
 
   bool isVisited(State<T>* s) {

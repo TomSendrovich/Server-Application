@@ -102,4 +102,5 @@ vector<vector<Cell*>> MatrixProblem::getMatrix() { return _matrix; }
 Cell* MatrixProblem::getCell(int row, int col) { return getMatrix().at(row).at(col); }
 int MatrixProblem::getMatrixRowSize() { return _rowSize; }
 int MatrixProblem::getMatrixColSize() { return _colSize; }
+MatrixProblem::~MatrixProblem() {}
 

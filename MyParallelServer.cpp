@@ -82,4 +82,5 @@ void MyParallelServer::setTimeOut(int socket) {
 }
 int MyParallelServer::getSocket() { return _socket; }
 void MyParallelServer::setStop(bool state) { isStop = state; }
+MyParallelServer::~MyParallelServer() {}
 

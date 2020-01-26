@@ -54,7 +54,7 @@ class FileCacheManager : public CacheManager {
         throw "Unable to open file";
       }
       getline(inStream, line);
-      if (CacheManager::cacheMap.size() >= CacheManager::size) {
+      if (CacheManager::cacheMap.size() >= (unsigned) CacheManager::size) {
         CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
       }
       cache_lock.lock();
@@ -76,7 +76,7 @@ class FileCacheManager : public CacheManager {
 
     outStream << solution << endl;
     cache_lock.lock();
-    if (CacheManager::cacheMap.size() >= CacheManager::size) {
+    if (CacheManager::cacheMap.size() >= (unsigned) CacheManager::size) {
       CacheManager::cacheMap.erase(CacheManager::cacheMap.begin());
     }
     CacheManager::cacheMap[hashProblem] = solution;

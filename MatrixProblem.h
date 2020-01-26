@@ -18,6 +18,7 @@ class MatrixProblem : public Searchable<Cell*> {
  public:
 
   MatrixProblem(vector<vector<string>> matrix, Cell* init, Cell* goal, int rowSize, int colSize);
+  virtual ~MatrixProblem();
 
   //override functions
   State<Cell*>* getInitialState() override;
