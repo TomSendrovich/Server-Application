@@ -21,11 +21,11 @@ class Main {
   Main() {}
 
   static int main(int port) {
-    auto* searcher = new AStar<Cell*>(); ///switch algorithm here
+    auto* searcher = new DepthFirstSearch<Cell*>(); ///switch algorithm here
     auto* solver = new ObjectAdapter<MatrixProblem, string, Cell*>(searcher);;
     auto* cacheManager = new FileCacheManager(CACHE_SIZE);
     auto* clientHandler = new MyClientHandler<MatrixProblem, string>(solver, cacheManager);
-    auto* server = new MyParallelServer();
+    auto* server = new MySerialServer();
 
     try {
       server->open(port, clientHandler);
