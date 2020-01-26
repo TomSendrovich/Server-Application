@@ -23,7 +23,9 @@ class ObjectAdapter : public Solver<P, S> {
     Solution solution;
     //lock_guard<mutex> lock(mutex_);
     list<State<T>*>* trace = _searcher->search(problem);
-
+    if (trace == nullptr) {
+      return "No path to goal state";
+    }
     cout << "evaluatedNodes: " << _searcher->getNumOfEvaluatedNodes() << endl;
     //trace list is ready
     for (typename list<State<T>*>::iterator it = trace->begin(); it != trace->end(); ++it) {
