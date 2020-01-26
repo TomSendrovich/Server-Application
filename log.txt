@@ -1,0 +1,1030 @@
+commit 76f0e4e7d216a704c4799a9c689fac21c71eb705
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 26 15:29:53 2020 +0200
+
+    handle compilation warnings
+
+commit e58c73e919cf957090fa70ed8935ca143819453d
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 26 15:14:56 2020 +0200
+
+    remove unused output
+
+commit a1e5d831bb57e758f109851d94dfe29083156f14
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 15:37:54 2020 +0200
+
+    remove unused output
+
+commit 70f045f627a26edb87695b3e22814bfe83ac6ceb
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 25 15:24:34 2020 +0200
+
+    ParallelServer is working!!!!
+
+commit 919e84f97b7e646a8f4662ee5a2590f8b7f2dc7e
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 25 14:49:03 2020 +0200
+
+    ClientHandler col counter fixed
+
+commit 8f45189208775f79233ce6475fc8d4acd516bfd6
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 25 14:28:06 2020 +0200
+
+    ClientHandler count rows and cols numbers
+
+commit 465f623af69605d42644e1e57b78cd2790f1cf83
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 14:09:00 2020 +0200
+
+    fix matrix row and col size functions
+
+commit d367db4765215c49f2c9a69bb60e91d22777d940
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 14:05:05 2020 +0200
+
+    small bugfix in locks
+
+commit 202d9fc0653115bb62b4013460a6031d83afb8b3
+Merge: 20ff86f 4a0b318
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 25 14:18:59 2020 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 20ff86f97def4847304461a89b3052844f5c48c6
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 25 14:18:37 2020 +0200
+
+    ClientHandler count rows and cols numbers
+
+commit 4a0b3181dcbc09ba78a4089b62ad375a2c7d1448
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 13:59:44 2020 +0200
+
+    added mutex and locks
+
+commit 66ea425c3b3dee975806c2d70c43808118e572b7
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 12:25:16 2020 +0200
+
+    bugfix in backtrace
+
+commit bd330c2b4fc66ae1cb78e2699fa5fdda344c61e1
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 25 11:35:36 2020 +0200
+
+    bugfix in cache manager
+
+commit b3389d78d93ed2dce3a3fc85ee9bec572efb1381
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 21:40:22 2020 +0200
+
+    listen to more than 1 client
+
+commit a87a85f21ef113cee1ae7914a1f8438a7ed057c3
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 21:28:38 2020 +0200
+
+    better hash function + cacheManager fixes
+
+commit a7b90544b7bea2abbb6574f5e6241affb42ecc3b
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 21:04:53 2020 +0200
+
+    better hash function + cacheManager fixes
+
+commit 85c26f4b74c493241cfa29479aefb3dd476133fd
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 20:43:47 2020 +0200
+
+    unite functions in Searcher
+
+commit a78ff3cba1be318f75dbfe8740a19037c7b41105
+Merge: c78477e 0dfe01a
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 20:30:21 2020 +0200
+
+    Merge pull request #55 from guyshoham/feat/a-star
+    
+    Feat/a star
+
+commit 0dfe01a5f750eeccec83179a0ed6b4a2ff822c69
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 20:26:26 2020 +0200
+
+    AStar works MotherFucker
+
+commit 58a1b7df3deadf3f32b117ee4de12615ac93263e
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 17:14:09 2020 +0200
+
+    improve AStar: 807 nodes, wrong answer
+
+commit 48b5d50cd68baaa8c05065f34b363783f2c058a4
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 16:32:41 2020 +0200
+
+    A star works but slow and showing wrong result
+
+commit c78477e21906abdddcf7be6cfecf118f42a001ac
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Fri Jan 24 14:41:25 2020 +0200
+
+    bugs fixed
+
+commit 85ad31fdf820769287a397a4ec62f69aaa221ce1
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Fri Jan 24 14:40:25 2020 +0200
+
+    bugs fixed
+
+commit 4a8a94fbbd352cf42913db5aa5c6676805d40c55
+Merge: 834571e c65a6d0
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 14:19:38 2020 +0200
+
+    Merge pull request #54 from guyshoham/feat/fixing-BestFS
+    
+    Feat/fixing best fs
+
+commit c65a6d0f9124ac2e7f496caf7add1c53247b33cb
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 14:01:47 2020 +0200
+
+    Best give correct answer
+
+commit 39d19766deb9ea564b95e3417cb6b1077e0b8310
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 13:19:42 2020 +0200
+
+    code checkpoint
+
+commit 834571e83ca7328aa08edfa5ed995446faaba85c
+Merge: 05b3e5e 9a95346
+Author: Tom Sendrovich <58727732+TomSendrovich@users.noreply.github.com>
+Date:   Fri Jan 24 13:18:21 2020 +0200
+
+    Merge pull request #53 from guyshoham/feat/#31-MyParallelServer
+    
+    MyParallel basic infrastructure. it runs but it is not working yet.
+
+commit 05b3e5e247c5b311e52a0bc7d0ac9aacd70f3370
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 12:19:10 2020 +0200
+
+    fix BFS algo
+
+commit 6117c909c8e20bf765b5875a77a5c995998f9f85
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 24 12:01:00 2020 +0200
+
+    DFS works!
+
+commit 9a95346f16bafb2481b72bf6dbd12c6e759769a3
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 20:42:52 2020 +0200
+
+    MyParallel basic infrastructure. it runs but it is not working yet.
+
+commit fc00e5ac10e21b1bfcbd71f839905698ab507493
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 20:21:36 2020 +0200
+
+    DFS works?
+
+commit a3f5bea01f73991e31a828e9405a4298aacaac0e
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 19:45:00 2020 +0200
+
+    BFS and DFS calls the correct function of queue
+
+commit 10f3cd35a5e110fe5f164451b23d8b6854929dfd
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 19:31:30 2020 +0200
+
+    fix hash function + cacheManager efficiency
+
+commit 0e29fcbdefc7e9fe1cbe6cd9a8321debf51634ea
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 19:01:38 2020 +0200
+
+    BreadthFirstSearch is working completely
+
+commit b51bab460746e55d65d86d9e4540b979ca3e355d
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 18:02:00 2020 +0200
+
+    implement methods for queue and priorityQueue
+
+commit 35f5a57a18ffdb310db94fa4221fb18b4fb6b18f
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 17:13:39 2020 +0200
+
+    fix write/read from disk
+
+commit e6ae87e93445d9e8418187ca57e5c4aec2ab6a97
+Merge: 2b5c80f 4a77c67
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 17:07:35 2020 +0200
+
+    Merge pull request #52 from guyshoham/feat/BFSchanges
+    
+    BreadthFirstSearch is working
+
+commit 2b5c80f1626cdb55a26836e923b38e34620323c3
+Merge: 4e1066d 17c52f4
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 17:07:15 2020 +0200
+
+    Merge pull request #51 from guyshoham/feat/fix-BestFS-process
+    
+    BestFS works (all process)
+
+commit 4a77c67319945c887e2f43cae5fb9d3f8d934d24
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 17:06:50 2020 +0200
+
+    BreadthFirstSearch is working
+
+commit 17c52f4fa696201d8be816929c4c3efb47cb86f2
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 17:06:30 2020 +0200
+
+    BestFS works (all process)
+
+commit 4e1066d3673cb4726a4a1b7e755a22067baf64d5
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 16:07:16 2020 +0200
+
+    fix getAllPossibleStates: set parent
+
+commit 3943a919439dac6dc2dbfa17e5ab5bb10851aef8
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 14:34:20 2020 +0200
+
+    fix getAllPossibleStates: only sides successors and not diagonal
+
+commit a5536b87a5a698352a32d13ca9a215bd68f62055
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 14:24:23 2020 +0200
+
+    fix isSolutionExist: open file
+
+commit 959bdf185bf116ec869ba07acd9e790ce4fa572a
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 14:12:37 2020 +0200
+
+    fix matrixSize + matrix constructor
+
+commit 04aa295c3675ebd57f855fc668bb80d43722e19e
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 14:08:03 2020 +0200
+
+    resolve conflict
+
+commit 07f1aaf8df631be979b2eea1c235a708b446a45a
+Merge: 012a607 488fe62
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 14:03:36 2020 +0200
+
+    resolve conflict
+
+commit 012a607b4fa4589e0488304eae12583ebee41676
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 13:56:57 2020 +0200
+
+    more bug fixed
+
+commit 488fe627afa788e2642079d9b2669e980cb44f81
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 13:39:54 2020 +0200
+
+    style
+
+commit 65e33b90af3aa0c6a93f7e6346e8190b98a960b2
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 13:35:49 2020 +0200
+
+    more bug fixed
+
+commit 56244a6dada4d98ab4f598e976663731e852c194
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 12:57:39 2020 +0200
+
+    something small
+
+commit a8020ad745b659f34e53ad3a5f21e27bff78ca88
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 12:54:31 2020 +0200
+
+    MyclientHandler is working until finding a solution
+
+commit 9646b856b3bf26768298445d8b28f9d73d990a69
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 12:35:13 2020 +0200
+
+    cerr instead of cout in try catch msg
+
+commit 764bd0bb59faa8ad4d44bbfed1ab70f8458443ea
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 12:30:35 2020 +0200
+
+    handling error msg in client handler
+
+commit 128eb5a762e5b7bc68e2b688919ad230e6bd2b13
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 12:18:23 2020 +0200
+
+    some prints for debugging
+
+commit 70af78b4024a2e3e504c50ba3bc7004cf03fe41f
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 23 12:10:28 2020 +0200
+
+    throw error when port is busy
+
+commit acfb6cef7d75cc815d2c0a2e46d9579deb7e9833
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 12:08:14 2020 +0200
+
+    MyclientHandler is working, and hashFunc is working too
+
+commit 9656a53adea04fda05291376517773286f51f429
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 11:55:07 2020 +0200
+
+    MyclientHandler is working
+
+commit baad6a71c1f40857ec0b9c42d5683499c55194ed
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 23 11:40:23 2020 +0200
+
+    MyclientHandler bug fixed, still have work to do
+
+commit 73327fda452a70d2a905cb00891a9bb971eb1ad6
+Merge: fa49186 751339f
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 21:38:49 2020 +0200
+
+    Merge pull request #50 from guyshoham/feat/changes
+    
+    Feat/changes
+
+commit 751339f0ecc4e70e3de934f1456913e161833017
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 21:32:42 2020 +0200
+
+    DepthFirstSearch compiles
+
+commit 3ee721ad9d53acd1e10955e54e67ac80b2295a4a
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 21:27:53 2020 +0200
+
+    BreadthFirstSearch compiles
+
+commit 05fe4bb8a9c690b3c629bd9d0d80191bcdd973f3
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 21:20:28 2020 +0200
+
+    project compiles
+
+commit 4bc90c5bfcc41c7142aa3f03abf0691321b0bc55
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 22 19:57:53 2020 +0200
+
+    more bugs fixed, especially in MyClientHandler and ObjectAdapter.
+
+commit 6487504aeb9e7a9cf386446baef36916ea364b1b
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 13:50:24 2020 +0200
+
+    update boot
+
+commit e57920b1d4baa39fad988666f410f4343b53acd3
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 13:14:34 2020 +0200
+
+    update BFS and DFS
+
+commit 4bf99ae8251aac2a380d117afc620e7df222694e
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 22 12:41:53 2020 +0200
+
+    update BestFirstSearch
+
+commit 1b705318b97483c505134bc727f92170df654753
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 21 19:12:30 2020 +0200
+
+    fix: Cell, State, MatrixProblem.
+    remove: Position
+
+commit cfe46196d464f414449582cc09475a892df9e38f
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 21 17:34:11 2020 +0200
+
+    fix timeout
+
+commit fa4918687e5f8c6db3bcbfd389f9553ff1568294
+Merge: 925cf4e 718071a
+Author: Tom Sendrovich <58727732+TomSendrovich@users.noreply.github.com>
+Date:   Mon Jan 20 18:00:39 2020 +0200
+
+    Merge pull request #49 from guyshoham/feat/#28-DepthFirstSearch
+    
+    DepthFirstSearch implementation + changing some of BFS.
+
+commit 718071ae72421be156751745e6caaee280ed58b3
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Mon Jan 20 17:54:38 2020 +0200
+
+    DepthFirstSearch implementation + changing some of BFS.
+
+commit 925cf4e47b0339df3a4480d8c90f768a6faf8abb
+Merge: 2a84e18 54d3a98
+Author: Tom Sendrovich <58727732+TomSendrovich@users.noreply.github.com>
+Date:   Mon Jan 20 16:58:57 2020 +0200
+
+    Merge pull request #48 from guyshoham/feat/#27-BreadthFirstSearch
+    
+    BreadthFirstSearch implementation
+
+commit 2a84e182a13b637c324e1d09f1577d8cf76f5105
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 20 16:57:53 2020 +0200
+
+    fix BestFirstSearch logic
+
+commit 54d3a988f782d6b55c45f54f9089323c9744ef52
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Mon Jan 20 16:51:15 2020 +0200
+
+    BreadthFirstSearch implementation
+
+commit 3c5840fd048d38b35b0e69fe7ca388aa13bb74ae
+Merge: ecdeb4a 8dc2ce2
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Mon Jan 20 15:51:25 2020 +0200
+
+    Merge pull request #47 from guyshoham/feat/35-object-adapter
+    
+    move backTrace login to ObjectAdapter
+
+commit 8dc2ce2b65d42df4f5709f8a7c0418bfca581784
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 20 15:49:19 2020 +0200
+
+    move backTrace login to ObjectAdapter
+
+commit ecdeb4ab2b5a95d41c55831283f5d06f5cfc5a14
+Merge: 1e3196b 3640822
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 15:14:14 2020 +0200
+
+    Merge pull request #46 from guyshoham/feat/35-object-adapter
+    
+    create ObjectAdapter
+
+commit 3640822c15b8903ead5a05bda457174188e93bdd
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 15:13:01 2020 +0200
+
+    create ObjectAdapter
+
+commit 1e3196b31fd359b7053a2d81afb8aae8da4e5a95
+Merge: 7698e14 783c716
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 14:40:32 2020 +0200
+
+    Merge pull request #45 from guyshoham/feat/#32-MyClientHandler
+    
+    MyClientHandler implementation
+
+commit 783c7166647410bc3434b17a19cab457ba827611
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sun Jan 19 14:39:05 2020 +0200
+
+    MyClientHandler implementation
+
+commit 7698e1453ede0b251c810ba7a9b25102649d5625
+Merge: 88aa829 bd705bd
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 14:38:05 2020 +0200
+
+    Merge pull request #44 from guyshoham/feat/BestFS-backtrace
+    
+    implement BestFS backtrace method
+
+commit bd705bd1a5e1d1b510d2b0b1ee5f3d6e84114fb9
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 14:36:10 2020 +0200
+
+    implement BestFS backtrace method
+
+commit 88aa829772b7cb11f1e9d3274436020b63c6f4a4
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 19 13:39:54 2020 +0200
+
+    small fixes + correct solution for matrix
+
+commit 3b0a3a9618d63b53681173add9e36297e6943be1
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 18 18:29:16 2020 +0200
+
+    implement getAllPossibleStates and more
+
+commit 45db869bb5a73dca47dbf44622144fcf9a6be9c4
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 18 16:50:14 2020 +0200
+
+    continue implementing BestFS
+
+commit a261f41226799049bf69ba845a28a621e292adeb
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 18 16:02:57 2020 +0200
+
+    added .cpp file for each header
+
+commit b6994c8fe5fd88987c9a12407327e514bea5832b
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 14:21:26 2020 +0200
+
+    start of BestFirstSearch
+
+commit 09b73e0526f4c7326818a5b76106924b234c711c
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 14:20:08 2020 +0200
+
+    start of BestFirstSearch
+
+commit 6453bd0a6bb8edf2f31351629c28f9e5d561104a
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 14:17:07 2020 +0200
+
+    starting implement BestFS
+
+commit 7b0a21c2d487c04e50560c25838ddd3571d51e20
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 11:43:50 2020 +0200
+
+    start of BestFirstSearch
+
+commit 6a9ca90f4795e5b6fefc2e8532b9b38880071c2d
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 11:30:37 2020 +0200
+
+    vector<vector<string>>
+
+commit 4ad3afc23808b365626fa0a407d0ace8a5b168c7
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 16 11:24:57 2020 +0200
+
+    create MatrixProblem.h
+
+commit 84c9878aa642ee9cc4c68652cae074d6c953f4c8
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Thu Jan 16 10:51:45 2020 +0200
+
+    Part 2 is working, fixed some bigs in FileCacheManager and MyTestClientHandler
+
+commit e5f9062157151ac905065e56bfccaeba098b1975
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 20:00:15 2020 +0200
+
+    code style
+
+commit f5e00f6519cc34f182ea42e91526c5854371a021
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 20:00:04 2020 +0200
+
+    code style
+
+commit d8251d1896a18c9228cb4828e13daa3e992c0758
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 15 19:14:15 2020 +0200
+
+    MySerialServer now except more than 1 client.
+    Bug: after 1 client throw you (in debug it works fine...)
+
+commit 9b42ab00093a71ed5953324b7e60041993d40f4f
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 16:08:37 2020 +0200
+
+    auto_client.py
+
+commit a1a2782f3610760438c7f8487a954444145ef241
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 16:03:28 2020 +0200
+
+    trying to change format of solution save
+
+commit 7a60595adf1780f2c438702254f8476c7df834b3
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 15:24:29 2020 +0200
+
+    StringReverser works + saveSolution works
+
+commit cdf0af124b08522bac30cc4c93a4c0899c2d06c1
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 14:54:57 2020 +0200
+
+    StringReverser works + saveSolution works
+
+commit 204b4d474d21d2f6f9b6b8c4720fa51b2745bb5c
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 15 12:11:06 2020 +0200
+
+    chance class P,S,T to typename
+
+commit ea6ce8a25733a64d3d7c867d0b5203c2ee17b205
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 14 16:54:02 2020 +0200
+
+    move namespace boot to Server.h
+    move MySerialServer.h to namespace server_side
+
+commit 0888bf17e55adae9456cce86ac87320f342b5c11
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 14 13:24:56 2020 +0200
+
+    implementing cache methods
+
+commit 6887905cfc9f34daa59d5daa0bdcca555f1d9c86
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 18:08:03 2020 +0200
+
+    successfully reading from python server
+
+commit 555a431f5310cf58f21ad15e2c38fd50639303bb
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 18:07:56 2020 +0200
+
+    successfully reading from python server
+
+commit 4f93b1c72328096e8a7cfe49e6fe3db657611427
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Mon Jan 13 17:44:42 2020 +0200
+
+    sendMsg bug fixed
+
+commit e22b22894dd752c068f158f31d2b86f67133a0ad
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 17:34:30 2020 +0200
+
+    change arguments of ClientHandler::handleClients
+
+commit ee202616d39449f81b9b0f7db6e95c4c2148e58b
+Merge: 9b64eb4 e7faf83
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 17:24:03 2020 +0200
+
+    Merge pull request #43 from guyshoham/feat/25-searcher-searchable-state
+    
+    added interfaces (Searcher.h Searchable.h State.h)
+
+commit 9b64eb4698b0feb9abb196730ad0e083da5665da
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Mon Jan 13 17:23:38 2020 +0200
+
+    MySerialServer is now listening...
+
+commit e7faf839f54902309bb97bc6221ccdb875a18010
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 17:21:53 2020 +0200
+
+    added interfaces (Searcher.h Searchable.h State.h)
+
+commit 8969b5fc0230e1afb33acfd3476c99d9bfc7cacb
+Merge: 3746124 46957c1
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 10:57:40 2020 +0200
+
+    Merge pull request #42 from guyshoham/feat/#9-changeProblem&Solution
+    
+    Feat/#9 change problem&solution
+
+commit 46957c1566bf0f0e0857a21c247c7731b42baeb3
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Mon Jan 13 10:57:03 2020 +0200
+
+    make things compile. generic types
+
+commit ad9859e4a4b8dcd5dd6a35045c6f39a0a3901242
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sun Jan 12 14:26:56 2020 +0200
+
+    make project generic with <P,S> template
+
+commit 57210c9c99b5718ae6614b7cf4759a157ae6a305
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 11 14:16:54 2020 +0200
+
+    Solver class now holds to parameters:
+    Problem & Solution
+
+commit 37461245d0c78cef2f855c1d770bd4d6eba2fe69
+Merge: 08038a3 894994c
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 14:02:55 2020 +0200
+
+    Merge pull request #41 from guyshoham/feat/14-main
+    
+    implement main method
+
+commit 894994cb546d8323f2ccc152e040f6205a3ba6b6
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 14:02:38 2020 +0200
+
+    implement main method
+
+commit 08038a324aeccbbf143ef853b6c165f14468cb1d
+Merge: 6863b79 af0e80a
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 13:43:37 2020 +0200
+
+    Merge pull request #40 from guyshoham/feat/13-namespace-boot
+    
+    namespace boot
+
+commit 6863b79cc31113bed1352f2bf1cfa6f9f7bfbb5a
+Merge: 845c053 f018ffb
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 13:43:19 2020 +0200
+
+    Merge pull request #39 from guyshoham/feat/#20-handleMethod
+    
+    handle method implemented in MyTestClientHandler class
+
+commit af0e80af309a5272f693f0677a0beea025ddfd0e
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 13:42:04 2020 +0200
+
+    namespace boot
+
+commit f018ffb068ceac40ee68eda8caaf0408422d52a6
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Sat Jan 11 13:31:41 2020 +0200
+
+    handle method implemented in MyTestClientHandler class
+
+commit 845c053b53ac8b56a77409c245ae291d7889ab29
+Merge: ea33ea4 6b779c5
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 12:00:52 2020 +0200
+
+    Merge pull request #38 from guyshoham/feat/11-StringReverser
+    
+    implement StringReverser::solve
+
+commit 6b779c50ee7802f7cb5760219da0a17dd4c3dc1a
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Sat Jan 11 12:00:30 2020 +0200
+
+    implement StringReverser::solve
+
+commit ea33ea4f6ddb6a2f7647b2b28e9fe430dfa6a67b
+Merge: 66b0470 e91517a
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 16:59:41 2020 +0200
+
+    Merge pull request #37 from guyshoham/feat/3-MySerialServer-Implement
+    
+    Implement MySerialServer::open()
+
+commit e91517a84cc633c26d549e9a12a649aa0df39a99
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 16:58:46 2020 +0200
+
+    Implement MySerialServer::open()
+
+commit 66b04708c5f5e263c374dde495685de40f95204b
+Merge: 0c4eca1 a29ec77
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 16:31:49 2020 +0200
+
+    Merge pull request #36 from guyshoham/feat/#8-FileCacheManager
+    
+    Feat/#8 file cache manager
+
+commit a29ec772fc61759ef6a9e36d1798e69559d72bfa
+Merge: 5b7b300 0c4eca1
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 16:31:42 2020 +0200
+
+    Merge branch 'master' into feat/#8-FileCacheManager
+
+commit 5b7b300a86b947e6ca57d1dfe2b855e3a894061c
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 16:28:46 2020 +0200
+
+    fix compilation error
+
+commit a4869f7bd2fc73e54d8e70f89e6e2c35798e7b50
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Fri Jan 10 16:16:04 2020 +0200
+
+    added FileCacheManager.h file, have bugssa
+
+commit 0c4eca1e1e9c4f26d5d047733b75dd5505b37073
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Fri Jan 10 13:35:23 2020 +0200
+
+    skeleton for StringReverser + change types
+
+commit 113c223533b48e60296f97ef00d8b237fcb22867
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 9 15:47:54 2020 +0200
+
+    auto indent
+
+commit a5f84e8edc43e60e8bc014832545ade3a7cdefac
+Merge: 8b48d88 f9d6587
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Thu Jan 9 15:57:10 2020 +0200
+
+    Merge pull request #23 from guyshoham/feat/03-MySerialServer
+    
+    create MySerialServer class
+
+commit f9d65870730da805085596d8fa07313f32ccabe0
+Merge: b630eb9 8b48d88
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Thu Jan 9 15:57:02 2020 +0200
+
+    Merge branch 'master' into feat/03-MySerialServer
+
+commit b630eb9d168094e31f12873cc0680945485d5d82
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Thu Jan 9 15:45:45 2020 +0200
+
+    create MySerialServer class
+
+commit 8b48d8896597e1beaeec80f43cf57d9484dc08bb
+Merge: 90bba12 9f8e4c9
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Thu Jan 9 15:41:57 2020 +0200
+
+    Merge pull request #22 from guyshoham/feat/#8-FileCacheManager
+    
+    Feat/#8 file cache manager
+
+commit 9f8e4c945d31f60118ee26775ceee2e038d077db
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 8 18:40:48 2020 +0200
+
+    FileCacheManager is finished including method saveSolution
+
+commit 8bcffa1b1fd14dad971495e249f2a085c4f2aa51
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 8 17:59:16 2020 +0200
+
+    disk.txt file for testing claa FileCacheManager
+
+commit f7a0009e742cc575e77a018066674621d17ee67c
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 8 17:56:05 2020 +0200
+
+    FileCacheManager created.
+    I need to implement saveSolution method to finish class.
+
+commit 90bba12a8e34aaccee271532e347a30c840e4c1a
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:29:22 2020 +0200
+
+    auto indent
+
+commit 8f3d3224c09e173012cbe1b91cde7af5d88b8040
+Merge: 2093e22 c45c00b
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:28:34 2020 +0200
+
+    Merge pull request #21 from guyshoham/feat/#1-server_side
+    
+    server_side namespace, inside there is Server interface.
+
+commit c45c00b8dd626261bd2b9ed1a96b2644cd8f2000
+Merge: 2079239 2093e22
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:28:25 2020 +0200
+
+    Merge branch 'master' into feat/#1-server_side
+
+commit 20792394ea9ef7acaff5c1a3cf622c453f1bc404
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 8 14:26:11 2020 +0200
+
+    server_side namespace, inside there is Server interface.
+
+commit 2093e228ed7dc0e4f253d90ed2a7d307d364c989
+Merge: 050251e ba3c9e5
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:23:59 2020 +0200
+
+    Merge pull request #19 from guyshoham/feat/10-problem-solution
+    
+    create Problem and Solutions classes
+
+commit ba3c9e5c6de4885ca7daf4c812ea33be48c213e2
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:23:42 2020 +0200
+
+    create Problem and Solutions classes
+
+commit 050251e256cc3d4f331016cecafa5e19918114d4
+Merge: 961ebe1 3d02f36
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:12:49 2020 +0200
+
+    Merge pull request #18 from guyshoham/feat/#6-Solver
+    
+    Solver interface created
+
+commit 3d02f364aeca30f697d3439d57e15990448b8415
+Merge: ed54646 961ebe1
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:12:35 2020 +0200
+
+    Merge branch 'master' into feat/#6-Solver
+
+commit ed54646f7946ed4d2adbe12b302c4cb544cad6e3
+Author: tom5012 <tsanderovich@gmail.com>
+Date:   Wed Jan 8 14:11:25 2020 +0200
+
+    Solver interface created
+
+commit 961ebe107eb54aa8f4d77cf1cb93a92268b67063
+Merge: 095757a 8544daf
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:10:50 2020 +0200
+
+    Merge pull request #17 from guyshoham/feat/07-CacheManager
+    
+    create <<CacheManager>> interface
+
+commit 8544daf04f652184d7868e4d60cefff079d02baf
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:08:04 2020 +0200
+
+    create <<CacheManager>> interface
+
+commit 095757ab4420baae49a87e5cb7599ce2d94184c8
+Merge: 4cc16b9 f958f37
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:01:20 2020 +0200
+
+    Merge pull request #16 from guyshoham/feat/05-MyTestClientHandler
+    
+    create MyTestClientHandler class
+
+commit f958f377a9c2e9c4d3f33deed54e9e97da842a98
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 14:00:46 2020 +0200
+
+    create MyTestClientHandler class
+
+commit 4cc16b9ed91f32ceeac2407e89ffa50491cbdaaf
+Merge: 58527c7 f301973
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 09:28:25 2020 +0200
+
+    Merge pull request #15 from guyshoham/feat/04-client-handler
+    
+    create <<ClientHandler>>
+
+commit f30197313ea679142e97de2dc609ab39b4ebc3cd
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 09:28:07 2020 +0200
+
+    set(CMAKE_CXX_FLAGS -pthread)
+
+commit f0cedd4b3a9a3e126ba01909546a1768e8b278b9
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Wed Jan 8 09:21:46 2020 +0200
+
+    create <<ClientHandler>>
+
+commit 58527c7d4afdc976f800569e69577ad56e64f6f1
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 7 14:55:06 2020 +0200
+
+    test commit
+
+commit 5c15c819e27909a0145a19da286aa0dca6914fcd
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 7 13:41:15 2020 +0200
+
+    .gitignore
+
+commit 10b36a91a40436a61b4c5fd757137ed19891063e
+Author: guyshoham <guyshoham28@gmail.com>
+Date:   Tue Jan 7 13:37:30 2020 +0200
+
+    Create README.md
+
+commit 58b1f0ddfed97ea0a78267e2ee262d6604110b05
+Author: Guy Shoham <guyshoham28@gmail.com>
+Date:   Tue Jan 7 13:35:33 2020 +0200
+
+    init commit
